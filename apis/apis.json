@@ -4073,6 +4073,22 @@
       "shortName": "storage"
     },
     {
+      "id": "Google.Cloud.Storage.V2",
+      "version": "1.0.0-beta00",
+      "type": "grpc",
+      "productName": "Cloud Storage",
+      "description": "Lets you store and retrieve potentially-large, immutable data objects.",
+      "tags": [],
+      "dependencies": {
+        "Google.Cloud.Iam.V1": "3.0.0"
+      },
+      "generator": "micro",
+      "protoPath": "google/storage/v2",
+      "shortName": "storage",
+      "serviceConfigFile": "storage_v2.yaml",
+      "restNumericEnums": false
+    },
+    {
       "id": "Google.Cloud.StorageTransfer.V1",
       "version": "2.2.0",
       "type": "grpc",
