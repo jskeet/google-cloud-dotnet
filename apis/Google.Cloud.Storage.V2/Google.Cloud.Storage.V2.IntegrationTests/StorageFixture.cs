@@ -31,7 +31,8 @@ public class StorageFixture : CloudProjectFixtureBase, ICollectionFixture<Storag
     public StorageFixture()
     {
         Client = StorageClient.Create();
-        BucketPrefix = IdGenerator.FromDateTime(prefix: "test-jonskeet-integration-tests-", suffix: "-");
+        //BucketPrefix = IdGenerator.FromDateTime(prefix: "test-jonskeet-integration-tests-", suffix: "-");
+        BucketPrefix = IdGenerator.FromDateTime(prefix: "gcs-grpc-team-jonskeet-", suffix: "-");
     }
 
     internal string GenerateBucketName() => IdGenerator.FromGuid(prefix: BucketPrefix, separator: "", maxLength: 63);
@@ -56,7 +57,7 @@ public class StorageFixture : CloudProjectFixtureBase, ICollectionFixture<Storag
         var client = StorageClient.Create();
         foreach (var bucket in _bucketsToDelete)
         {
-            //DeleteBucket(client, bucket);
+            DeleteBucket(client, bucket);
         }
     }
 
@@ -67,7 +68,7 @@ public class StorageFixture : CloudProjectFixtureBase, ICollectionFixture<Storag
             var bucketName = new BucketName(ProjectId, bucket);
             foreach (var obj in client.ListObjects(bucketName))
             {
-                client.DeleteObject(bucket, obj.Name);
+                client.DeleteObject(bucketName.ToString(), obj.Name);
             }
             client.DeleteBucket(bucketName);
         }

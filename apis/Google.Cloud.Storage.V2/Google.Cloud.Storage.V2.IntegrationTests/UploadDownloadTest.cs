@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and 
 // limitations under the License.
 
+using Google.Api.Gax.Grpc;
 using Google.Cloud.ClientTesting;
 using Google.Protobuf;
 using System;
@@ -31,12 +32,22 @@ public class UploadDownloadTest
     [Fact]
     public async Task UploadDownload()
     {
-        var client = StorageClient.Create();
+        // Disable retries for streaming calls.
+        var settings = StorageSettings.GetDefault();
+        var client = new StorageClientBuilder
+        {
+            Settings = new StorageSettings
+            {
+                WriteObjectSettings = settings.WriteObjectSettings.WithRetry(null),
+                ReadObjectSettings = settings.ReadObjectSettings.WithRetry(null),
+            }
+        }.Build();
 
-        var bucketName = _fixture.GenerateBucketName();
-        _fixture.CreateBucket(bucketName);
+        var bucketId = _fixture.GenerateBucketName();
+        _fixture.CreateBucket(bucketId);
 
         string objectName = IdGenerator.FromGuid();
+        var fullBucketName = new BucketName(_fixture.ProjectId, bucketId);
 
         var data = new byte[100_000];
         new Random().NextBytes(data);
@@ -46,14 +57,13 @@ public class UploadDownloadTest
 
         async Task UploadObject()
         {
-
             var request = new WriteObjectRequest
             {
                 WriteObjectSpec = new WriteObjectSpec
                 {
                     Resource = new Object
                     {
-                        Bucket = bucketName,
+                        BucketAsBucketName = fullBucketName,
                         Name = objectName
                     }
                 },
@@ -68,13 +78,16 @@ public class UploadDownloadTest
             var response = await stream.ResponseAsync;
             var writtenResource = response.Resource;
             Assert.Equal(objectName, writtenResource.Name);
-            Assert.Equal(bucketName, writtenResource.Bucket);
+
+            // We don't get the project ID back in the bucket name for the written object.
+            var expectedReturnedBucketName = new BucketName("_", bucketId);
+            Assert.Equal(expectedReturnedBucketName, writtenResource.BucketAsBucketName);
         }
 
         async Task DownloadObject()
         {
             var localStream = new MemoryStream();
-            var request = new ReadObjectRequest { Bucket = bucketName, Object = objectName };
+            var request = new ReadObjectRequest { Bucket = fullBucketName.ToString(), Object = objectName };
             var readStream = client.ReadObject(request);
 
             await foreach (var response in readStream.GetResponseStream())
