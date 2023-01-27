@@ -1,0 +1,198 @@
+{
+  "schema": "1.0",
+  "comment": "This file maps proto services/RPCs to the corresponding library clients/methods",
+  "language": "csharp",
+  "protoPackage": "google.storage.v2",
+  "libraryPackage": "Google.Cloud.Storage.V2",
+  "services": {
+    "Storage": {
+      "clients": {
+        "grpc": {
+          "libraryClient": "StorageClient",
+          "rpcs": {
+            "CancelResumableWrite": {
+              "methods": [
+                "CancelResumableWrite",
+                "CancelResumableWriteAsync"
+              ]
+            },
+            "ComposeObject": {
+              "methods": [
+                "ComposeObject",
+                "ComposeObjectAsync"
+              ]
+            },
+            "CreateBucket": {
+              "methods": [
+                "CreateBucket",
+                "CreateBucketAsync"
+              ]
+            },
+            "CreateHmacKey": {
+              "methods": [
+                "CreateHmacKey",
+                "CreateHmacKeyAsync"
+              ]
+            },
+            "CreateNotification": {
+              "methods": [
+                "CreateNotification",
+                "CreateNotificationAsync"
+              ]
+            },
+            "DeleteBucket": {
+              "methods": [
+                "DeleteBucket",
+                "DeleteBucketAsync"
+              ]
+            },
+            "DeleteHmacKey": {
+              "methods": [
+                "DeleteHmacKey",
+                "DeleteHmacKeyAsync"
+              ]
+            },
+            "DeleteNotification": {
+              "methods": [
+                "DeleteNotification",
+                "DeleteNotificationAsync"
+              ]
+            },
+            "DeleteObject": {
+              "methods": [
+                "DeleteObject",
+                "DeleteObjectAsync"
+              ]
+            },
+            "GetBucket": {
+              "methods": [
+                "GetBucket",
+                "GetBucketAsync"
+              ]
+            },
+            "GetHmacKey": {
+              "methods": [
+                "GetHmacKey",
+                "GetHmacKeyAsync"
+              ]
+            },
+            "GetIamPolicy": {
+              "methods": [
+                "GetIamPolicy",
+                "GetIamPolicyAsync"
+              ]
+            },
+            "GetNotification": {
+              "methods": [
+                "GetNotification",
+                "GetNotificationAsync"
+              ]
+            },
+            "GetObject": {
+              "methods": [
+                "GetObject",
+                "GetObjectAsync"
+              ]
+            },
+            "GetServiceAccount": {
+              "methods": [
+                "GetServiceAccount",
+                "GetServiceAccountAsync"
+              ]
+            },
+            "ListBuckets": {
+              "methods": [
+                "ListBuckets",
+                "ListBucketsAsync"
+              ]
+            },
+            "ListHmacKeys": {
+              "methods": [
+                "ListHmacKeys",
+                "ListHmacKeysAsync"
+              ]
+            },
+            "ListNotifications": {
+              "methods": [
+                "ListNotifications",
+                "ListNotificationsAsync"
+              ]
+            },
+            "ListObjects": {
+              "methods": [
+                "ListObjects",
+                "ListObjectsAsync"
+              ]
+            },
+            "LockBucketRetentionPolicy": {
+              "methods": [
+                "LockBucketRetentionPolicy",
+                "LockBucketRetentionPolicyAsync"
+              ]
+            },
+            "QueryWriteStatus": {
+              "methods": [
+                "QueryWriteStatus",
+                "QueryWriteStatusAsync"
+              ]
+            },
+            "ReadObject": {
+              "methods": [
+                "ReadObject",
+                "ReadObjectAsync"
+              ]
+            },
+            "RewriteObject": {
+              "methods": [
+                "RewriteObject",
+                "RewriteObjectAsync"
+              ]
+            },
+            "SetIamPolicy": {
+              "methods": [
+                "SetIamPolicy",
+                "SetIamPolicyAsync"
+              ]
+            },
+            "StartResumableWrite": {
+              "methods": [
+                "StartResumableWrite",
+                "StartResumableWriteAsync"
+              ]
+            },
+            "TestIamPermissions": {
+              "methods": [
+                "TestIamPermissions",
+                "TestIamPermissionsAsync"
+              ]
+            },
+            "UpdateBucket": {
+              "methods": [
+                "UpdateBucket",
+                "UpdateBucketAsync"
+              ]
+            },
+            "UpdateHmacKey": {
+              "methods": [
+                "UpdateHmacKey",
+                "UpdateHmacKeyAsync"
+              ]
+            },
+            "UpdateObject": {
+              "methods": [
+                "UpdateObject",
+                "UpdateObjectAsync"
+              ]
+            },
+            "WriteObject": {
+              "methods": [
+                "WriteObject",
+                "WriteObjectAsync"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

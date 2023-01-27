@@ -1,0 +1,23 @@
+[
+  {
+    "method": "GetServiceAccount",
+    "client": "StorageClient",
+    "arguments": {
+      "project": "projects/${PROJECT_ID}"
+    }
+  },
+  {
+    "method": "ListHmacKeys",
+    "client": "StorageClient",
+    "arguments": {
+      "project": "projects/${PROJECT_ID}"
+    }
+  },
+  {
+    "method": "ListBuckets",
+    "client": "StorageClient",
+    "arguments": {
+      "parent": "projects/${PROJECT_ID}"
+    }
+  }
+]

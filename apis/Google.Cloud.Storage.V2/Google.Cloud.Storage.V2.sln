@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2", "Google.Cloud.Storage.V2\Google.Cloud.Storage.V2.csproj", "{6772F1B0-98AE-410C-A753-165A04721FCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2.GeneratedSnippets", "Google.Cloud.Storage.V2.GeneratedSnippets\Google.Cloud.Storage.V2.GeneratedSnippets.csproj", "{D5211EB3-1731-4567-996A-D339237BB86C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.ClientTesting", "..\..\tools\Google.Cloud.ClientTesting\Google.Cloud.ClientTesting.csproj", "{4BCE6EDC-E611-45F6-B473-5B0BCD842642}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2.Snippets", "Google.Cloud.Storage.V2.Snippets\Google.Cloud.Storage.V2.Snippets.csproj", "{D771A5C9-750E-45E8-A6BF-BDC764A60FC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.Storage.V2.IntegrationTests", "Google.Cloud.Storage.V2.IntegrationTests\Google.Cloud.Storage.V2.IntegrationTests.csproj", "{57DE6EA9-E576-4AB2-BDD5-3D135745880B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6772F1B0-98AE-410C-A753-165A04721FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6772F1B0-98AE-410C-A753-165A04721FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6772F1B0-98AE-410C-A753-165A04721FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6772F1B0-98AE-410C-A753-165A04721FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5211EB3-1731-4567-996A-D339237BB86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5211EB3-1731-4567-996A-D339237BB86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5211EB3-1731-4567-996A-D339237BB86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5211EB3-1731-4567-996A-D339237BB86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCE6EDC-E611-45F6-B473-5B0BCD842642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCE6EDC-E611-45F6-B473-5B0BCD842642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCE6EDC-E611-45F6-B473-5B0BCD842642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCE6EDC-E611-45F6-B473-5B0BCD842642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D771A5C9-750E-45E8-A6BF-BDC764A60FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D771A5C9-750E-45E8-A6BF-BDC764A60FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D771A5C9-750E-45E8-A6BF-BDC764A60FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D771A5C9-750E-45E8-A6BF-BDC764A60FC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57DE6EA9-E576-4AB2-BDD5-3D135745880B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57DE6EA9-E576-4AB2-BDD5-3D135745880B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57DE6EA9-E576-4AB2-BDD5-3D135745880B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57DE6EA9-E576-4AB2-BDD5-3D135745880B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0AAEFA7-76C6-4C6A-8128-520582EE2FC5}
+	EndGlobalSection
+EndGlobal
