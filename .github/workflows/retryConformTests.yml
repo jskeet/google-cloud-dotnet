@@ -40,7 +40,7 @@ jobs:
     - run: dotnet test Google.Cloud.Storage.V1.RetryConformanceTests.csproj
     #   continue-on-error: true
       env:
-        TEST_BENCH_URL: http://emulator:9000/
+        TEST_BENCH_URL: http://127.0.0.1:9000/
         #TEST_BENCH_URL: https://storage-testbench-vkcain7hhq-el.a.run.app/
       
      # - name: Output file
