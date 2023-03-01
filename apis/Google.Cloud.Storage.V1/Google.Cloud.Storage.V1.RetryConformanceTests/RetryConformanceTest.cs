@@ -16,10 +16,12 @@ using Google.Api.Gax;
 using Google.Apis.Storage.v1.Data;
 using Google.Cloud.ClientTesting;
 using Google.Cloud.Storage.V1.Tests.Conformance;
+using Grpc.Net.Client.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -34,7 +36,8 @@ namespace Google.Cloud.Storage.V1.RetryConformanceTests;
 public class RetryConformanceTest
 {
     private const string RetryIdHeader = "x-retry-test-id";
-    public static TheoryData<RetryTest> RetryTestData { get; } = StorageConformanceTestData.TestData.GetTheoryData(f => f.RetryTests);
+    public static TheoryData<(RetryTest, InstructionList, Method method)> RetryTestData { get; } =
+        StorageConformanceTestData.TestData.GetTheoryData(f => f.RetryTests.SelectMany(test => test.Cases.SelectMany(c => test.Methods.Select(method => (test, c, method)))));
 
     private readonly RetryConformanceTestFixture _fixture;
     private readonly string retryIdPrefix = IdGenerator.FromGuid(prefix: "test-id-", suffix: "-", maxLength: 20);
@@ -55,40 +58,36 @@ public class RetryConformanceTest
     /// </summary>
     [SkippableTheory]
     [MemberData(nameof(RetryTestData))]
-    public async Task RetryTest(RetryTest test)
+    public async Task RetryTest((RetryTest test, InstructionList instructionList, Method method) tuple)
     {
+        var test = tuple.test;
+        var instructionList = tuple.instructionList;
+        var method = tuple.method;
+        string methodName = method.Name;
         Log("************************************************");
-        Skip.IfNot(ShouldRunTest(test));
-
-        foreach (InstructionList instructionList in test.Cases)
-        {
-            if (instructionList.Instructions.Contains("return-reset-connection"))
-                continue;
-
-            Log("#########################################################################");
-            Log("Test ID: " + test.Id + "  with instruction: " + instructionList.Instructions.ToString());
-            Log("#########################################################################");
-            foreach (Method method in test.Methods)
-            {
-                if (ShouldRunMethod(method.Name))
-                {
-                    Log(method.Name + " is executing");
-                    await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
-                    Log(method.Name + " is passed");
-                }
-            }
-        }
-
+        Skip.If(test.Description.Contains("handle_complex_retries"));
+        Skip.If(instructionList.Instructions.Contains("return-reset-connection"));
         // bucket_acl, default_object_acl, object_acl functions do not exist in our handwritten library.
         // object.compose does not exist in our handwritten library and hence does not have retry implemented
         // object.insert is covered under resumable upload
         // objects.copy is not used directly but only as objects.rewrite which is a seperate test case
-        bool ShouldRunMethod(string methodName) =>
-            !methodName.Contains("_acl") && methodName != "storage.objects.compose" && methodName != "storage.objects.insert" && methodName != "storage.objects.copy";
+        Skip.If(methodName.Contains("_acl") || methodName == "storage.objects.compose" || methodName == "storage.objects.insert" || methodName == "storage.objects.copy");
 
-        // Ids with description "handle_complex_retries" are to test resumable uploads and downloads
-        // This section will be implemented in the next phase
-        bool ShouldRunTest(RetryTest test) => !test.Description.Contains("handle_complex_retries");
+        Log("#########################################################################");
+        Log("Test ID: " + test.Id + "  with instruction: " + instructionList.Instructions.ToString());
+        Log("#########################################################################");
+
+        Log($"Running {method.Name}");
+        try
+        {
+            await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
+            Log($"{method.Name} passed");
+        }
+        catch
+        {
+            Log($"{method.Name} failed");
+            throw;
+        }
     }
 
     /// <summary>
@@ -127,10 +126,6 @@ public class RetryConformanceTest
                 }                
             }
         }
-        catch (Exception ex)
-        {
-            Log($"{method.Name} threw an exception during the test: {ex}");
-        }
         finally
         {
             try
@@ -140,7 +135,10 @@ public class RetryConformanceTest
             // Note: sometimes this makes perfect sense, e.g. deleting a key that was only created so that the test code itself could delete it.
             catch (Exception ex)
             {
-                Log($"{method.Name} threw an exception while deleting resources: {ex}");
+                if (!method.Name.Contains("delete"))
+                {
+                    Log($"{method.Name} threw an exception while deleting resources: {ex}");
+                }
             }
             RemoveRetryIdHeader();
             try
