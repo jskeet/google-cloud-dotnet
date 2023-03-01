@@ -57,7 +57,7 @@ public class RetryConformanceTest
     [MemberData(nameof(RetryTestData))]
     public async Task RetryTest(RetryTest test)
     {
-        Console.WriteLine("************************************************");
+        Log("************************************************");
         Skip.IfNot(ShouldRunTest(test));
 
         foreach (InstructionList instructionList in test.Cases)
@@ -65,16 +65,16 @@ public class RetryConformanceTest
             if (instructionList.Instructions.Contains("return-reset-connection"))
                 continue;
 
-            Console.WriteLine("#########################################################################");
-            Console.WriteLine("Test ID: " + test.Id + "  with instruction: " + instructionList.Instructions.ToString());
-            Console.WriteLine("#########################################################################");
+            Log("#########################################################################");
+            Log("Test ID: " + test.Id + "  with instruction: " + instructionList.Instructions.ToString());
+            Log("#########################################################################");
             foreach (Method method in test.Methods)
             {
                 if (ShouldRunMethod(method.Name))
                 {
-                    Console.WriteLine(method.Name + " is executing");
+                    Log(method.Name + " is executing");
                     await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
-                    Console.WriteLine(method.Name + " is passed");
+                    Log(method.Name + " is passed");
                 }
             }
         }
@@ -129,19 +129,27 @@ public class RetryConformanceTest
         }
         catch (Exception ex)
         {
-            Console.WriteLine(method.Name + " threw EXCEPTION!! WHILE RUNNING TEST with MESSAGE: " + ex.Message + " INNER EXCEPTION: " + ex.InnerException);
+            Log($"{method.Name} threw an exception during the test: {ex}");
         }
         finally
         {
             try
             {
                 DeleteStorageResources(context);
-                RemoveRetryIdHeader();
+            }
+            // Note: sometimes this makes perfect sense, e.g. deleting a key that was only created so that the test code itself could delete it.
+            catch (Exception ex)
+            {
+                Log($"{method.Name} threw an exception while deleting resources: {ex}");
+            }
+            RemoveRetryIdHeader();
+            try
+            {
                 await DeleteRetryTest(response.Id);
             }
-            catch (Exception ex) // To catch and ignore exceptions occured, if any, while doing clean up of test.
+            catch (Exception ex)
             {
-                Console.WriteLine(method.Name + " threw EXCEPTION!!  WHILE DELETING RESOURCES with MESSAGE: " + ex.Message + " INNER EXCEPTION: " + ex.InnerException );
+                Log($"{method.Name} threw an exception while deleting the test from the server: {ex}");
             }
         }
 
@@ -155,12 +163,12 @@ public class RetryConformanceTest
     private async Task<TestResponse> CreateRetryTestResourceAsync(InstructionList instructionList, Method method)
     {
         var stringContent = GetBodyContent(method.Name, instructionList);
-        Console.WriteLine("Creating the resource for method: " + method.Name + " for instructions: " + instructionList.Instructions.ToString() + " URI: " + _fixture.HttpClient.BaseAddress.ToString());
+        Log("Creating the resource for method: " + method.Name + " for instructions: " + instructionList.Instructions.ToString() + " URI: " + _fixture.HttpClient.BaseAddress.ToString());
         HttpResponseMessage response = await _fixture.HttpClient.PostAsync("retry_test", stringContent);
-        Console.WriteLine($"retry_test status: {response.StatusCode}");
+        Log($"retry_test status: {response.StatusCode}");
         response.EnsureSuccessStatusCode();
         var responseMessage = await response.Content.ReadAsStringAsync();
-        Console.WriteLine($"retry_test message: {responseMessage}");
+        Log($"retry_test message: {responseMessage}");
         return JsonConvert.DeserializeObject<TestResponse>(responseMessage);
     }
 
@@ -440,5 +448,10 @@ public class RetryConformanceTest
         {
             Client.Service.HttpClient.DefaultRequestHeaders.Remove(RetryIdHeader);
         }
+    }
+
+    private static void Log(string message)
+    {
+        Console.WriteLine($"{DateTime.UtcNow:yyyy-MM-ddTHH:mm:ss.ffffff}: {message}");
     }
 }
