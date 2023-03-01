@@ -14,32 +14,25 @@ jobs:
         shell: bash
         working-directory: /home/runner/work/google-cloud-dotnet/google-cloud-dotnet/apis/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1.RetryConformanceTests/
 
-    #services:
-    #  emulator:
-    #    image: gcr.io/cloud-devrel-public-resources/storage-testbench:latest
-    #    ports:
-    #      - 9000:9000
+    services:
+      emulator:
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:latest
+        ports:
+          - 9000:9000
 
     steps:
     - uses: actions/checkout@v3
       with:
         submodules: true
 
-    # Install .NET Core 3.1 for testing
-    - name: Setup .NET Core 3.1
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 3.1.x
-
-    # Install .NET 6 for building
     - name: Setup .NET 6.0
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
       
-    - name: Docker run  
-      run: docker run -d --name storage-testbench -p 9000:9000 gcr.io/cloud-devrel-public-resources/storage-testbench:latest 
-      #>/tmp/stdout 2>/tmp/stderr
+#    - name: Docker run  
+#      run: docker run -d --name storage-testbench -p 9000:9000 gcr.io/cloud-devrel-public-resources/storage-testbench:latest 
+#      #>/tmp/stdout 2>/tmp/stderr
     
     - name: Wait for the storage emulator
       run: sleep 30
