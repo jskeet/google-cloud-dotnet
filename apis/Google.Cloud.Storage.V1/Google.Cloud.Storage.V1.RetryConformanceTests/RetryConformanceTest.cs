@@ -156,11 +156,11 @@ public class RetryConformanceTest
     {
         var stringContent = GetBodyContent(method.Name, instructionList);
         Console.WriteLine("Creating the resource for method: " + method.Name + " for instructions: " + instructionList.Instructions.ToString() + " URI: " + _fixture.HttpClient.BaseAddress.ToString());
-        AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
         HttpResponseMessage response = await _fixture.HttpClient.PostAsync("retry_test", stringContent);
-        
+        Console.WriteLine($"retry_test status: {response.StatusCode}");
         response.EnsureSuccessStatusCode();
         var responseMessage = await response.Content.ReadAsStringAsync();
+        Console.WriteLine($"retry_test message: {responseMessage}");
         return JsonConvert.DeserializeObject<TestResponse>(responseMessage);
     }
 

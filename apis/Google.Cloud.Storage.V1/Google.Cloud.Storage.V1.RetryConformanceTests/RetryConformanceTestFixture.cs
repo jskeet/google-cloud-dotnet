@@ -12,13 +12,16 @@
 // See the License for the specific language governing permissions and 
 // limitations under the License.
 
+using Google.Api;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Logging;
 using Google.Cloud.Storage.V1.Tests.Conformance;
 using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
 using Xunit;
+using static Google.Apis.Http.ConfigurableMessageHandler;
 
 namespace Google.Cloud.Storage.V1.RetryConformanceTests;
 
@@ -35,6 +38,8 @@ public class RetryConformanceTestFixture : ICollectionFixture<RetryConformanceTe
 
     public RetryConformanceTestFixture()
     {
+        AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+        ApplicationContext.RegisterLogger(new ConsoleLogger(LogLevel.All));
         var clientBuilder = new StorageClientBuilder
         {
             BaseUri = TestBenchUrl + "storage/v1/",
@@ -47,6 +52,8 @@ public class RetryConformanceTestFixture : ICollectionFixture<RetryConformanceTe
         };
 
         Client = clientBuilder.Build();
+        Client.Service.HttpClient.MessageHandler.LogEvents =
+            LogEventType.RequestHeaders | LogEventType.RequestUri | LogEventType.RequestBody | LogEventType.ResponseBody;
         ServiceAccountEmail = Client.GetStorageServiceAccountEmail(ProjectId);
     }
 
