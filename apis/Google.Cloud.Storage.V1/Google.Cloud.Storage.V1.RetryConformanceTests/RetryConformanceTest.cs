@@ -25,6 +25,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -51,6 +52,7 @@ public class RetryConformanceTest
 
     private StorageClient Client => _fixture.Client;
 
+    private static int s_counter;
 
     /// <summary>
     /// Runs a single <see cref="RetryTest"/>,
@@ -64,7 +66,6 @@ public class RetryConformanceTest
         var instructionList = tuple.instructionList;
         var method = tuple.method;
         string methodName = method.Name;
-        Log("************************************************");
         Skip.If(test.Description.Contains("handle_complex_retries"));
         Skip.If(instructionList.Instructions.Contains("return-reset-connection"));
         // bucket_acl, default_object_acl, object_acl functions do not exist in our handwritten library.
@@ -73,19 +74,17 @@ public class RetryConformanceTest
         // objects.copy is not used directly but only as objects.rewrite which is a seperate test case
         Skip.If(methodName.Contains("_acl") || methodName == "storage.objects.compose" || methodName == "storage.objects.insert" || methodName == "storage.objects.copy");
 
-        Log("#########################################################################");
-        Log("Test ID: " + test.Id + "  with instruction: " + instructionList.Instructions.ToString());
-        Log("#########################################################################");
+        int testId = Interlocked.Increment(ref s_counter);
 
-        Log($"Running {method.Name}");
+        Log($"Test run ID: {testId}; Test ID: {test.Id}; Instructions: {instructionList.Instructions}; Method: {method.Name}");
         try
         {
             await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
-            Log($"{method.Name} passed");
+            Log($"Test run {testId} passed");
         }
         catch
         {
-            Log($"{method.Name} failed");
+            Log($"Test run {testId} failed");
             throw;
         }
     }
