@@ -38,7 +38,6 @@ public class RetryConformanceTestFixture : ICollectionFixture<RetryConformanceTe
 
     public RetryConformanceTestFixture()
     {
-        AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
         ApplicationContext.RegisterLogger(new ConsoleLogger(LogLevel.All));
         var clientBuilder = new StorageClientBuilder
         {
@@ -52,8 +51,9 @@ public class RetryConformanceTestFixture : ICollectionFixture<RetryConformanceTe
         };
 
         Client = clientBuilder.Build();
-        Client.Service.HttpClient.MessageHandler.LogEvents =
-            LogEventType.RequestHeaders | LogEventType.RequestUri | LogEventType.RequestBody | LogEventType.ResponseBody;
+        
+        //Client.Service.HttpClient.MessageHandler.LogEvents =
+        //    LogEventType.RequestHeaders | LogEventType.RequestUri | LogEventType.RequestBody | LogEventType.ResponseBody;
         ServiceAccountEmail = Client.GetStorageServiceAccountEmail(ProjectId);
     }
 
