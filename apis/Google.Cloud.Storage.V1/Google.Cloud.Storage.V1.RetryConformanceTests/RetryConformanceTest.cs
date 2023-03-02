@@ -75,17 +75,7 @@ public class RetryConformanceTest
 
         int testId = Interlocked.Increment(ref s_counter);
 
-        Log($"Test run ID: {testId}; Test case: {testCase}");
-        try
-        {
-            await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
-            Log($"Test run {testId} passed");
-        }
-        catch
-        {
-            Log($"Test run {testId} failed");
-            throw;
-        }
+        await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
     }
 
     /// <summary>
@@ -159,12 +149,12 @@ public class RetryConformanceTest
     private async Task<TestResponse> CreateRetryTestResourceAsync(InstructionList instructionList, Method method)
     {
         var stringContent = GetBodyContent(method.Name, instructionList);
-        Log("Creating the resource for method: " + method.Name + " for instructions: " + instructionList.Instructions.ToString() + " URI: " + _fixture.HttpClient.BaseAddress.ToString());
+        //Log("Creating the resource for method: " + method.Name + " for instructions: " + instructionList.Instructions.ToString() + " URI: " + _fixture.HttpClient.BaseAddress.ToString());
         HttpResponseMessage response = await _fixture.HttpClient.PostAsync("retry_test", stringContent);
-        Log($"retry_test status: {response.StatusCode}");
+        //Log($"retry_test status: {response.StatusCode}");
         response.EnsureSuccessStatusCode();
         var responseMessage = await response.Content.ReadAsStringAsync();
-        Log($"retry_test message: {responseMessage}");
+        //Log($"retry_test message: {responseMessage}");
         return JsonConvert.DeserializeObject<TestResponse>(responseMessage);
     }
 
