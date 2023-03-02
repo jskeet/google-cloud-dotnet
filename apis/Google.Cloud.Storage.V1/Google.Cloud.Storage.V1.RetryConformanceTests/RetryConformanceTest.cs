@@ -16,7 +16,6 @@ using Google.Api.Gax;
 using Google.Apis.Storage.v1.Data;
 using Google.Cloud.ClientTesting;
 using Google.Cloud.Storage.V1.Tests.Conformance;
-using Grpc.Net.Client.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -25,7 +24,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -51,8 +49,6 @@ public class RetryConformanceTest
     }
 
     private StorageClient Client => _fixture.Client;
-
-    private static int s_counter;
 
     /// <summary>
     /// Runs a single <see cref="RetryTestCase"/>.
