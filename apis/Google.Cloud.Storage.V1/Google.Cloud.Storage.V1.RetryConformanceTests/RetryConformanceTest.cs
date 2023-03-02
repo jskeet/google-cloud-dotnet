@@ -73,9 +73,15 @@ public class RetryConformanceTest
         // objects.copy is not used directly but only as objects.rewrite which is a seperate test case
         Skip.If(method.Name.Contains("_acl") || method.Name == "storage.objects.compose" || method.Name == "storage.objects.insert" || method.Name == "storage.objects.copy");
 
-        int testId = Interlocked.Increment(ref s_counter);
-
-        await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
+        try
+        {
+            await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
+        }
+        catch (Exception ex)
+        {
+            Log($"Test {testCase} failed: {ex}");
+            throw;
+        }
     }
 
     /// <summary>
