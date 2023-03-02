@@ -47,10 +47,12 @@ public class RetryConformanceTestFixture : ICollectionFixture<RetryConformanceTe
         };
         HttpClient = new HttpClient
         {
-            BaseAddress = new Uri(TestBenchUrl)
+            BaseAddress = new Uri(TestBenchUrl),
+            DefaultRequestHeaders = { ConnectionClose = true }
         };
 
         Client = clientBuilder.Build();
+        Client.Service.HttpClient.DefaultRequestHeaders.ConnectionClose = true;
         
         //Client.Service.HttpClient.MessageHandler.LogEvents =
         //    LogEventType.RequestHeaders | LogEventType.RequestUri | LogEventType.RequestBody | LogEventType.ResponseBody;
