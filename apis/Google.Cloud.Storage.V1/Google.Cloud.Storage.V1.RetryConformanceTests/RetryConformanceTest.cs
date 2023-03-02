@@ -76,6 +76,8 @@ public class RetryConformanceTest
         catch (Exception ex)
         {
             Log($"Test {testCase} failed: {ex}");
+            // Pause for 10 seconds after a failure to make it easier to diagnose.
+            await Task.Delay(10_000);
             throw;
         }
     }
