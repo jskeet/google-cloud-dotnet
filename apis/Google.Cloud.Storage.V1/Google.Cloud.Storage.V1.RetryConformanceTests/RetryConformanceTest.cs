@@ -37,8 +37,8 @@ namespace Google.Cloud.Storage.V1.RetryConformanceTests;
 public class RetryConformanceTest
 {
     private const string RetryIdHeader = "x-retry-test-id";
-    public static TheoryData<(RetryTest, InstructionList, Method method)> RetryTestData { get; } =
-        StorageConformanceTestData.TestData.GetTheoryData(f => f.RetryTests.SelectMany(test => test.Cases.SelectMany(c => test.Methods.Select(method => (test, c, method)))));
+    public static TheoryData<RetryTestCase> RetryTestData { get; } =
+        StorageConformanceTestData.TestData.GetTheoryData(f => f.RetryTests.SelectMany(RetryTestCase.Flatten));
 
     private readonly RetryConformanceTestFixture _fixture;
     private readonly string retryIdPrefix = IdGenerator.FromGuid(prefix: "test-id-", suffix: "-", maxLength: 20);
@@ -55,28 +55,27 @@ public class RetryConformanceTest
     private static int s_counter;
 
     /// <summary>
-    /// Runs a single <see cref="RetryTest"/>,
-    /// which itself can contain multiple instruction lists and methods.
+    /// Runs a single <see cref="RetryTestCase"/>.
     /// </summary>
     [SkippableTheory]
     [MemberData(nameof(RetryTestData))]
-    public async Task RetryTest((RetryTest test, InstructionList instructionList, Method method) tuple)
+    public async Task RetryTest(RetryTestCase testCase)
     {
-        var test = tuple.test;
-        var instructionList = tuple.instructionList;
-        var method = tuple.method;
-        string methodName = method.Name;
+        var test = testCase.Test;
+        var method = testCase.Method;
+        var instructionList = testCase.InstructionList;
+
         Skip.If(test.Description.Contains("handle_complex_retries"));
         Skip.If(instructionList.Instructions.Contains("return-reset-connection"));
         // bucket_acl, default_object_acl, object_acl functions do not exist in our handwritten library.
         // object.compose does not exist in our handwritten library and hence does not have retry implemented
         // object.insert is covered under resumable upload
         // objects.copy is not used directly but only as objects.rewrite which is a seperate test case
-        Skip.If(methodName.Contains("_acl") || methodName == "storage.objects.compose" || methodName == "storage.objects.insert" || methodName == "storage.objects.copy");
+        Skip.If(method.Name.Contains("_acl") || method.Name == "storage.objects.compose" || method.Name == "storage.objects.insert" || method.Name == "storage.objects.copy");
 
         int testId = Interlocked.Increment(ref s_counter);
 
-        Log($"Test run ID: {testId}; Test ID: {test.Id}; Instructions: {instructionList.Instructions}; Method: {method.Name}");
+        Log($"Test run ID: {testId}; Test case: {testCase}");
         try
         {
             await RunTestCaseAsync(instructionList, method, test.ExpectSuccess, test.PreconditionProvided);
