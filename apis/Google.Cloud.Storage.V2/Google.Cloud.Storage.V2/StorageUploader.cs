@@ -61,9 +61,17 @@ public class StorageUploader
         long bytesWritten = 0;
         bool firstRequest = true;
         bool finished = false;
+        Task currentWriteTask = null;
         while (!finished)
         {
             int bytesRead = await FillBufferAsync().ConfigureAwait(false);
+
+            if (currentWriteTask is not null)
+            {
+                await currentWriteTask.ConfigureAwait(false);
+                progressReporter?.Report(new ResumableUploadProgress(UploadStatus.Uploading, bytesWritten));
+            }
+
             // TODO: This ends up with an unnecessary request at the end, if we've read precisely as far as the
             // buffer. The simplicity is appealing though.
             finished = bytesRead != ChunkSize;
@@ -85,8 +93,14 @@ public class StorageUploader
                 };
                 firstRequest = false;
             }
-            await requestStream.WriteAsync(request).ConfigureAwait(false);
+            // Don't wait on the write: we can parallelize "fill the buffer" and "write over the network".
+            currentWriteTask = requestStream.WriteAsync(request);
             bytesWritten += bytesRead;
+        }
+
+        if (currentWriteTask is not null)
+        {
+            await currentWriteTask.ConfigureAwait(false);
             progressReporter?.Report(new ResumableUploadProgress(UploadStatus.Uploading, bytesWritten));
         }
 
