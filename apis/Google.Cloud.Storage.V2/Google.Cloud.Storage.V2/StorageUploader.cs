@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using Google.Api.Gax.Grpc;
+using Google.Apis.Upload;
 using Google.Protobuf;
 using System;
 using System.IO;
@@ -23,6 +24,7 @@ namespace Google.Cloud.Storage.V2;
 /// <summary>
 /// Helper class to manage uploads. Eventually we'd probably use a partial class to put
 /// this code directly in StorageClient, but that can come later after a lot of design work.
+/// The use of IProgress{T} is only for the sake of performance testing.
 /// </summary>
 public class StorageUploader
 {
@@ -44,14 +46,17 @@ public class StorageUploader
     /// <param name="bucket"></param>
     /// <param name="objectName"></param>
     /// <param name="stream"></param>
+    /// <param name="progressReporter"></param>
     /// <returns></returns>
-    public async Task<Object> UploadObject(BucketName bucket, string objectName, Stream stream)
+    public async Task<Object> UploadObject(BucketName bucket, string objectName, Stream stream, IProgress<IUploadProgress> progressReporter = null)
     {
         var headerCallSettings = CallSettings.FromHeader("x-goog-request-params", $"bucket={Uri.EscapeDataString(bucket.ToString())}");
-        var requestStream = _client.WriteObject(headerCallSettings);
+        using var requestStream = _client.WriteObject(headerCallSettings);
 
         // TODO: Ouch!
         byte[] buffer = new byte[ChunkSize];
+
+        progressReporter?.Report(new ResumableUploadProgress(UploadStatus.Starting, 0));
 
         long bytesWritten = 0;
         bool firstRequest = true;
@@ -82,9 +87,11 @@ public class StorageUploader
             }
             await requestStream.WriteAsync(request).ConfigureAwait(false);
             bytesWritten += bytesRead;
+            progressReporter?.Report(new ResumableUploadProgress(UploadStatus.Uploading, bytesWritten));
         }
 
         await requestStream.WriteCompleteAsync().ConfigureAwait(false);
+        progressReporter?.Report(new ResumableUploadProgress(UploadStatus.Completed, bytesWritten));
 
         var response = await requestStream.ResponseAsync.ConfigureAwait(false);
         return response.Resource;

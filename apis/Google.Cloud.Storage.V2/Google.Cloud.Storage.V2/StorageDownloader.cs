@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and 
 // limitations under the License.
 
+using Google.Apis.Download;
+using Google.Apis.Upload;
 using Google.Type;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,7 @@ namespace Google.Cloud.Storage.V2;
 /// <summary>
 /// Helper class to manage downloads. Eventually we'd probably use a partial class to put
 /// this code directly in StorageClient, but that can come later after a lot of design work.
+/// The use of IProgress{T} is only for the sake of performance testing.
 /// </summary>
 public class StorageDownloader
 {
@@ -44,15 +47,18 @@ public class StorageDownloader
     /// <param name="bucket"></param>
     /// <param name="objectName"></param>
     /// <param name="stream"></param>
+    /// <param name="progressReporter"></param>
     /// <returns></returns>
-    public async Task DownloadAsync(BucketName bucket, string objectName, Stream stream)
+    public async Task DownloadAsync(BucketName bucket, string objectName, Stream stream, IProgress<IDownloadProgress> progressReporter = null)
     {
         var request = new ReadObjectRequest { BucketAsBucketName = bucket, Object = objectName };
-        var readStream = _client.ReadObject(request);
+        using var readStream = _client.ReadObject(request);
+        long bytesReceived = 0;
 
         IAsyncEnumerable<ReadObjectResponse> responseStream = readStream.GetResponseStream();
         await foreach (var response in responseStream.ConfigureAwait(false))
         {
+            bytesReceived += response.ChecksummedData.Content.Length;
             // TODO: See if we can add a ByteString.WriteAsync(Stream) method to avoid the copying
             // in .NET 4.6.2.
 #if NETSTANDARD2_1_OR_GREATER
@@ -61,6 +67,8 @@ public class StorageDownloader
             byte[] bytes = response.ChecksummedData.Content.ToByteArray();
             await stream.WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(false);
 #endif
+            progressReporter?.Report(new DownloadProgress(DownloadStatus.Downloading, bytesReceived));
         }
+        progressReporter?.Report(new DownloadProgress(DownloadStatus.Completed, bytesReceived));
     }
 }
