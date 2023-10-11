@@ -19,6 +19,12 @@ namespace Google.Cloud.Storage.V2.ThroughputTool;
 
 public static class Program
 {
+    private static readonly StorageSettings StorageSettings = new StorageSettings
+    {
+        WriteObjectSettings = CallSettings.FromExpiration(Expiration.FromTimeout(TimeSpan.FromMinutes(30))),
+        ReadObjectSettings = CallSettings.FromExpiration(Expiration.FromTimeout(TimeSpan.FromMinutes(30)))
+    };
+
     private static async Task Main(string[] args)
     {
         Configuration configuration = null;
@@ -62,13 +68,7 @@ public static class Program
 
     private static async Task RunUpload(Configuration configuration)
     {
-        var settings = new StorageSettings
-        {
-            WriteObjectSettings = CallSettings.FromExpiration(Expiration.FromTimeout(TimeSpan.FromMinutes(30))),
-            ReadObjectSettings = CallSettings.FromExpiration(Expiration.FromTimeout(TimeSpan.FromMinutes(30)))
-        };
-
-        var client = new StorageClientBuilder { Settings = settings }.Build();
+        var client = new StorageClientBuilder { Settings = StorageSettings }.Build();
         var uploader = new StorageUploader(client);
         Console.WriteLine("Uploading");
         using (var input = File.OpenRead(configuration.LocalFile))
@@ -83,7 +83,7 @@ public static class Program
 
     private static async Task RunDownload(Configuration configuration)
     {
-        var client = StorageClient.Create();
+        var client = new StorageClientBuilder { Settings = StorageSettings }.Build();
         var downloader = new StorageDownloader(client);
         Console.WriteLine("Downloading");
         using (var output = new NullStream())
