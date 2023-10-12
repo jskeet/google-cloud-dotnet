@@ -35,13 +35,12 @@ if (args.Length != 2)
 
 string clientType = args[1];
 
-var credentials = await GoogleCredential.GetApplicationDefaultAsync();
-if (credentials.UnderlyingCredential is not ServiceAccountCredential serviceAccount)
+var projectName = GoogleCredential.GetApplicationDefault().UnderlyingCredential switch
 {
-    Console.WriteLine("ADC must return a service account credential");
-    return 1;
-}
-ProjectName projectName = new ProjectName(serviceAccount.ProjectId);
+    ServiceAccountCredential serviceAccount => new ProjectName(serviceAccount.ProjectId),
+    ComputeCredential x => new ProjectName(Platform.Instance().ProjectId),
+    _ => throw new InvalidOperationException("Can't determine the project")
+};
 
 var configJson = File.ReadAllText(args[0]);
 var configuration = JsonConvert.DeserializeObject<Configuration>(configJson);
