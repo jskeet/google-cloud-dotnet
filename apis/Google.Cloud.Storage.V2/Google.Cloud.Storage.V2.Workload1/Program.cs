@@ -16,11 +16,13 @@ using Google.Api.Gax;
 using Google.Api.Gax.Grpc;
 using Google.Api.Gax.ResourceNames;
 using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Storage.V1;
 using Google.Cloud.Storage.V2;
 using Google.Cloud.Storage.V2.Workload1;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
+using StorageClientBuilder = Google.Cloud.Storage.V2.StorageClientBuilder;
 using V1Client = Google.Cloud.Storage.V1.StorageClient;
 
 var startTime = DateTime.UtcNow;
@@ -59,13 +61,13 @@ Log($"Created bucket: {bucketName}");
 
 Func<string, Stream, Task> uploader = clientType switch
 {
-    "V1" => (objName, stream) => v1Client.UploadObjectAsync(bucketName.BucketId, objName, null, stream),
+    "V1" => (objName, stream) => v1Client.UploadObjectAsync(bucketName.BucketId, objName, null, stream, new UploadObjectOptions { UploadValidationMode = UploadValidationMode.None }),
     "V2" => (objName, stream) => new StorageUploader(client).UploadObject(bucketName, objName, stream),
     _ => throw new ArgumentException($"Client type '{clientType} unknown")
 };
 Func<string, Task> downloader = clientType switch
 {
-    "V1" => objName => v1Client.DownloadObjectAsync(bucketName.BucketId, objName, new NullStream()),
+    "V1" => objName => v1Client.DownloadObjectAsync(bucketName.BucketId, objName, new NullStream(), new DownloadObjectOptions { DownloadValidationMode = DownloadValidationMode.Never }),
     "V2" => objName => new StorageDownloader(client).DownloadAsync(bucketName, objName, new NullStream()),
     _ => throw new ArgumentException($"Client type '{clientType} unknown")
 };
