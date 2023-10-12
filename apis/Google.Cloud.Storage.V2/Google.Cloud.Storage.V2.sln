@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2.Sni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2.IntegrationTests", "Google.Cloud.Storage.V2.IntegrationTests\Google.Cloud.Storage.V2.IntegrationTests.csproj", "{E20171EF-DDF5-4811-89B5-B9EB57C0A026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.Storage.V2.ThroughputTool", "Google.Cloud.Storage.V2.ThroughputTool\Google.Cloud.Storage.V2.ThroughputTool.csproj", "{2A845829-25BE-4AB2-9D41-75DA5D14A1C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V2.ThroughputTool", "Google.Cloud.Storage.V2.ThroughputTool\Google.Cloud.Storage.V2.ThroughputTool.csproj", "{2A845829-25BE-4AB2-9D41-75DA5D14A1C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.Cloud.Storage.V2.Workload1", "Google.Cloud.Storage.V2.Workload1\Google.Cloud.Storage.V2.Workload1.csproj", "{0DB4AE62-5925-4B55-B8A0-09B4082A89AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Cloud.Storage.V1", "..\Google.Cloud.Storage.V1\Google.Cloud.Storage.V1\Google.Cloud.Storage.V1.csproj", "{83FF8BB2-B4B7-45ED-89FA-EF570E29E199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{2A845829-25BE-4AB2-9D41-75DA5D14A1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A845829-25BE-4AB2-9D41-75DA5D14A1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A845829-25BE-4AB2-9D41-75DA5D14A1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB4AE62-5925-4B55-B8A0-09B4082A89AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB4AE62-5925-4B55-B8A0-09B4082A89AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB4AE62-5925-4B55-B8A0-09B4082A89AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB4AE62-5925-4B55-B8A0-09B4082A89AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83FF8BB2-B4B7-45ED-89FA-EF570E29E199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83FF8BB2-B4B7-45ED-89FA-EF570E29E199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83FF8BB2-B4B7-45ED-89FA-EF570E29E199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83FF8BB2-B4B7-45ED-89FA-EF570E29E199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

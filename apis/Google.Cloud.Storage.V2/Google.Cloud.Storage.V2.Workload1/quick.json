@@ -1,0 +1,14 @@
+﻿{
+    "BucketPrefix": "gcs-grpc-team-jonskeet-workload1",
+    "Location": "EU",
+    "ResultsPrefix": "quick-results",
+    "DurationMinutes": 5,
+    "SampleIterations": {
+        "8K": 10,
+        "256K": 10,
+        "1M": 5,
+        "16M": 5,
+        "128M": 2,
+        "1G": 1
+    }
+}
