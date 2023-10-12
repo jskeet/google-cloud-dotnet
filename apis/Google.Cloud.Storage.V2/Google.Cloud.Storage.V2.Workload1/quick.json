@@ -1,5 +1,6 @@
 ﻿{
     "BucketPrefix": "gcs-grpc-team-jonskeet-workload1",
+    "ResultBucket": "gcs-grpc-team-jonskeet-workload1-results",
     "Location": "EU",
     "ResultsPrefix": "quick-results",
     "DurationMinutes": 5,

@@ -20,10 +20,11 @@ using Google.Cloud.Storage.V2;
 using Google.Cloud.Storage.V2.Workload1;
 using Newtonsoft.Json;
 using System.Diagnostics;
-
+using System.Globalization;
 using V1Client = Google.Cloud.Storage.V1.StorageClient;
 
 var startTime = DateTime.UtcNow;
+var startString = startTime.ToString("yyyyMMdd'T'HHmmss", CultureInfo.InvariantCulture);
 var random = new Random();
 
 if (args.Length != 2)
@@ -70,33 +71,41 @@ Func<string, Task> downloader = clientType switch
     _ => throw new ArgumentException($"Client type '{clientType} unknown")
 };
 
-using var resultWriter = File.CreateText($"{SuffixedString(configuration.ResultsPrefix)}-{clientType}.csv");
-await resultWriter.WriteLineAsync($"{args[0]},{bucketName},{clientType}");
-
-int runNumber = 0;
-while (DateTime.UtcNow < startTime.AddMinutes(configuration.DurationMinutes))
+string resultFile = $"{configuration.ResultsPrefix}-{startString}-{clientType}.csv";
+using (var resultWriter = File.CreateText(resultFile))
 {
-    Log($"Starting run {++runNumber}");
-    await RunTest();
+    await resultWriter.WriteLineAsync($"{args[0]},{bucketName},{clientType}");
+
+    int runNumber = 0;
+    while (DateTime.UtcNow < startTime.AddMinutes(configuration.DurationMinutes))
+    {
+        Log($"Starting run {++runNumber}");
+        await RunTest();
+    }
+    Log($"Finished after {runNumber} runs");
+
+    async Task RunTest()
+    {
+        foreach (var sample in samples)
+        {
+            for (int i = 0; i < sample.Iterations; i++)
+            {
+                var (upload, download) = await RunIteration(sample.Size);
+                await resultWriter.WriteLineAsync($"{DateTime.UtcNow:yyyy-MM-dd'T'HH:mm:ss.fff},{sample.Description},{upload},{download}");
+            }
+        }
+    }
 }
-Log($"Finished after {runNumber} runs");
+// Upload the results file to the bucket.
+using (var resultReader = File.OpenRead(resultFile))
+{
+    await v1Client.UploadObjectAsync(configuration.ResultBucket, $"results-{startString}-{clientType}.csv", "text/csv", resultReader);
+}
 
 return 0;
 
 void Log(string message) =>
     Console.WriteLine($"{DateTime.UtcNow:HH:mm:ss}: {message}");
-
-async Task RunTest()
-{
-    foreach (var sample in samples)
-    {
-        for (int i = 0; i < sample.Iterations; i++)
-        {
-            var (upload, download) = await RunIteration(sample.Size);
-            await resultWriter.WriteLineAsync($"{DateTime.UtcNow:yyyy-MM-dd'T'HH:mm:ss.fff},{sample.Description},{upload},{download}");
-        }
-    }
-}
 
 async Task<(long, long)> RunIteration(long size)
 {
@@ -120,7 +129,7 @@ async Task<(long, long)> RunIteration(long size)
 async Task<BucketName> CreateBucket()
 {
     var globalProjectName = new ProjectName("_");
-    string bucketId = SuffixedString(configuration.BucketPrefix).ToLowerInvariant();
+    string bucketId = $"{configuration.BucketPrefix}-{startString}".ToLowerInvariant();
     var bucket = new Bucket
     {
         ProjectAsProjectName = projectName,
@@ -129,6 +138,3 @@ async Task<BucketName> CreateBucket()
     bucket = await client.CreateBucketAsync(globalProjectName, bucket, bucketId);
     return bucket.BucketName;
 }
-
-string SuffixedString(string prefix) =>
-    FormattableString.Invariant($"{prefix}-{startTime:yyyyMMdd'T'HHmmss}");

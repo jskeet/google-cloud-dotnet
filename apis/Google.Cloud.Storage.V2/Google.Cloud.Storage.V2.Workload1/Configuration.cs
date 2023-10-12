@@ -17,6 +17,11 @@ namespace Google.Cloud.Storage.V2.Workload1;
 public class Configuration
 {
     /// <summary>
+    /// The bucket in which to upload the results. Should already exist and be accessible.
+    /// </summary>
+    public string ResultBucket { get; set; }
+
+    /// <summary>
     /// The prefix for the bucket created; this then has a timestamp suffix applied.
     /// </summary>
     public string BucketPrefix { get; set; }
