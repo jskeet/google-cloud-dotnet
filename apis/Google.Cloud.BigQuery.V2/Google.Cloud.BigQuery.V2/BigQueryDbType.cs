@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Google.Apis.Bigquery.v2.Data;
 using System.Collections.Generic;
 
 namespace Google.Cloud.BigQuery.V2
@@ -104,6 +105,10 @@ namespace Google.Cloud.BigQuery.V2
         /// A JSON-formatted string as described in RFC 7159.
         /// </summary>
         Json,
+        /// <summary>
+        /// A range of values, with the element type stored in <see cref="TableFieldSchema.RangeElementType"/>.
+        /// </summary>
+        Range,
     }
 
     internal static class BigQueryDbTypeExtensions
@@ -127,7 +132,8 @@ namespace Google.Cloud.BigQuery.V2
             { BigQueryDbType.Numeric, "NUMERIC" },
             { BigQueryDbType.Geography, "GEOGRAPHY" },
             { BigQueryDbType.BigNumeric, "BIGNUMERIC" },
-            { BigQueryDbType.Json, "JSON" }
+            { BigQueryDbType.Json, "JSON" },
+            { BigQueryDbType.Range, "RANGE" }
         };
 
         internal static string ToParameterApiType(this BigQueryDbType type) => s_typeToNameMapping[type];

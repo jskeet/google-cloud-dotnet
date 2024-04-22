@@ -89,7 +89,8 @@ namespace Google.Cloud.BigQuery.V2
             typeof(BigQueryNumeric),
             typeof(BigQueryBigNumeric),
             typeof(BigQueryGeography),
-            typeof(BigQueryInsertRow)
+            typeof(BigQueryInsertRow),
+            typeof(BigQueryTimeRange),
         };
 
         private static readonly List<TypeInfo> ValidRepeatedTypes = ValidSingleTypes
@@ -210,6 +211,7 @@ namespace Google.Cloud.BigQuery.V2
             BigQueryBigNumeric bigNumeric => bigNumeric.ToString(),
             BigQueryGeography geography => geography.ToString(),
             BigQueryInsertRow row => row.GetJsonValues(),
+            BigQueryTimeRange range => range.ToJson(),
             _ => GetValue(value),
         };
 

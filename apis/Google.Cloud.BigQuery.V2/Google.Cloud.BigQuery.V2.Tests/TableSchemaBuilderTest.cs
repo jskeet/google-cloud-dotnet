@@ -103,5 +103,20 @@ namespace Google.Cloud.BigQuery.V2.Tests
             // Can't embed this name into an InlineData easily...
             Assert.Throws<ArgumentException>(() => TableSchemaBuilder.ValidateFieldName(new string('a', 129), "field"));
         }
+
+        [Fact]
+        public void RangeElement()
+        {
+            var schema = new TableSchemaBuilder
+            {
+                { "field", BigQueryDbType.Range }
+            }
+            .ModifyField("field", field => field.RangeElementType = new RangeElementTypeData { Type = "DATETIME" })
+            .Build();
+
+            var field = schema.Fields[0];
+            Assert.Equal("RANGE", field.Type);
+            Assert.Equal("DATETIME", field.RangeElementType.Type);
+        }
     }
 }

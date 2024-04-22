@@ -54,6 +54,7 @@ namespace Google.Cloud.BigQuery.V2
     ///   <item><description><c>Numeric</c>: <c>Google.Cloud.BigQuery.V1.BigQueryNumeric</c></description></item>
     ///   <item><description><c>Geography</c>: <c>Google.Cloud.BigQuery.V1.BigQueryGeography</c></description></item>
     ///   <item><description><c>Json</c>: <c>System.String</c></description></item>
+    ///   <item><description><c>Range</c>: <c>Google.Cloud.BigQuery.V1.BigQueryTimeRange</c></description></item>
     ///   <item><description><c>Array</c>: An <c>IReadOnlyList&lt;T&gt;</c> of any of the above types corresponding to the <see cref="ArrayElementType"/>,
     ///   which will be inferred from the value's element type if not otherwise specified.</description></item>
     /// </list>
@@ -91,6 +92,7 @@ namespace Google.Cloud.BigQuery.V2
             typeof(BigQueryNumeric),
             typeof(BigQueryBigNumeric),
             typeof(BigQueryGeography),
+            typeof(BigQueryTimeRange),
         };
 
         private static readonly List<TypeInfo> s_validRepeatedTypes = s_validSingleTypes
@@ -119,6 +121,7 @@ namespace Google.Cloud.BigQuery.V2
             { typeof(BigQueryNumeric), BigQueryDbType.Numeric },
             { typeof(BigQueryBigNumeric), BigQueryDbType.BigNumeric },
             { typeof(BigQueryGeography), BigQueryDbType.Geography },
+            { typeof(BigQueryTimeRange), BigQueryDbType.Range },
         };
 
         /// <summary>
@@ -146,6 +149,17 @@ namespace Google.Cloud.BigQuery.V2
         {
             get { return _arrayElementType; }
             set { _arrayElementType = value == null ? default : GaxPreconditions.CheckEnumValue(value.Value, nameof(value)); }
+        }
+
+        private BigQueryDbType? _rangeElementType;
+        /// <summary>
+        /// The type of the range elements, for range parameters. If this is null, the type is inferred from the value.
+        /// </summary>
+        public BigQueryDbType? RangeElementType
+        {
+            get => _rangeElementType;
+            // TODO: Validate that it's actually a valid range element type?
+            set => _rangeElementType = value == null ? default : GaxPreconditions.CheckEnumValue(value.Value, nameof(value));
         }
 
         private object _value;
@@ -237,6 +251,7 @@ namespace Google.Cloud.BigQuery.V2
             return type switch
             {
                 BigQueryDbType.Array => PopulateArrayParameter(parameter, value, ArrayElementType),
+                BigQueryDbType.Range => PopulateRangeParameter(parameter, value, RangeElementType),
                 BigQueryDbType.Bool => parameter.PopulateScalar<bool>(value, x => x ? "TRUE" : "FALSE")
                     ?? parameter.PopulateScalar<string>(value, x => x)
                     ?? parameter.UseNullScalarOrThrow(value),
@@ -319,6 +334,7 @@ namespace Google.Cloud.BigQuery.V2
 
         private static QueryParameter PopulateArrayParameter(QueryParameter parameter, object value, BigQueryDbType? arrayType)
         {
+            // FIXME: Range parameters?
             if (value == null)
             {
                 throw new InvalidOperationException("The value of an array parameter cannot be null");
@@ -336,7 +352,7 @@ namespace Google.Cloud.BigQuery.V2
             parameter.ParameterType = new QueryParameterType
             {
                 Type = BigQueryDbType.Array.ToParameterApiType(),
-                ArrayType = new QueryParameterType { Type = actualArrayType.ToParameterApiType() }
+                ArrayType = new QueryParameterType { Type = actualArrayType.ToParameterApiType() },
             };
             var parameterValues = values
                 .Select(p => new BigQueryParameter(actualArrayType, p).ToQueryParameter().ParameterValue)
@@ -344,6 +360,13 @@ namespace Google.Cloud.BigQuery.V2
 
             parameter.ParameterValue = new QueryParameterValue { ArrayValues = parameterValues };
             return parameter;
+        }
+
+        private static QueryParameter PopulateRangeParameter(QueryParameter parameter, object value, BigQueryDbType? elementType)
+        {
+            // If we've got an element type and it's not the same as the BigQueryTimeRange value's type, what do we do?
+            // FIXME
+            return default;
         }
 
         private static void ValidateValue(object value, string paramName)

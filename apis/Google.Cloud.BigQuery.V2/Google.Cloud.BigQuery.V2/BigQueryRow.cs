@@ -97,6 +97,9 @@ namespace Google.Cloud.BigQuery.V2
         private static readonly Func<string, BigQueryNumeric> NumericConverter = BigQueryNumeric.Parse;
         private static readonly Func<string, BigQueryBigNumeric> BigNumericConverter = BigQueryBigNumeric.Parse;
         private static readonly Func<string, BigQueryGeography> GeographyConverter = BigQueryGeography.Parse;
+        private static readonly Func<string, BigQueryTimeRange> DateRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Date);
+        private static readonly Func<string, BigQueryTimeRange> DateTimeRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.DateTime);
+        private static readonly Func<string, BigQueryTimeRange> TimestampRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Timestamp);
 
         /// <summary>
         /// Retrieves a cell value by field name.
@@ -143,6 +146,7 @@ namespace Google.Cloud.BigQuery.V2
                     BigQueryDbType.Numeric => ConvertArray(array, NumericConverter),
                     BigQueryDbType.BigNumeric => ConvertArray(array, BigNumericConverter),
                     BigQueryDbType.Geography => ConvertArray(array, GeographyConverter),
+                    BigQueryDbType.Range => ConvertArray(array, GetRangeConverter()),
                     _ => throw new InvalidOperationException($"Unhandled field type {type} {rawValue.GetType()}"),
                 };
             }
@@ -161,7 +165,17 @@ namespace Google.Cloud.BigQuery.V2
                 BigQueryDbType.BigNumeric => BigNumericConverter((string) rawValue),
                 BigQueryDbType.Geography => GeographyConverter((string) rawValue),
                 BigQueryDbType.Struct => ConvertRecord((JObject) rawValue, field, useInt64Timestamp),
+                BigQueryDbType.Range => GetRangeConverter()((string) rawValue),
                 _ => throw new InvalidOperationException($"Unhandled field type {type} (Underlying type: {rawValue.GetType()})"),
+            };
+
+            Func<string, BigQueryTimeRange> GetRangeConverter() => field.GetRangeElementType() switch
+            {
+                BigQueryDbType.Date => DateRangeConverter,
+                BigQueryDbType.DateTime => DateTimeRangeConverter,
+                BigQueryDbType.Timestamp => TimestampRangeConverter,
+                null => throw new InvalidOperationException("Range field has no range element type"),
+                _ => throw new InvalidOperationException($"Unhandled range field element type {field.GetRangeElementType()}"),
             };
         }
 
