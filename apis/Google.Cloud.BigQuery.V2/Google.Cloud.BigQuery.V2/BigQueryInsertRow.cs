@@ -211,7 +211,7 @@ namespace Google.Cloud.BigQuery.V2
             BigQueryBigNumeric bigNumeric => bigNumeric.ToString(),
             BigQueryGeography geography => geography.ToString(),
             BigQueryInsertRow row => row.GetJsonValues(),
-            BigQueryTimeRange range => range.ToJson(),
+            BigQueryTimeRange range => range.ToInsertRowJson(),
             _ => GetValue(value),
         };
 

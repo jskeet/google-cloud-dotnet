@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Google.Apis.Bigquery.v2;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -77,6 +78,13 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             var nestedRecord = (Dictionary<string, object>) singleRecord["nested_record"];
             Assert.Equal(-10L, (long) nestedRecord["a"]);
             Assert.Equal(20L, (long) nestedRecord["b"]);
+
+            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30), BigQueryDbType.Date),
+                (BigQueryTimeRange) row["single_range_date"]);
+            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8), BigQueryDbType.DateTime),
+                (BigQueryTimeRange) row["single_range_datetime"]);
+            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc), BigQueryDbType.Timestamp),
+                (BigQueryTimeRange) row["single_range_timestamp"]);
 
             Assert.Equal(new[] { "array string value 1", "array string value 2" }, (string[]) row["array_string"]);
             Assert.Equal(new[] { true, false }, (bool[]) row["array_bool"]);
@@ -241,6 +249,9 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
                 ["repeated_string"] = new[] { "nested string 1", "nested string 2" },
                 ["nested_record"] = new BigQueryInsertRow { ["a"] = -10, ["b"] = 20 }
             },
+            ["single_range_date"] = new BigQueryTimeRange(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30), BigQueryDbType.Date),
+            ["single_range_datetime"] = new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8), BigQueryDbType.DateTime),
+            ["single_range_timestamp"] = new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc), BigQueryDbType.Timestamp),
 
             ["array_string"] = new[] { "array string value 1", "array string value 2" },
             ["array_bool"] = new[] { true, false },

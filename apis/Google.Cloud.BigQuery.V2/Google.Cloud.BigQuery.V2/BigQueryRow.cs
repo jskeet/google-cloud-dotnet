@@ -97,9 +97,10 @@ namespace Google.Cloud.BigQuery.V2
         private static readonly Func<string, BigQueryNumeric> NumericConverter = BigQueryNumeric.Parse;
         private static readonly Func<string, BigQueryBigNumeric> BigNumericConverter = BigQueryBigNumeric.Parse;
         private static readonly Func<string, BigQueryGeography> GeographyConverter = BigQueryGeography.Parse;
-        private static readonly Func<string, BigQueryTimeRange> DateRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Date);
-        private static readonly Func<string, BigQueryTimeRange> DateTimeRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.DateTime);
-        private static readonly Func<string, BigQueryTimeRange> TimestampRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Timestamp);
+        private static readonly Func<string, BigQueryTimeRange> DateRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Date, DateConverter);
+        private static readonly Func<string, BigQueryTimeRange> DateTimeRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.DateTime, DateTimeConverter);
+        private static readonly Func<string, BigQueryTimeRange> Int64TimestampRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Timestamp, Int64TimestampConverter);
+        private static readonly Func<string, BigQueryTimeRange> DoubleTimestampRangeConverter = text => BigQueryTimeRange.Parse(text, BigQueryDbType.Timestamp, DoubleTimestampConverter);
 
         /// <summary>
         /// Retrieves a cell value by field name.
@@ -173,7 +174,7 @@ namespace Google.Cloud.BigQuery.V2
             {
                 BigQueryDbType.Date => DateRangeConverter,
                 BigQueryDbType.DateTime => DateTimeRangeConverter,
-                BigQueryDbType.Timestamp => TimestampRangeConverter,
+                BigQueryDbType.Timestamp => useInt64Timestamp ? Int64TimestampRangeConverter : DoubleTimestampRangeConverter,
                 null => throw new InvalidOperationException("Range field has no range element type"),
                 _ => throw new InvalidOperationException($"Unhandled range field element type {field.GetRangeElementType()}"),
             };
