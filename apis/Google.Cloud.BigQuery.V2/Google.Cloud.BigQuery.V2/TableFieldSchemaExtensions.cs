@@ -17,10 +17,9 @@ using Google.Apis.Bigquery.v2.Data;
 namespace Google.Cloud.BigQuery.V2
 {
     /// <summary>
-    /// Extension methods over table schema fields. We may want to expose these as public methods
-    /// at some point.
+    /// Extension methods over table schema fields.
     /// </summary>
-    internal static class TableFieldSchemaExtensions
+    public static class TableFieldSchemaExtensions
     {
         /// <summary>
         /// Returns the type of a field as a <see cref="BigQueryDbType"/>.
@@ -35,9 +34,24 @@ namespace Google.Cloud.BigQuery.V2
         internal static BigQueryFieldMode GetFieldMode(this TableFieldSchema field) =>
             field.Mode == null ? BigQueryFieldMode.Nullable : EnumMap<BigQueryFieldMode>.ToValue(field.Mode);
 
-        internal static BigQueryDbType? GetRangeElementType(this TableFieldSchema field) =>
-            field?.RangeElementType?.Type is string rangeElementType
+        /// <summary>
+        /// Returns the range element type of the given schema field
+        /// </summary>
+        /// <param name="field">The field to determine the range element type of.</param>
+        /// <returns>The range element type of the field, or null if the field type is not a range.</returns>
+        public static BigQueryDbType? GetRangeElementType(this TableFieldSchema field) =>
+            field.RangeElementType?.Type is string rangeElementType
             ? EnumMap<BigQueryDbType>.ToValue(rangeElementType)
             : null;
+
+        /// <summary>
+        /// Sets the range element type of the given schema field.
+        /// </summary>
+        /// <param name="field">The field to set the range element type on.</param>
+        /// <param name="rangeElementType">The range element type, or null to clear any existing range element type.</param>
+        public static void SetRangeElementType(this TableFieldSchema field, BigQueryDbType? rangeElementType) =>
+            field.RangeElementType = rangeElementType is null
+                ? null
+                : new() { Type = EnumMap.ToApiValue(rangeElementType.Value) };
     }
 }

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using Google.Api.Gax;
+using Newtonsoft.Json;
 using System;
 using System.Globalization;
 
@@ -242,11 +243,33 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
         Start?.GetHashCode() ?? 0,
         End?.GetHashCode() ?? 0);
 
-    // TODO: Introduce a new class for this rather than relying on anonymous type conversions.
-    internal object ToInsertRowJson()
+    internal InsertRowJson ToInsertRowJson()
     {
         var rangeElementType = RangeElementType;
-        return new { start = Convert(Start), end = Convert(End) };
+        return new InsertRowJson { Start = Convert(Start), End = Convert(End) };
+
+        string Convert(DateTime? value)
+        {
+            if (value is not DateTime v)
+            {
+                return null;
+            }
+            return rangeElementType switch
+            {
+                BigQueryDbType.Date => v.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                BigQueryDbType.DateTime => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF", CultureInfo.InvariantCulture),
+                // TODO: Check if this is okay... we could convert to microseconds.
+                BigQueryDbType.Timestamp => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF'Z'", CultureInfo.InvariantCulture),
+                _ => throw new InvalidOperationException($"Invalid range element type {rangeElementType}")
+            };
+        }
+    }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        var rangeElementType = RangeElementType;
+        return $"RANGE<{EnumMap.ToApiValue(RangeElementType)}> \"[{Convert(Start)}, {Convert(End)})\"";
 
         string Convert(DateTime? value)
         {
@@ -256,16 +279,20 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
             }
             return rangeElementType switch
             {
-                BigQueryDbType.Date => v.ToString("yyyy-MM-dd\"", CultureInfo.InvariantCulture),
+                BigQueryDbType.Date => v.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
                 BigQueryDbType.DateTime => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF", CultureInfo.InvariantCulture),
-                // TODO: Check if this is okay... we could convert to microseconds.
                 BigQueryDbType.Timestamp => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF'Z'", CultureInfo.InvariantCulture),
                 _ => throw new InvalidOperationException($"Invalid range element type {rangeElementType}")
             };
         }
     }
 
-    // TODO: Maybe use ToJson?
-    /// <inheritdoc />
-    public override string ToString() => base.ToString();
+    internal class InsertRowJson
+    {
+        [JsonProperty("start")]
+        internal object Start { get; set; }
+
+        [JsonProperty("end")]
+        internal object End { get; set; }
+    }
 }

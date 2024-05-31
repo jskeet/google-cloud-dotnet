@@ -258,10 +258,9 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
                 { "array_record", recordSchema, BigQueryFieldMode.Repeated },
                 // TODO: Arrays of ranges
             }
-            // TODO: Make this easier... (external users won't have access to EnumMap apart from anything else)
-            .ModifyField("single_range_date", f => f.RangeElementType = new() { Type = EnumMap.ToApiValue(BigQueryDbType.Date) })
-            .ModifyField("single_range_datetime", f => f.RangeElementType = new() { Type = EnumMap.ToApiValue(BigQueryDbType.DateTime) })
-            .ModifyField("single_range_timestamp", f => f.RangeElementType = new() { Type = EnumMap.ToApiValue(BigQueryDbType.Timestamp) })
+            .ModifyField("single_range_date", f => f.SetRangeElementType(BigQueryDbType.Date))
+            .ModifyField("single_range_datetime", f => f.SetRangeElementType(BigQueryDbType.DateTime))
+            .ModifyField("single_range_timestamp", f => f.SetRangeElementType(BigQueryDbType.Timestamp))
             .Build());
 
             InsertAndWait(table, () => table.InsertRow(ExhaustiveTypesTest.GetSampleRow()), 1);
