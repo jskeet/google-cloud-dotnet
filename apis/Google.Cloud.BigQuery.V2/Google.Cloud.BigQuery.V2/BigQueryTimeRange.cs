@@ -13,7 +13,9 @@
 // limitations under the License.
 
 using Google.Api.Gax;
+using Google.Apis.Bigquery.v2.Data;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Globalization;
 
@@ -25,19 +27,9 @@ namespace Google.Cloud.BigQuery.V2;
 /// </summary>
 public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
 {
-    private const string EmptyJson = "empty";
-
-    /// <summary>
-    /// Whether this range is empty or not. A range with a null <see cref="Start"/> and
-    /// <see cref="End"/> value can either represent a completely unbounded range
-    /// (including every possible value) or an empty range (including no values).
-    /// </summary>
-    /// <remarks>Empty ranges can be created </remarks>
-    public bool IsEmpty { get; }
-
     /// <summary>
     /// The start value, expressed as a <see cref="DateTime"/>, or null for
-    /// a range which has an unbounded start or an empty range.
+    /// a range which has an unbounded start.
     /// </summary>
     /// <remarks>
     /// If <see cref="RangeElementType"/> is <see cref="BigQueryDbType.Date"/> or
@@ -51,7 +43,7 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
 
     /// <summary>
     /// The end value, expressed as a <see cref="DateTime"/>, or null for
-    /// a range which has an unbounded end or an empty range.
+    /// a range which has an unbounded end.
     /// </summary>
     public DateTime? End { get; }
 
@@ -63,25 +55,7 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
     public BigQueryDbType RangeElementType { get; }
 
     /// <summary>
-    /// Constructs a new empty range with the given element type.
-    /// </summary>
-    /// <param name="rangeElementType">The element type of the range.</param>
-    private BigQueryTimeRange(BigQueryDbType rangeElementType)
-    {
-        GaxPreconditions.CheckArgument(
-            rangeElementType != BigQueryDbType.Date ||
-            rangeElementType != BigQueryDbType.DateTime ||
-            rangeElementType != BigQueryDbType.Timestamp,
-            nameof(rangeElementType), "Range element type must be Date, DateTime or Timestamp");
-
-        IsEmpty = true;
-        RangeElementType = rangeElementType;
-        Start = null;
-        End = null;
-    }
-
-    /// <summary>
-    /// Constructs a new non-empty range with the specified bounds and range element type.
+    /// Constructs a new range with the specified bounds and range element type.
     /// </summary>
     /// <remarks>
     /// The range element type must be <see cref="BigQueryDbType.Date"/>,
@@ -108,7 +82,6 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
         GaxPreconditions.CheckArgument(!(end < start),
             nameof(end), "The start of a range must not be later than the end.");
 
-        IsEmpty = false;
         RangeElementType = rangeElementType;
         Start = start;
         End = end;
@@ -173,15 +146,9 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
         ForTimestamp(start?.UtcDateTime, end?.UtcDateTime);
 
     /// <summary>
-    /// Constructs an empty range with the specified range element type.
-    /// </summary>
-    /// <param name="rangeElementType">The element type of the range.</param>
-    /// <returns>An empty range with the specified range element type.</returns>
-    public static BigQueryTimeRange Empty(BigQueryDbType rangeElementType) => new(rangeElementType);
-
-    /// <summary>
-    /// Parses the given value as a range. The expected format is "empty" for an empty range,
-    /// or "[start, end)" where "start" and "end" are either "NULL" or a value of the appropriate type.
+    /// Parses the given value as a range. The expected format is "[start, end)"
+    /// where "start" and "end" are either "NULL" or a value of the appropriate type,
+    /// parsed by <paramref name="elementConverter"/>.
     /// </summary>
     /// <param name="text"></param>
     /// <param name="rangeElementType"></param>
@@ -195,11 +162,6 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
             rangeElementType != BigQueryDbType.DateTime ||
             rangeElementType != BigQueryDbType.Timestamp,
             nameof(rangeElementType), "Range element type must be Date, DateTime or Timestamp");
-        if (text.Equals(EmptyJson, StringComparison.OrdinalIgnoreCase))
-        {
-            return Empty(rangeElementType);
-        }
-
         if (!text.StartsWith("[", StringComparison.Ordinal) ||
             !text.EndsWith(")", StringComparison.Ordinal))
         {
@@ -228,7 +190,6 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
 
     /// <inheritdoc />
     public bool Equals(BigQueryTimeRange other) =>
-        IsEmpty == other.IsEmpty &&
         RangeElementType == other.RangeElementType &&
         Start == other.Start &&
         End == other.End;
@@ -238,7 +199,6 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
 
     /// <inheritdoc />
     public override int GetHashCode() => GaxEqualityHelpers.CombineHashCodes(
-        IsEmpty ? 1 : 0,
         (int) RangeElementType,
         Start?.GetHashCode() ?? 0,
         End?.GetHashCode() ?? 0);
@@ -287,12 +247,38 @@ public struct BigQueryTimeRange : IEquatable<BigQueryTimeRange>
         }
     }
 
+    /// <summary>
+    /// Converts this range to a <see cref="RangeValue"/> for use in query parameters.
+    /// </summary>
+    internal RangeValue ToRangeValue()
+    {
+        var rangeElementType = RangeElementType;
+        return new RangeValue { Start = Convert(Start), End = Convert(End) };
+
+        QueryParameterValue Convert(DateTime? value)
+        {
+            if (value is not DateTime v)
+            {
+                return null;
+            }
+            string text = rangeElementType switch
+            {
+                BigQueryDbType.Date => v.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                BigQueryDbType.DateTime => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF", CultureInfo.InvariantCulture),
+                // TODO: Check if this is okay... we could convert to microseconds.
+                BigQueryDbType.Timestamp => v.ToString("yyyy-MM-dd'T'HH:mm:ss.FFFFFF'Z'", CultureInfo.InvariantCulture),
+                _ => throw new InvalidOperationException($"Invalid range element type {rangeElementType}")
+            };
+            return new QueryParameterValue { Value = text };
+        }
+    }
+
     internal class InsertRowJson
     {
         [JsonProperty("start")]
-        internal object Start { get; set; }
+        internal string Start { get; set; }
 
         [JsonProperty("end")]
-        internal object End { get; set; }
+        internal string End { get; set; }
     }
 }

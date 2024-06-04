@@ -1,4 +1,4 @@
-﻿// Copyright 2016 Google Inc. All Rights Reserved.
+// Copyright 2016 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Google.Apis.Json;
 using System;
 using System.Linq;
 using Xunit;
@@ -113,6 +114,67 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             var row = GetSingleRow("SELECT @p AS WKT",
                 new BigQueryParameter("p", BigQueryDbType.Geography, BigQueryGeography.Parse("POINT(1 2)")));
             Assert.Equal(BigQueryGeography.Parse("POINT(1 2)"), (BigQueryGeography) row["WKT"]);
+        }
+
+        [Fact]
+        public void SingleRangeParameter_Date()
+        {
+            var client = BigQueryClient.Create(_fixture.ProjectId);
+            var range = BigQueryTimeRange.ForDate(new DateTime(2000, 1, 1), new DateTime(2002, 1, 1));
+            var parameter = new BigQueryParameter("rangeParam", BigQueryDbType.Range, range);
+            var results = client.ExecuteQuery
+                ("SELECT value FROM UNNEST([DATE '1999-06-01', DATE '2000-06-01', DATE '2001-06-01', DATE '2002-06-01']) AS value WHERE RANGE_CONTAINS(@rangeParam, value) ORDER BY value",
+                new[] { parameter }).ReadPage(10);
+            Assert.Equal(
+                new[] { new DateTime(2000, 6, 1), new DateTime(2001, 6, 1) },
+                results.Rows.Select(r => (DateTime) r["value"]));
+        }
+
+        [Fact]
+        public void SingleRangeParameter_DateTime()
+        {
+            var client = BigQueryClient.Create(_fixture.ProjectId);
+            var range = BigQueryTimeRange.ForDateTime(new DateTime(2000, 1, 1), new DateTime(2002, 1, 1));
+            var parameter = new BigQueryParameter("rangeParam", BigQueryDbType.Range, range);
+            var results = client.ExecuteQuery
+                ("SELECT value FROM UNNEST([DATETIME '1999-06-01T00:00:00', DATETIME '2000-06-01T00:00:00', DATETIME '2001-06-01T00:00:00', DATETIME '2002-06-01T00:00:00']) AS value " +
+                 "WHERE RANGE_CONTAINS(@rangeParam, value) ORDER BY value",
+                new[] { parameter }).ReadPage(10);
+            Assert.Equal(
+                new[] { new DateTime(2000, 6, 1), new DateTime(2001, 6, 1) },
+                results.Rows.Select(r => (DateTime) r["value"]));
+        }
+
+        [Fact]
+        public void SingleRangeParameter_Timestamp()
+        {
+            var client = BigQueryClient.Create(_fixture.ProjectId);
+            var range = BigQueryTimeRange.ForTimestamp(new DateTime(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc), new DateTime(2002, 1, 1, 0, 0, 0, DateTimeKind.Utc));
+            var parameter = new BigQueryParameter("rangeParam", BigQueryDbType.Range, range);
+            var results = client.ExecuteQuery
+                ("SELECT value FROM UNNEST([TIMESTAMP '1999-06-01T00:00:00Z', TIMESTAMP '2000-06-01T00:00:00Z', TIMESTAMP '2001-06-01T00:00:00Z', TIMESTAMP '2002-06-01T00:00:00Z']) AS value " +
+                 "WHERE RANGE_CONTAINS(@rangeParam, value) ORDER BY value",
+                new[] { parameter }).ReadPage(10);
+            Assert.Equal(
+                new[] { new DateTime(2000, 6, 1, 0, 0, 0, DateTimeKind.Utc), new DateTime(2001, 6, 1, 0, 0, 0, DateTimeKind.Utc) },
+                results.Rows.Select(r => (DateTime) r["value"]));
+        }
+
+        [Fact]
+        public void ArrayRangeParameter_Date()
+        {
+            var client = BigQueryClient.Create(_fixture.ProjectId);
+            var range1 = BigQueryTimeRange.ForDate(new DateTime(2000, 1, 1), new DateTime(2002, 1, 1));
+            var range2 = BigQueryTimeRange.ForDate(new DateTime(2001, 1, 1), new DateTime(2003, 1, 1));
+            var parameter = new BigQueryParameter("rangeParam", BigQueryDbType.Array, new[] { range1, range2 } );
+
+            string json = NewtonsoftJsonSerializer.Instance.Serialize(parameter.ToQueryParameter());
+            var results = client.ExecuteQuery
+                ("SELECT value FROM UNNEST(@rangeParam) AS value",
+                new[] { parameter }).ReadPage(10);
+            Assert.Equal(
+                new[] { range1, range2 },
+                results.Rows.Select(r => (BigQueryTimeRange) r["value"]));
         }
 
         private BigQueryRow GetSingleRow(string sql, params BigQueryParameter[] parameters)

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using Google.Apis.Bigquery.v2.Data;
+using Google.Apis.Json;
 using Google.Cloud.ClientTesting;
 using System;
 using System.Collections.Generic;
@@ -216,8 +217,11 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
                         { "a", BigQueryDbType.Int64 },
                         { "b", BigQueryDbType.Int64 },
                     }
-                }
-            }.Build();
+                },
+                { "range", BigQueryDbType.Range }
+            }
+            .ModifyField("range", f => f.SetRangeElementType(BigQueryDbType.Date))
+            .Build();
 
             var table = dataset.CreateTable(ExhaustiveTypesTableId, new TableSchemaBuilder
             {
@@ -256,11 +260,17 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
                 { "array_geography", BigQueryDbType.Geography, BigQueryFieldMode.Repeated },
                 { "array_json", BigQueryDbType.Json, BigQueryFieldMode.Repeated },
                 { "array_record", recordSchema, BigQueryFieldMode.Repeated },
-                // TODO: Arrays of ranges
+                // These are "fixed" (to specify the element type) before build.
+                { "array_range_date", BigQueryDbType.Range, BigQueryFieldMode.Repeated },
+                { "array_range_datetime", BigQueryDbType.Range, BigQueryFieldMode.Repeated },
+                { "array_range_timestamp", BigQueryDbType.Range, BigQueryFieldMode.Repeated },
             }
             .ModifyField("single_range_date", f => f.SetRangeElementType(BigQueryDbType.Date))
             .ModifyField("single_range_datetime", f => f.SetRangeElementType(BigQueryDbType.DateTime))
             .ModifyField("single_range_timestamp", f => f.SetRangeElementType(BigQueryDbType.Timestamp))
+            .ModifyField("array_range_date", f => f.SetRangeElementType(BigQueryDbType.Date))
+            .ModifyField("array_range_datetime", f => f.SetRangeElementType(BigQueryDbType.DateTime))
+            .ModifyField("array_range_timestamp", f => f.SetRangeElementType(BigQueryDbType.Timestamp))
             .Build());
 
             InsertAndWait(table, () => table.InsertRow(ExhaustiveTypesTest.GetSampleRow()), 1);

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Google.Apis.Bigquery.v2;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -75,15 +74,16 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             var singleRecord = (Dictionary<string, object>) row["single_record"];
             Assert.Equal("nested string", (string) singleRecord["single_string"]);
             Assert.Equal(new[] { "nested string 1", "nested string 2" }, (string[]) singleRecord["repeated_string"]);
+            Assert.Equal(BigQueryTimeRange.ForDate(null, new DateTime(2020, 2, 3)), (BigQueryTimeRange) singleRecord["range"]);
             var nestedRecord = (Dictionary<string, object>) singleRecord["nested_record"];
             Assert.Equal(-10L, (long) nestedRecord["a"]);
             Assert.Equal(20L, (long) nestedRecord["b"]);
 
-            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30), BigQueryDbType.Date),
+            Assert.Equal(BigQueryTimeRange.ForDate(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30)),
                 (BigQueryTimeRange) row["single_range_date"]);
-            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8), BigQueryDbType.DateTime),
+            Assert.Equal(BigQueryTimeRange.ForDateTime(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8)),
                 (BigQueryTimeRange) row["single_range_datetime"]);
-            Assert.Equal(new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc), BigQueryDbType.Timestamp),
+            Assert.Equal(BigQueryTimeRange.ForTimestamp(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc)),
                 (BigQueryTimeRange) row["single_range_timestamp"]);
 
             Assert.Equal(new[] { "array string value 1", "array string value 2" }, (string[]) row["array_string"]);
@@ -122,6 +122,19 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             nestedRecord = (Dictionary<string, object>) arrayRecords[1]["nested_record"];
             Assert.Equal(-1000L, (long) nestedRecord["a"]);
             Assert.Equal(2000L, (long) nestedRecord["b"]);
+
+            Assert.Equal(new[] {
+                BigQueryTimeRange.ForDate(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30)),
+                BigQueryTimeRange.ForDate(new DateTime(2021, 2, 3), new DateTime(2025, 5, 30))
+            }, (BigQueryTimeRange[]) row["array_range_date"]);
+            Assert.Equal(new[] {
+                BigQueryTimeRange.ForDateTime(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8)),
+                BigQueryTimeRange.ForDateTime(new DateTime(2021, 2, 3, 1, 2, 3, 4), new DateTime(2025, 5, 30, 5, 6, 7, 8))
+            }, (BigQueryTimeRange[]) row["array_range_datetime"]);
+            Assert.Equal(new[] {
+                BigQueryTimeRange.ForTimestamp(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc)),
+                BigQueryTimeRange.ForTimestamp(new DateTime(2021, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2025, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc))
+            }, (BigQueryTimeRange[]) row["array_range_timestamp"]);
         }
 
         [Fact]
@@ -141,6 +154,9 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.BigNumeric, BigQueryBigNumeric.Parse("123456789012345678901234567890123456789.12345678901234567890123456789012345678")));
             AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Geography, BigQueryGeography.Parse("POINT(1 2)")));
             AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Json, "{\"x\":10,\"y\":\"text\"}"));
+            AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Range, BigQueryTimeRange.ForDate(new DateTime(2020, 1, 1), new DateTime(2022, 1, 1))));
+            AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Range, BigQueryTimeRange.ForDateTime(new DateTime(2020, 1, 1, 1, 2, 3), new DateTime(2022, 1, 1, 4, 5, 6))));
+            AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Range, BigQueryTimeRange.ForTimestamp(new DateTime(2020, 1, 1, 0, 0, 0, DateTimeKind.Utc), new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc))));
 
             AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Array, new[] { "foo", "bar" }));
             AssertParameterRoundTrip(client, new BigQueryParameter(BigQueryDbType.Array, new[] { true, false }));
@@ -247,11 +263,12 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
             {
                 ["single_string"] = "nested string",
                 ["repeated_string"] = new[] { "nested string 1", "nested string 2" },
-                ["nested_record"] = new BigQueryInsertRow { ["a"] = -10, ["b"] = 20 }
+                ["nested_record"] = new BigQueryInsertRow { ["a"] = -10, ["b"] = 20 },
+                ["range"] = BigQueryTimeRange.ForDate(null, new DateTime(2020, 2, 3))
             },
-            ["single_range_date"] = new BigQueryTimeRange(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30), BigQueryDbType.Date),
-            ["single_range_datetime"] = new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8), BigQueryDbType.DateTime),
-            ["single_range_timestamp"] = new BigQueryTimeRange(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc), BigQueryDbType.Timestamp),
+            ["single_range_date"] = BigQueryTimeRange.ForDate(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30)),
+            ["single_range_datetime"] = BigQueryTimeRange.ForDateTime(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8)),
+            ["single_range_timestamp"] = BigQueryTimeRange.ForTimestamp(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc)),
 
             ["array_string"] = new[] { "array string value 1", "array string value 2" },
             ["array_bool"] = new[] { true, false },
@@ -279,7 +296,19 @@ namespace Google.Cloud.BigQuery.V2.IntegrationTests
                         ["repeated_string"] = new[] { "array record string 2.1", "array record string 2.2" },
                         ["nested_record"] = new BigQueryInsertRow { ["a"] = -1000, ["b"] = 2000 }
                     },
-                }
+                },
+            ["array_range_date"] = new[] {
+                BigQueryTimeRange.ForDate(new DateTime(2020, 2, 3), new DateTime(2024, 5, 30)),
+                BigQueryTimeRange.ForDate(new DateTime(2021, 2, 3), new DateTime(2025, 5, 30)),
+            },
+            ["array_range_datetime"] = new[] {
+                BigQueryTimeRange.ForDateTime(new DateTime(2020, 2, 3, 1, 2, 3, 4), new DateTime(2024, 5, 30, 5, 6, 7, 8)),
+                BigQueryTimeRange.ForDateTime(new DateTime(2021, 2, 3, 1, 2, 3, 4), new DateTime(2025, 5, 30, 5, 6, 7, 8)),
+            },
+            ["array_range_timestamp"] = new[] {
+                BigQueryTimeRange.ForTimestamp(new DateTime(2020, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2024, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc)),
+                BigQueryTimeRange.ForTimestamp(new DateTime(2021, 2, 3, 1, 2, 3, 4, DateTimeKind.Utc), new DateTime(2025, 5, 30, 5, 6, 7, 8, DateTimeKind.Utc)),
+            }
         };
     }
 }

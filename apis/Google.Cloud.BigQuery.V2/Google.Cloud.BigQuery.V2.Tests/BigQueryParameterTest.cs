@@ -16,6 +16,7 @@
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
 
 using Google.Apis.Bigquery.v2.Data;
+using Google.Apis.Json;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -303,6 +304,14 @@ namespace Google.Cloud.BigQuery.V2.Tests
             Assert.Null(parameter.Name);
             Assert.Equal(BigQueryDbType.String, parameter.Type);
             Assert.Null(parameter.Value);
+        }
+
+        [Fact]
+        public void Range()
+        {
+            var range = BigQueryTimeRange.ForTimestamp(null, new DateTime(2002, 1, 1, 1, 2, 3, DateTimeKind.Utc));
+            var parameter = new BigQueryParameter("rangeParam", BigQueryDbType.Range, range);
+            string json = NewtonsoftJsonSerializer.Instance.Serialize(parameter.ToQueryParameter());
         }
 
         private static object[] ScalarTest(string name, BigQueryDbType type, object parameterValue, string expectedValue) =>

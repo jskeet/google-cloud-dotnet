@@ -334,7 +334,6 @@ namespace Google.Cloud.BigQuery.V2
 
         private static QueryParameter PopulateArrayParameter(QueryParameter parameter, object value, BigQueryDbType? arrayType)
         {
-            // FIXME: Range parameters?
             if (value == null)
             {
                 throw new InvalidOperationException("The value of an array parameter cannot be null");
@@ -354,6 +353,10 @@ namespace Google.Cloud.BigQuery.V2
                 Type = BigQueryDbType.Array.ToParameterApiType(),
                 ArrayType = new QueryParameterType { Type = actualArrayType.ToParameterApiType() },
             };
+            if (actualArrayType == BigQueryDbType.Range)
+            {
+                parameter.ParameterType.RangeElementType = new QueryParameterType { Type = BigQueryDbType.Date.ToParameterApiType() };
+            }
             var parameterValues = values
                 .Select(p => new BigQueryParameter(actualArrayType, p).ToQueryParameter().ParameterValue)
                 .ToList();
@@ -364,9 +367,29 @@ namespace Google.Cloud.BigQuery.V2
 
         private static QueryParameter PopulateRangeParameter(QueryParameter parameter, object value, BigQueryDbType? elementType)
         {
-            // If we've got an element type and it's not the same as the BigQueryTimeRange value's type, what do we do?
-            // FIXME
-            return default;
+            if (value is null)
+            {
+                if (elementType is null)
+                {
+                    throw new InvalidOperationException("A null-valued range parameter must have an explicitly specified range element type");
+                }
+                parameter.ParameterType.RangeElementType = new QueryParameterType { Type = elementType.Value.ToParameterApiType() };
+                parameter.ParameterValue = new QueryParameterValue();
+                return parameter;
+            }
+            if (value is not BigQueryTimeRange range)
+            {
+                throw new InvalidOperationException($"Value of type {value.GetType()} cannot be used for a parameter of type {BigQueryDbType.Range}");
+            }
+
+            if (elementType is not null && elementType != range.RangeElementType)
+            {
+                throw new InvalidOperationException($"When a range element type and a range value are specified, the range element types must match");
+            }
+
+            parameter.ParameterType.RangeElementType = new QueryParameterType { Type = range.RangeElementType.ToParameterApiType() };
+            parameter.ParameterValue = new QueryParameterValue { RangeValue = range.ToRangeValue() };
+            return parameter;
         }
 
         private static void ValidateValue(object value, string paramName)

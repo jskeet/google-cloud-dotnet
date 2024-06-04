@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using NSubstitute.Core;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using Xunit;
 
@@ -67,5 +69,30 @@ public class BigQueryTimeRangeTest
         var results = client.ExecuteQuery(query, null);
         var row = results.Single();
         Assert.Equal(expectedValue, row[0]);
+    }
+
+    [Fact]
+    public void TimestampAsDouble()
+    {
+        var client = BigQueryClient.Create(_fixture.ProjectId);
+        var results = client.ExecuteQuery(
+            "SELECT RANGE<TIMESTAMP> \"[2000-01-01T01:02:03.456789Z, 2024-05-30T18:19:20.987Z)\"",
+            null,
+            resultsOptions: new GetQueryResultsOptions { UseInt64Timestamp = false });
+        var row = results.Single();
+        string v = (string) row.RawRow.F[0].V;
+        Assert.Equal(BigQueryTimeRange.ForTimestamp(SampleTimestamp1, SampleTimestamp2), row[0]);
+    }
+
+    [Fact]
+    public void NullRange()
+    {
+        var client = BigQueryClient.Create(_fixture.ProjectId);
+        var results = client.ExecuteQuery(
+            "SELECT CAST(NULL AS RANGE<TIMESTAMP>)",
+            null,
+            resultsOptions: new GetQueryResultsOptions { UseInt64Timestamp = false });
+        var row = results.Single();
+        Assert.Null(row[0]);
     }
 }
