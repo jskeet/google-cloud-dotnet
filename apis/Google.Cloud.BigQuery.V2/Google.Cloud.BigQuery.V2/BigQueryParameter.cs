@@ -355,7 +355,8 @@ namespace Google.Cloud.BigQuery.V2
             };
             if (actualArrayType == BigQueryDbType.Range)
             {
-                parameter.ParameterType.RangeElementType = new QueryParameterType { Type = BigQueryDbType.Date.ToParameterApiType() };
+                // FIXME: work out the range element type.
+                parameter.ParameterType.ArrayType.RangeElementType = new QueryParameterType { Type = BigQueryDbType.Date.ToParameterApiType() };
             }
             var parameterValues = values
                 .Select(p => new BigQueryParameter(actualArrayType, p).ToQueryParameter().ParameterValue)
