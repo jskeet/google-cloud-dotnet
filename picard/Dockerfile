@@ -26,6 +26,7 @@ WORKDIR /src
 COPY . ./
 RUN dotnet build MakeItSo/MakeItSo.csproj -c Release
 
+FROM mcr.microsoft.com/dotnet/sdk:6.0.414-jammy
 WORKDIR /app
-COPY /src/MakeItSo/bin/Release .
+COPY --from=build /src/MakeItSo/bin/Release/net6.0 .
 ENTRYPOINT ["dotnet", "MakeItSo.dll"]
