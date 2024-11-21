@@ -12,12 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 namespace MakeItSo;
 
 /// <summary>
@@ -28,7 +22,7 @@ internal class ApiCatalog
     /// <summary>
     /// The APIs within the catalog.
     /// </summary>
-    internal List<ApiMetadata> Apis { get; set; } = null!;
+    public List<ApiMetadata> Apis { get; set; } = null!;
 
     /// <summary>
     /// Proto paths for APIs we knowingly don't generate. The values are the reasons for not generating.
