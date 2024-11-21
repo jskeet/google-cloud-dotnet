@@ -27,6 +27,11 @@ COPY . ./
 RUN dotnet build MakeItSo/MakeItSo.csproj -c Release
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0.414-jammy
+
+# Additional tooling required to regenerate libraries and project files.
+RUN apt-get update
+RUN apt-get install -y unzip
+
 WORKDIR /app
 COPY --from=build /src/MakeItSo/bin/Release/net6.0 .
 ENTRYPOINT ["dotnet", "MakeItSo.dll"]
