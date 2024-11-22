@@ -23,7 +23,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0.414-jammy AS build
 # arbitrary library.
 
 WORKDIR /src
-COPY . ./
+COPY ./picard ./
 RUN dotnet build MakeItSo/MakeItSo.csproj -c Release
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0.414-jammy
@@ -34,4 +34,22 @@ RUN apt-get install -y unzip
 
 WORKDIR /app
 COPY --from=build /src/MakeItSo/bin/Release/net6.0 .
+
+COPY ./*.sh ./
+COPY ./CommonResourcesConfig.json ./
+COPY ./Directory.Packages.props ./
+COPY ./tools ./tools
+COPY ./apis/GoogleApis.snk ./apis/
+
+# TODO: Move to input
+COPY ./apis/apis.json ./apis/
+COPY ./README.md ./
+COPY ./.github/renovate.json ./.github/
+
+# Needed by Google.Cloud.Tools.Common.csproj to determine GoogleApis.snk directory.
+COPY ./.gitignore ./
+
+# Needed by DirectoryLayout.cs to determine root directory.
+COPY ./LICENSE ./
+
 ENTRYPOINT ["dotnet", "MakeItSo.dll"]

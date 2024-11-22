@@ -45,7 +45,7 @@ internal class UpdateCommand : ICommand
         {
             FileName = "/bin/bash",
             ArgumentList = { "./generateapis.sh", api.Id },
-            WorkingDirectory = _outputRoot,
+            //WorkingDirectory = _outputRoot,
             EnvironmentVariables = { { "GOOGLEAPIS_DIR", _apiRoot } }
         };
         var process = Process.Start(psi)!;

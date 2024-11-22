@@ -55,6 +55,7 @@ install_nuget_package() {
   # Assume that if the directory exists, it's already installed correctly.  
   if [[ -d $output ]]; then return 0; fi
   
+  echo "Installing $output"
   (mkdir -p $output;
    cd $output;
    curl -sSL https://www.nuget.org/api/v2/package/$1/$2 --output tmp.zip;
@@ -66,14 +67,17 @@ install_nuget_package() {
 # when required. (They handle the case where the tool is already installed.)
 
 install_dotcover() {
+  echo "Installing dotcover"
   install_nuget_package JetBrains.dotCover.CommandLineTools $DOTCOVER_VERSION
 }
 
 install_reportgenerator() {
+  echo "Installing reportgenerator"
   install_nuget_package ReportGenerator $REPORTGENERATOR_VERSION
 }
 
 install_protoc() {
+  echo "Installing protoc"
   install_nuget_package Google.Protobuf.Tools $PROTOC_VERSION
   
   # Temporary fix for a broken proto in the protobuf tools package
@@ -82,6 +86,7 @@ install_protoc() {
 }
 
 install_microgenerator() {
+  echo "Installing microgenerator"
   case "$OSTYPE" in
     linux*)
       declare -r RUNTIME=linux-x64
@@ -131,6 +136,7 @@ install_microgenerator() {
 }
 
 install_grpc() {
+  echo "Installing grpc"
   install_nuget_package Grpc.Tools $GRPC_VERSION
   chmod +x $GRPC_PLUGIN
 }
