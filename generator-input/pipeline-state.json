@@ -1,0 +1,20 @@
+{
+  "imageTag": "testing",
+  "apiGenerationStates": [
+    {
+      "id": "google/cloud/aiplatform/v1",
+      "lastGeneratedCommit": "6f7652b2e10d09db71f106f8caa9991b387314c5",
+      "automationLevel": "AUTOMATION_LEVEL_BLOCKED"
+    },
+    {
+      "id": "google/cloud/functions/v2",
+      "lastGeneratedCommit": "4795a4575949fcbbb26bd00327540fcd9b1c9de9",
+      "automationLevel": "AUTOMATION_LEVEL_AUTOMATIC"
+    },
+    {
+      "id": "google/cloud/kms/v1",
+      "lastGeneratedCommit": "996b0759417cd8ff02e7b5bfe6f7b12f503b36f1",
+      "automationLevel": "AUTOMATION_LEVEL_AUTOMATIC"
+    }
+  ]
+}
