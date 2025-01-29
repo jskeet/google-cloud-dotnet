@@ -1,5 +1,5 @@
 {
-  "imageTag": "testing",
+  "imageTag": "v1.4.32a",
   "apiGenerationStates": [
     {
       "id": "google/cloud/aiplatform/v1",
