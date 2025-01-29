@@ -3,18 +3,18 @@
   "apiGenerationStates": [
     {
       "id": "google/cloud/aiplatform/v1",
-      "lastGeneratedCommit": "6f7652b2e10d09db71f106f8caa9991b387314c5",
-      "automationLevel": "AUTOMATION_LEVEL_BLOCKED"
+      "lastGeneratedCommit": "d8b31b61b1fc66e775f7efe103dae27d50e38dd2",
+      "automationLevel": "AUTOMATION_LEVEL_AUTOMATIC"
     },
     {
       "id": "google/cloud/functions/v2",
-      "lastGeneratedCommit": "4795a4575949fcbbb26bd00327540fcd9b1c9de9",
+      "lastGeneratedCommit": "76ffdb2287ad9fc2bf2932169e3542ca82d6669f",
       "automationLevel": "AUTOMATION_LEVEL_AUTOMATIC"
     },
     {
       "id": "google/cloud/kms/v1",
-      "lastGeneratedCommit": "996b0759417cd8ff02e7b5bfe6f7b12f503b36f1",
-      "automationLevel": "AUTOMATION_LEVEL_AUTOMATIC"
+      "lastGeneratedCommit": "882633d32e4d772a08f62045d5d61173bef3026e",
+      "automationLevel": "AUTOMATION_LEVEL_BLOCKED"
     }
   ]
 }
