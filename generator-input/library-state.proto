@@ -1,0 +1,63 @@
+// Copyright 2025 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto"
+
+message LibraryState {
+  // The libraries released from this repository.
+  repeated Library libraries = 1;
+  
+  // Paths to files/directories which can trigger
+  // a release in all libraries.
+  repeated string common_paths = 2;
+}
+
+message Library {
+  // The ID to pass from Librarian to container commands when
+  // operating on this library. Typically this will be the
+  // language-specific package name. Librarian uses this as an
+  // opaque identifier.
+  string id = 1;
+  
+  // The latest released version
+  // (or the version in the process of being released)
+  string version = 2;
+  
+  // The timestamp of the latest release. (This is typically
+  // some timestamp within the process of generating the release
+  // PR for the library. Importantly, it's not just a date as
+  // there may be reasons to release a library multiple times
+  // within a day.)
+  .google.protobuf.Timestamp release_timestamp = 3;
+  
+  // The APIs included in this library.
+  repeated LibraryApiMapping apis = 3;
+  
+  // Paths to files or directories contributing to this library.
+  repeated string source_paths = 4;
+}
+
+message LibraryApiMapping {
+  // The API ID as per pipeline-state.json.
+  // (Currently the path to a directory in googleapis,
+  // e.g. `google/cloud/functions/v2`)
+  string api_id = 1;
+  
+  // The last-generated commit hash (within the API definition repo)
+  // at the point of the last/in-progress release. (This is taken
+  // from the generation state at the time of the release.)
+  string release_commit = 2;
+}

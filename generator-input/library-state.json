@@ -1,0 +1,54 @@
+{
+  "libraries": [
+    {
+      "id": "Google.Cloud.Functions.V2",
+      "version": "1.7.0",
+      "releaseTimestamp": "2024-08-13T16:38:48Z",
+      "apis": [
+        {
+          "id": "google/cloud/functions/v2"
+          "release_commit": "8652e28bd0156553465918b9b7564420da79456e"
+        }
+      ],
+      "sourcePaths": [
+        "apis/Google.Cloud.Functions.V2/Google.Cloud.Functions.V2"
+      ]
+    },
+    {
+      // Note: we actually have multiple Spanner libraries which are
+      // all released and versioned together - but that can be hidden
+      // within the container, I believe, so that Librarian only needs
+      // to think of it as a single library.
+      "id": "Google.Cloud.Spanner.V1",
+      "version": "5.0.0-beta05",
+      "releaseTimestamp": "2024-11-07T09:18:43Z",
+      "apis": [
+        {
+          "id": "google/spanner/v1"
+          "release_commit": "FIXME"
+        },
+        {
+          "id": "google/spanner/admin/instance/v1"
+          "release_commit": "FIXME"
+        },
+        {
+          "id": "google/spanner/admin/database/v1"
+          "release_commit": "FIXME"
+        },
+      ],
+      "sourcePaths": [
+        "apis/Google.Cloud.Spanner.V1/Google.Cloud.Spanner.V1",
+        "apis/Google.Cloud.Spanner.Admin.Database.V1/Google.Cloud.Spanner.Admin.Database.V1",
+        "apis/Google.Cloud.Spanner.Admin.Instance.V1/Google.Cloud.Spanner.Admin.Instance.V1",
+        "apis/Google.Cloud.Spanner.Common.V1/Google.Cloud.Spanner.Common.V1",
+        "apis/Google.Cloud.Spanner.Data/Google.Cloud.Spanner.Data"
+      ]
+    },    
+  ],
+  
+  "commonPaths": [
+    "Directory.Packages.props",
+    "apis/Directory.Build.props",
+    "apis/Directory.Build.targets"
+  ]
+}
