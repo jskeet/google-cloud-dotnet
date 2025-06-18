@@ -1,0 +1,12 @@
+Command: clean
+Args:
+- '--repo-root=/test/repo'
+- '--library-id=Google.Test.V1'
+CommonFiles:
+  test-apis.json: repo/generator-input/apis.json
+  Google.Test.V1: repo/apis/Google.Test.V1
+  Google.Test.V2: repo/apis/Google.Test.V2
+Expectations:
+  repo/apis/Google.Test.V1/Google.Test.V1/GeneratedSource.g.cs: Absent
+  repo/apis/Google.Test.V1/Google.Test.V1/Handwritten.cs: Present
+  repo/apis/Google.Test.V2/Google.Test.V2/GeneratedSource.g.cs: Present

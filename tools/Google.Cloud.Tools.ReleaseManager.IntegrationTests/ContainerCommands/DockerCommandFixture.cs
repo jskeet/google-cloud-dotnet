@@ -13,7 +13,12 @@
 // limitations under the License.
 
 using Google.Cloud.ClientTesting;
+using Google.Cloud.Tools.Common;
+using NuGet.Packaging;
+using Octokit;
 using System;
+using System.Diagnostics;
+using System.IO;
 using Xunit;
 
 namespace Google.Cloud.Tools.ReleaseManager.IntegrationTests.ContainerCommands;
@@ -25,8 +30,13 @@ namespace Google.Cloud.Tools.ReleaseManager.IntegrationTests.ContainerCommands;
 [CollectionDefinition(nameof(DockerCommandFixture))]
 public sealed class DockerCommandFixture : ICollectionFixture<DockerCommandFixture>
 {
+    private const string DockerExecutable = "/usr/bin/docker";
     private const string DockerImageEnvironmentVariable = "TEST_LIBRARIAN_DOTNET_DOCKER_IMAGE";
 
+    /// <summary>
+    /// The directory in which to create subdirectories for tests.
+    /// </summary>
+    public string TempTestDirectory { get; }
     private readonly bool _enabled;
     private readonly string _image;
 
@@ -38,11 +48,26 @@ public sealed class DockerCommandFixture : ICollectionFixture<DockerCommandFixtu
             _enabled = false;
             return;
         }
+        TempTestDirectory = Path.Combine(Path.GetTempPath(), $"DockerCommand-{image}");
 
         _image = image;
     }
 
     public void MaybeSkip() => Skip.If(!_enabled);
+
+    public void RunDocker(string command, string[] args, string testMount)
+    {
+        // TODO: Map the user to the current user/group. Finding the UID and GID
+        // in .NET is non-trivial...
+        // var userArg = $"--user={uid}:{gid}";
+        var psi = new ProcessStartInfo
+        {
+            FileName = DockerExecutable,
+            ArgumentList = { "run", "--rm", _image, $"-v{testMount}:/test", command }
+        };
+        psi.ArgumentList.AddRange(args);
+        //Processes.RunAndPropagateOutput(psi, "running Docker");
+    }
 
     public void RunCommand(params string[] args)
     {
