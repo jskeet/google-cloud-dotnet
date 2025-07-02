@@ -12,6 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Google.Cloud.Tools.Common;
+using Newtonsoft.Json;
+using Octokit;
+using System;
+using System.IO;
+using System.Linq;
+
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 /// <summary>
@@ -21,46 +28,44 @@ public class ConfigureCommand : IContainerCommand
 {
     public int Execute()
     {
-        /*
-        var apiRoot = options.RequireOption(options.ApiRoot);
-        var apiPath = options.RequireOption(options.ApiPath);
-        var generatorInput = options.RequireOption(options.GeneratorInput);
+        var state = JsonConvert.DeserializeObject<LibraryState>(File.ReadAllText(MountLocations.LibrarianCommandStateFile));
+        var rootLayout = RootLayout.ForConfiguration(MountLocations.GeneratorInputDirectory, MountLocations.ApiRootDirectory);
 
-        var rootLayout = RootLayout.ForConfiguration(generatorInput, apiRoot);
         var catalog = ApiCatalog.Load(rootLayout);
-        var protoc = new ProtobufCompiler();
-
+        var apiPath = state.Apis.Single().Path;
         if (catalog.Apis.FirstOrDefault(api => api.ProtoPath == apiPath) is ApiMetadata api)
         {
             Console.WriteLine($"API path {apiPath} is already configured for {api.Id}");
             return 1;
         }
+        var protoc = new ProtobufCompiler();
 
-        api = new ApiAnalyzer(protoc, apiRoot).ConfigureApi(apiPath, catalog);
+        api = new ApiAnalyzer(protoc, MountLocations.ApiRootDirectory).ConfigureApi(apiPath, catalog);
         catalog.Add(api);
         catalog.Save(rootLayout);
 
-        // Now add the new library to the 
-        // At some point we might generate the proto for this, but for the moment this will do.
-        var pipelineStateFile = Path.Combine(rootLayout.GeneratorInput, "pipeline-state.json");
-        JObject state = JObject.Parse(File.ReadAllText(pipelineStateFile));
-        JArray libraries = (JArray) state["libraries"];
-        libraries.Add(new JObject()
-        {
-            ["id"] = api.Id,
-            ["generationAutomationLevel"] = "AUTOMATION_LEVEL_AUTOMATIC",
-            ["releaseAutomationLevel"] = "AUTOMATION_LEVEL_BLOCKED",
-            ["apiPaths"] = new JArray(apiPath),
-            ["sourcePaths"] = new JArray($"apis/{api.Id}/{api.Id}"),
-            // Prepare for the first release with an alpha or beta.
-            ["nextVersion"] = api.Id.Split('.').Last().Contains("alpha", StringComparison.OrdinalIgnoreCase) ? "1.0.0-alpha01" : "1.0.0-beta01"
-        });
+        // Update the Librarian command state file appropriately.
 
-        // Slightly fiddly serialization to mimic the indentation that Librarian uses.
-        using var fileWriter = File.CreateText(pipelineStateFile);
-        using var jsonWriter = new JsonTextWriter(fileWriter) { Formatting = Formatting.Indented, Indentation = 4 };
-        state.WriteTo(jsonWriter);
-        */
+        state.Id = api.Id;
+        // These may not all exist, but I'm assuming that's okay.
+        state.RemoveRegex =
+        [
+            // All generated code
+            $@"^apis/{api.Id}/.*\.g\.cs$",
+            // All projects
+            $@"^apis/{api.Id}/.*\.csproj$",
+            // The solution file
+            $@"^apis/{api.Id}/{api.Id}\.sln$",
+            // GAPIC metadata
+            $@"^apis/{api.Id}/gapic_metadata\.json$",
+            // Generated snippets JSON metadata
+            $@"^apis/{api.Id}/{api.Id}\.GeneratedSnippets/.*\.json$",
+            // Files generated for all APIs
+            @"^README\.md$",
+            @"^\.github/renovate\.json$",
+        ];
+        File.WriteAllText(MountLocations.LibrarianCommandStateFile, JsonConvert.SerializeObject(state, Formatting.Indented));
+
         return 0;
     }
 }

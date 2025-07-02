@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Google.Cloud.Tools.Common;
+using System;
+using System.Linq;
+
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 /// <summary>
@@ -21,21 +25,24 @@ public class BuildCommand : IContainerCommand
 {
     public int Execute()
     {
-        /*
-        var repoRoot = options.RequireOption(options.RepoRoot);
+        using var _ = SourceLinkFixer.Create(MountLocations.RepoRoot);
 
-        using var _ = SourceLinkFixer.Create(repoRoot);
-
-        var rootLayout = RootLayout.ForRepositoryRoot(repoRoot);
+        var rootLayout = RootLayout.ForRepositoryRoot(MountLocations.RepoRoot);
         var catalog = ApiCatalog.Load(rootLayout);
-        var apis = options.GetApisFromLibraryId(catalog);
-        var args = apis.Select(api => api.Id).ToList();
+
+        var libraryId = Environment.GetEnvironmentVariable("LIBRARIAN_ID");
+
+        var args = string.IsNullOrEmpty(libraryId)
+            ? catalog.Apis.Select(api => api.Id)
+            : catalog.GetPackagesForLibraryId(libraryId);
+
+        // TODO
+        /*
         if (!options.Test)
         {
             args.Insert(0, "--notests");
-        }
-        Processes.RunBashScript(repoRoot, "build.sh", args);
-        */
+        }*/
+        Processes.RunBashScript(MountLocations.RepoRoot, "build.sh", args);
         return 0;
     }
 }

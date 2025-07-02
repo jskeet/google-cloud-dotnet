@@ -109,6 +109,27 @@ namespace Google.Cloud.Tools.Common
         public void Save(RootLayout layout) => File.WriteAllText(GetCatalogPath(layout), FormatJson());
 
         /// <summary>
+        /// Returns the names of packages (as per <see cref="ApiMetadata.Id"/>) for a Librarian library ID.
+        /// If the library ID is the ID of a package group, all the names within it are returned.
+        /// Otherwise, if the library ID is the ID of a single <see cref="ApiMetadata"/> within the catalog,
+        /// a collection of just that ID is returned.
+        /// Otherwise, an exception is thrown (as the library ID is unknown).
+        /// </summary>
+        public IReadOnlyList<string> GetPackagesForLibraryId(string libraryId)
+        {
+            var packageGroup = PackageGroups.SingleOrDefault(pg => pg.Id == libraryId);
+            if (packageGroup is not null)
+            {
+                return packageGroup.PackageIds;
+            }
+            if (!TryGetApi(libraryId, out _))
+            {
+                throw new InvalidOperationException($"No such library {libraryId}");
+            }
+            return [libraryId];
+        }
+
+        /// <summary>
         /// Loads the API catalog from the given JSON.
         /// </summary>
         /// <param name="json">The JSON containing the API catalog.</param>

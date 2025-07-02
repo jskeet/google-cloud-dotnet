@@ -47,9 +47,13 @@ internal sealed class ApiAnalyzer
     /// Returns an <see cref="ApiMetadata"/> representation of an API path, by loading the protos,
     /// service config etc. The returns metadata is not added to <paramref name="catalog"/>.
     /// </summary>
-    internal ApiMetadata ConfigureApi(string apiPath, ApiCatalog catalog)
+    internal ApiMetadata ConfigureApi(string apiPath, ApiCatalog catalog, string expectedServiceConfigFile = null)
     {
         var indexEntry = MiniIndexEntry.Load(_protoc, _googleapis, apiPath);
+        if (expectedServiceConfigFile is not null && indexEntry.ServiceConfigFile != expectedServiceConfigFile)
+        {
+            throw new InvalidOperationException($"Expected a service config file of {expectedServiceConfigFile}; was {indexEntry.ServiceConfigFile}");
+        }
         var serviceConfig = ParseServiceConfigYaml(Path.Combine(_googleapis, indexEntry.Path, indexEntry.ServiceConfigFile));
 
         var api = new ApiMetadata
