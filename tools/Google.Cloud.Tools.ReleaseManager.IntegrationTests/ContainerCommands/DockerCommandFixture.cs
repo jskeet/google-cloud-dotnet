@@ -16,8 +16,10 @@ using Google.Cloud.ClientTesting;
 using Google.Cloud.Tools.Common;
 using NuGet.Packaging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -74,24 +76,37 @@ public sealed class DockerCommandFixture : ICollectionFixture<DockerCommandFixtu
 
     public void MaybeSkip() => Skip.If(!_enabled);
 
-    public void RunDocker(string command, string[] args, string testMount, int expectedExitCode)
+    public void RunDocker(string command, string[] args, string mountRoot, List<string> mountDirectories, int expectedExitCode, Dictionary<string, string> envrionmentVariables)
     {
         // Handle Docker-in-Docker:
         // If we've been asked to mount /mounted/xyz but we know that /mounted/ is actually /host/
         // in the upstream host, we want to mount /host/xyz instead.
-        if (!string.IsNullOrEmpty(_dockerMountRoot) && testMount.StartsWith(_dockerMountRoot, StringComparison.Ordinal))
+        if (!string.IsNullOrEmpty(_dockerMountRoot) && mountRoot.StartsWith(_dockerMountRoot, StringComparison.Ordinal))
         {
-            testMount = $"{_dockerHostRoot}{testMount[_dockerMountRoot.Length..]}";
+            mountRoot = $"{_dockerHostRoot}{mountRoot[_dockerMountRoot.Length..]}";
         }
+
+        // We don't need this to be mounted, but this is a convenient place to put it.
+        // An alternative would be to specify each one on the command line, but this is better for diagnostics.
+        var envFile = Path.Combine(mountRoot, "env.txt");
+        var envText = string.Join("\n", envrionmentVariables.Select(pair => $"{pair.Key}={pair.Value}"));
+        File.WriteAllText(envFile, envText);
 
         var psi = new ProcessStartInfo
         {
             FileName = DockerExecutable,
-            ArgumentList = { "run", "--rm", _userMapping, "-v", $"{testMount}:/test", _image, command },
+            ArgumentList = { "run", "--env-file", envFile, "--rm", _userMapping,  _image, command },
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = true
         };
+        foreach (var mount in mountDirectories)
+        {
+            psi.ArgumentList.Add("-v");
+            psi.ArgumentList.Add($"{mountRoot}/{mount}:/{mount}");
+        }
+        psi.ArgumentList.Add(_image);
+        psi.ArgumentList.Add(command);
         psi.ArgumentList.AddRange(args);
         var stdout = new StringWriter();
         var stderr = new StringWriter();

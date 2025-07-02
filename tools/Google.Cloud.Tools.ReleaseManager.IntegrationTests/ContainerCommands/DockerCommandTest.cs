@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,7 +49,7 @@ public class DockerCommandTest
         var metadataYaml = File.ReadAllText(Path.Combine(fullDirectory, "metadata.yaml"));
         var metadata = s_yamlDeserializer.Deserialize<TestMetadata>(metadataYaml);
         string outputDirectory = CopyTestFiles(fullDirectory, metadata);
-        _fixture.RunDocker(metadata.Command, metadata.Args, outputDirectory, metadata.ExpectedExitCode);
+        _fixture.RunDocker(metadata.Command, metadata.Args, outputDirectory, metadata.Mounts, metadata.ExpectedExitCode, metadata.EnvironmentVariables);
 
         var fileExpectations = metadata.FileExpectations;
         foreach (var expectedPresent in fileExpectations.Present)
@@ -121,6 +122,11 @@ public class DockerCommandTest
         public string Command { get; set; }
 
         /// <summary>
+        /// The directories to mount (as root directories).
+        /// </summary>
+        public List<string> Mounts { get; set; } = [];
+
+        /// <summary>
         /// The arguments to the container command
         /// </summary>
         public string[] Args { get; set; } = [];
@@ -144,6 +150,11 @@ public class DockerCommandTest
         /// Expectations of the files after the test
         /// </summary>
         public FileExpectations FileExpectations { get; set; } = new();
+
+        /// <summary>
+        /// Environment variables to pass in.
+        /// </summary>
+        public Dictionary<string, string> EnvironmentVariables { get; set; } = new(StringComparer.Ordinal);
     }
 
     public class FileExpectations

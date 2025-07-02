@@ -1,0 +1,8 @@
+{
+    "apis": [
+        {
+            "path": "google/test/v1",
+            "service_config": "service.yaml"
+        }
+    ]
+}

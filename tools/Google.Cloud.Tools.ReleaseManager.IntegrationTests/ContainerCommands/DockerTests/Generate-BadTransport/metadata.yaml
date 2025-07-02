@@ -1,0 +1,24 @@
+command: generate-library
+mounts:
+- input
+- source
+- output
+- librarian
+commonFiles:
+  # This is the simplest way of creating an empty directory
+  - source: irrelevant-content
+    target: output/.ignored
+  - source: test-apis.json
+    target: input/apis.json
+  - source: test-state.json
+    target: input/pipeline-state.json
+  - source: CommonResourcesConfig.json
+    target: input/CommonResourcesConfig.json
+  - source: googleapis
+    target: source
+  - source: README-template.md
+    target: input/README-template.md
+  - source: renovate-template.json
+    target: input/renovate-template.json
+# Gapic generator fails because REST transport is requested, but no method in any service has an HTTP annotation
+expectedExitCode: 1

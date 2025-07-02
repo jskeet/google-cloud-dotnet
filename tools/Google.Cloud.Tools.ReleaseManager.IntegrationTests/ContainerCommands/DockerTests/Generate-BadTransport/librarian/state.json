@@ -1,0 +1,9 @@
+{
+    "id": "Google.Test.V2",
+    "apis": [
+        {
+            "path": "google/test/v2",
+            "service_config": "test_v2.yaml"
+        }
+    ]
+}

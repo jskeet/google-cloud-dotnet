@@ -1,0 +1,32 @@
+command: generate-library
+mounts:
+- input
+- source
+- output
+- librarian
+commonFiles:
+  # This is the simplest way of creating an empty directory
+  - source: irrelevant-content
+    target: output/.ignored
+  - source: test-apis.json
+    target: input/apis.json
+  - source: CommonResourcesConfig.json
+    target: input/CommonResourcesConfig.json
+  - source: googleapis
+    target: source
+  - source: README-template.md
+    target: input/README-template.md
+  - source: renovate-template.json
+    target: input/renovate-template.json
+fileExpectations:
+  present:
+  - output/apis/Google.Test.V1/Google.Test.V1.sln
+  - output/apis/Google.Test.V1/Google.Test.V1/Google.Test.V1.csproj
+  - output/apis/Google.Test.V1/Google.Test.V1/PackageApiMetadata.g.cs
+  - output/apis/Google.Test.V1/Google.Test.V1/Service.g.cs
+  - output/apis/Google.Test.V1/Google.Test.V1/ServiceCollectionExtensions.g.cs
+  - output/apis/Google.Test.V1/Google.Test.V1/ServiceGrpc.g.cs
+  - output/apis/Google.Test.V1/Google.Test.V1/TestServiceClient.g.cs
+  - output/apis/Google.Test.V1/Google.Test.V1.GeneratedSnippets
+  - output/apis/Google.Test.V1/Google.Test.V1.Snippets
+  - output/apis/Google.Test.V1/gapic_metadata.json

@@ -1,0 +1,12 @@
+{
+    "id": "Google.Test.V3",
+    "apis": [
+        {
+            "path": "google/test/v3",
+            "service_config": "service.yaml"
+        }
+    ],
+    "preserve-regex": [
+        "FIXME"
+    ]
+}
