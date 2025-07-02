@@ -142,7 +142,6 @@ internal sealed class NonSourceGenerator
     private static readonly HashSet<string> PermittedPatchDefaultDependencies = new() { ConfigureAwaitAnalyzer };
 
     public ApiCatalog ApiCatalog { get; }
-    private PipelineState PipelineState { get; }
     public RootLayout RootLayout { get; }
 
     /// <summary>
@@ -162,7 +161,6 @@ internal sealed class NonSourceGenerator
     {
         RootLayout = rootLayout;
         ApiCatalog = ApiCatalog.Load(rootLayout);
-        PipelineState = PipelineState.Load(rootLayout);
     }
 
     #region API-specific files
@@ -656,8 +654,8 @@ internal sealed class NonSourceGenerator
             return true;
         }
         var libraryId = ApiCatalog.PackageGroups.FirstOrDefault(pg => pg.PackageIds.Contains(api.Id))?.Id ?? api.Id;
-        var libraryState = PipelineState.Libraries.FirstOrDefault(lib => lib.Id == libraryId);
-        return !string.IsNullOrEmpty(libraryState?.LastGeneratedCommit);
+        // FIXME: We need to know whether there's a last generated commit. This was previously fetched from PipelineState.
+        return true;
     }
     #endregion
 

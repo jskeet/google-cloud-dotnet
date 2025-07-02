@@ -57,26 +57,8 @@ public class ContainerCommandTestContext : IDisposable
         Directory.CreateDirectory(Path.Combine(CodeRepo.Directory, ".github"));
         apiCatalog.RecreateJson();
         apiCatalog.Save(rootLayout);
-        var pipelineState = new PipelineState();
-        pipelineState.Libraries.AddRange(apiCatalog.Apis.Where(api => api.PackageGroup is null).Select(CreateLibraryState));
-        pipelineState.Libraries.AddRange(apiCatalog.PackageGroups.Select(CreatePackageGroupLibraryState));
-        pipelineState.Save(rootLayout);
         CodeRepo.CommitAll();
         return CodeRepo;
-
-        LibraryState CreateLibraryState(ApiMetadata api) => new LibraryState
-        {
-            Id = api.Id,
-            ApiPaths = api.ProtoPath is null ? [] : [api.ProtoPath],
-            CurrentVersion = api.Version
-        };
-
-        LibraryState CreatePackageGroupLibraryState(PackageGroup group) => new LibraryState
-        {
-            Id = group.Id,
-            ApiPaths = [.. group.PackageIds.Select(p => apiCatalog[p].ProtoPath).Where(p => p is not null)],
-            CurrentVersion = apiCatalog[group.PackageIds[0]].Version
-        };
     }
 
     /// <summary>
