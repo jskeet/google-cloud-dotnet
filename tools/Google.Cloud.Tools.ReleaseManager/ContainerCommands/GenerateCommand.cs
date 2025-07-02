@@ -12,23 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Google.Cloud.Tools.Common;
-using System;
-using System.Linq;
-
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 /// <summary>
-/// Generates files for a single library. Expected options:
-/// - api-root: effectively the googleapis directory; required
-/// - generator-input: required
-/// - output: root folder for result; required, must exist
-/// - library-id: the library to generate; required
+/// Generates files for a single library.
 /// </summary>
-internal class GenerateLibraryCommand : IContainerCommand
+internal class GenerateCommand : IContainerCommand
 {
-    public int Execute(ContainerOptions options)
+    public int Execute()
     {
+        /*
         string apiRoot = options.RequireOption(options.ApiRoot);
         string output = options.RequireOption(options.Output);
         string generatorInput = options.RequireOption(options.GeneratorInput);
@@ -46,5 +39,7 @@ internal class GenerateLibraryCommand : IContainerCommand
         var catalog = ApiCatalog.Load(rootLayout);
         var apis = options.GetApisFromLibraryId(catalog);
         return generatorCommand.Execute(apis.Select(api => api.Id).ToArray());
+        */
+        return 0;
     }
 }

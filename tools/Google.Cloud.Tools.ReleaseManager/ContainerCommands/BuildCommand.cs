@@ -12,25 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Google.Cloud.Tools.Common;
-using System.Linq;
-
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 /// <summary>
-/// Builds and optionally tests a library (or multiple libraries). Expected options:
-/// - repo-root: the root of the google-cloud-dotnet repository; required
-/// - test: whether or not to run tests after building (true/false)
-///    optional; defaults to false
-/// - library-id: e.g. Google.Cloud.Functions.V2; when not specified, all configured libraries are built
-///
-/// Note that the "library-id" is a library in the Librarian sense; it may map to multiple NuGet
-/// packages (configured via a package group in the API catalog).
+/// Builds a library, or all configured libraries.
 /// </summary>
-public class BuildLibraryCommand : IContainerCommand
+public class BuildCommand : IContainerCommand
 {
-    public int Execute(ContainerOptions options)
+    public int Execute()
     {
+        /*
         var repoRoot = options.RequireOption(options.RepoRoot);
 
         using var _ = SourceLinkFixer.Create(repoRoot);
@@ -44,6 +35,7 @@ public class BuildLibraryCommand : IContainerCommand
             args.Insert(0, "--notests");
         }
         Processes.RunBashScript(repoRoot, "build.sh", args);
+        */
         return 0;
     }
 }

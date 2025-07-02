@@ -12,25 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Google.Cloud.Tools.Common;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
-using System.Linq;
-
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 /// <summary>
-/// Configures a new library for a specified API. Expected options:
-/// - api-root: effectively the googleapis directory; required.
-/// - generator-input: required; generator-input directory for the repository
-/// - api-path: (relative to api-root) e.g. google/cloud/functions/v2; required
+/// Configures a new library for a specified API.
 /// </summary>
 public class ConfigureCommand : IContainerCommand
 {
-    public int Execute(ContainerOptions options)
+    public int Execute()
     {
+        /*
         var apiRoot = options.RequireOption(options.ApiRoot);
         var apiPath = options.RequireOption(options.ApiPath);
         var generatorInput = options.RequireOption(options.GeneratorInput);
@@ -69,7 +60,7 @@ public class ConfigureCommand : IContainerCommand
         using var fileWriter = File.CreateText(pipelineStateFile);
         using var jsonWriter = new JsonTextWriter(fileWriter) { Formatting = Formatting.Indented, Indentation = 4 };
         state.WriteTo(jsonWriter);
-
+        */
         return 0;
     }
 }

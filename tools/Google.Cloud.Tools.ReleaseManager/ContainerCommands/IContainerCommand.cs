@@ -16,5 +16,5 @@ namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
 
 public interface IContainerCommand
 {
-    int Execute(ContainerOptions options);
+    int Execute();
 }
