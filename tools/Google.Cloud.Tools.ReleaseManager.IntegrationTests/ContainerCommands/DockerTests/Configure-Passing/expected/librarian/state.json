@@ -1,12 +1,21 @@
 {
-    "id": "Google.Test.V3",
-    "apis": [
-        {
-            "path": "google/test/v3",
-            "service_config": "service.yaml"
-        }
-    ],
-    "preserve-regex": [
-        "FIXME"
-    ]
+  "id": "Google.Test.V3",
+  "version": null,
+  "last_generated_commit": null,
+  "apis": [
+    {
+      "path": "google/test/v3",
+      "service_config": "service.yaml"
+    }
+  ],
+  "preserve_regex": [],
+  "remove_regex": [
+    "apis/Google.Test.V3/.*\\.g\\.cs",
+    "apis/Google.Test.V3/.*\\.csproj",
+    "apis/Google.Test.V3/Google.Test.V3\\.sln",
+    "apis/Google.Test.V3/gapic_metadata\\.json",
+    "apis/Google.Test.V3/Google.Test.V3\\.GeneratedSnippets/.*\\.json",
+    "README\\.md",
+    "\\.github/renovate\\.json"
+  ]
 }

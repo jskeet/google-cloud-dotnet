@@ -10,8 +10,6 @@ commonFiles:
     target: output/.ignored
   - source: test-apis.json
     target: input/apis.json
-  - source: test-state.json
-    target: input/pipeline-state.json
   - source: CommonResourcesConfig.json
     target: input/CommonResourcesConfig.json
   - source: googleapis

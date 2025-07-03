@@ -51,18 +51,18 @@ public class ConfigureCommand : IContainerCommand
         state.RemoveRegex =
         [
             // All generated code
-            $@"^apis/{api.Id}/.*\.g\.cs$",
+            $@"apis/{api.Id}/.*\.g\.cs",
             // All projects
-            $@"^apis/{api.Id}/.*\.csproj$",
+            $@"apis/{api.Id}/.*\.csproj",
             // The solution file
-            $@"^apis/{api.Id}/{api.Id}\.sln$",
+            $@"apis/{api.Id}/{api.Id}\.sln",
             // GAPIC metadata
-            $@"^apis/{api.Id}/gapic_metadata\.json$",
+            $@"apis/{api.Id}/gapic_metadata\.json",
             // Generated snippets JSON metadata
-            $@"^apis/{api.Id}/{api.Id}\.GeneratedSnippets/.*\.json$",
+            $@"apis/{api.Id}/{api.Id}\.GeneratedSnippets/.*\.json",
             // Files generated for all APIs
-            @"^README\.md$",
-            @"^\.github/renovate\.json$",
+            @"README\.md",
+            @"\.github/renovate\.json",
         ];
         File.WriteAllText(MountLocations.LibrarianCommandStateFile, JsonConvert.SerializeObject(state, Formatting.Indented));
 

@@ -1,15 +1,13 @@
 command: build
+mounts:
+  - repo
 commonFiles:
   - source: test-apis.json
     target: repo/generator-input/apis.json
-  - source: test-state.json
-    target: repo/generator-input/pipeline-state.json
   - source: Google.Test.V1
     target: repo/apis/Google.Test.V1
   - source: Google.Test.V2
     target: repo/apis/Google.Test.V2
-mounts:
-  - repo
 repoFiles:
   - source: global.json
     target: repo/global.json

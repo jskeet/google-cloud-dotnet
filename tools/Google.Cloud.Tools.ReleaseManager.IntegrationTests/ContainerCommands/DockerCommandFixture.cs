@@ -95,7 +95,7 @@ public sealed class DockerCommandFixture : ICollectionFixture<DockerCommandFixtu
         var psi = new ProcessStartInfo
         {
             FileName = DockerExecutable,
-            ArgumentList = { "run", "--env-file", envFile, "--rm", _userMapping,  _image, command },
+            ArgumentList = { "run", "--env-file", envFile, "--rm", _userMapping },
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = true

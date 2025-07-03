@@ -29,7 +29,7 @@ internal class GenerateCommand : IContainerCommand
     {
         var state = JsonConvert.DeserializeObject<LibraryState>(File.ReadAllText(MountLocations.LibrarianCommandStateFile));
 
-        var rootLayout = RootLayout.ForGeneration(MountLocations.LibrarianGeneratorInputDirectory, MountLocations.GeneratorOutputDirectory, MountLocations.ApiRootDirectory);
+        var rootLayout = RootLayout.ForGeneration(MountLocations.GeneratorInputDirectory, MountLocations.GeneratorOutputDirectory, MountLocations.ApiRootDirectory);
 
         // Note: we expect the container to already have environment variables for
         // protoc, protobuf tools root, the gRPC generator, and the GAPIC generator.

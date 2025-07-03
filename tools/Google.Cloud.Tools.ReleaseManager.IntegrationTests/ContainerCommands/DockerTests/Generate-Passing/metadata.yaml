@@ -1,4 +1,4 @@
-command: generate-library
+command: generate
 mounts:
 - input
 - source

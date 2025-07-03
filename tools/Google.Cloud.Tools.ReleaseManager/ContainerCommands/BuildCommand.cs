@@ -14,6 +14,7 @@
 
 using Google.Cloud.Tools.Common;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Google.Cloud.Tools.ReleaseManager.ContainerCommands;
@@ -32,16 +33,14 @@ public class BuildCommand : IContainerCommand
 
         var libraryId = Environment.GetEnvironmentVariable("LIBRARIAN_ID");
 
-        var args = string.IsNullOrEmpty(libraryId)
+        var packages = string.IsNullOrEmpty(libraryId)
             ? catalog.Apis.Select(api => api.Id)
             : catalog.GetPackagesForLibraryId(libraryId);
 
-        // TODO
-        /*
-        if (!options.Test)
-        {
-            args.Insert(0, "--notests");
-        }*/
+        // TODO: Include unit testing. Maybe get rid of client creation tests,
+        // which are awkward for testing and probably don't provide much value these days.
+        List<string> args = ["--notests", .. packages];
+
         Processes.RunBashScript(MountLocations.RepoRoot, "build.sh", args);
         return 0;
     }
