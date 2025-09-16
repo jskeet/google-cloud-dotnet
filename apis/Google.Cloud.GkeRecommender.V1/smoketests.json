@@ -1,0 +1,16 @@
+[
+  {
+    "method": "FetchModels",
+    "client": "GkeInferenceQuickstartClient",
+    "arguments": {
+      "request": {}
+    }
+  },
+  {
+    "method": "FetchModelServers",
+    "client": "GkeInferenceQuickstartClient",
+    "arguments": {
+      "request": {}
+    }
+  }
+]

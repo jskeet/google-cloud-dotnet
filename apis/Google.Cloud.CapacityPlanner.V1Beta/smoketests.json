@@ -1,0 +1,16 @@
+[
+  {
+    "method": "QueryCapacityPlans",
+    "client": "CapacityPlanningServiceClient",
+    "arguments": {
+      "parent": "projects/${PROJECT_ID}"
+    }
+  },
+  {
+    "method": "QueryReservations",
+    "client": "UsageServiceClient",
+    "arguments": {
+      "parent": "projects/${PROJECT_ID}/locations/us-east1"
+    }
+  }
+]
