@@ -20,7 +20,7 @@ namespace Google.Cloud.Tools.ReleaseManager
 {
     public class GenerateProjectsCommand : CommandBase
     {
-        public GenerateProjectsCommand() : base("generate-projects", "Generates project files, solution files etc from the API catalog")
+        public GenerateProjectsCommand() : base("generate-projects", "Generates project files, solution files etc from the API catalog", 0, int.MaxValue, "[projects to regenerate...]")
         {
         }
 
@@ -33,11 +33,23 @@ namespace Google.Cloud.Tools.ReleaseManager
             catalog.Save(RootLayout);
 
             var generator = new NonSourceGenerator(RootLayout);
-            foreach (var api in catalog.Apis)
+            if (args.Length == 0)
             {
-                generator.GenerateApiFiles(api);
+                foreach (var api in catalog.Apis)
+                {
+                    generator.GenerateApiFiles(api);
+                }
+                generator.GenerateNonApiFiles();
             }
-            generator.GenerateNonApiFiles();
+            else
+            {
+                foreach (var arg in args)
+                {
+                    var api = catalog[arg];
+                    generator.GenerateApiFiles(api);
+                }
+                // TODO: Maybe generate non-API files?
+            }
             return 0;
         }
 
