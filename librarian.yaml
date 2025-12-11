@@ -20,4 +20,3 @@ libraries:
     version: 2.7.0
     keep:
     - docs/history.md
-    description_override: Recommended Google client library to access the Secret Manager API (v1).
