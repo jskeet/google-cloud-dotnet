@@ -1,0 +1,22 @@
+version: v1
+language: dotnet
+repo: googleapis/google-cloud-dotnet
+sources:
+  googleapis:
+    commit: 9fcfbea0aa5b50fa22e190faceb073d74504172b
+    sha256: 81e6057ffd85154af5268c2c3c8f2408745ca0f7fa03d43c68f4847f31eb5f98
+default:
+  output: apis/{name}/
+  transport: grpc+rest
+  tag_format: '{name}-v{version}'
+  release_level: stable
+libraries:
+  - name: Google.Cloud.SecretManager.V1
+    channels:
+      - path: google/cloud/secretmanager/v1
+        service_config: secretmanager_v1.yaml
+    output: apis/Google.Cloud.SecretManager.V1
+    version: 2.7.0
+    keep:
+    - docs/history.md
+    description_override: Recommended Google client library to access the Secret Manager API (v1).
