@@ -56,6 +56,7 @@ public class MigrateToLibrarianCommand : CommandBase
         Console.WriteLine();
         Console.WriteLine($"Packages migrated before run: {existingMigratedPackages.Count}");
         Console.WriteLine($"Packages migrated after run: {total}");
+        Console.WriteLine($"Total GAPIC-generated packages: {catalog.Apis.Count(api => api.Generator == GeneratorType.Micro)}");
         return 0;
 
         bool CanMigrate(ApiMetadata api)
