@@ -22,7 +22,7 @@ libraries:
   - name: Google.Ads.DataManager.V1
     channels:
       - path: google/ads/datamanager/v1
-      - service_config: datamanager_v1.yaml
+        service_config: datamanager_v1.yaml
     output: apis/Google.Ads.DataManager.V1
     version: 1.0.0-beta02
     keep:
@@ -30,7 +30,7 @@ libraries:
   - name: Google.Ads.MarketingPlatform.Admin.V1Alpha
     channels:
       - path: google/marketingplatform/admin/v1alpha
-      - service_config: marketingplatformadmin_v1alpha.yaml
+        service_config: marketingplatformadmin_v1alpha.yaml
     output: apis/Google.Ads.MarketingPlatform.Admin.V1Alpha
     version: 1.0.0-alpha02
     keep:
@@ -38,7 +38,7 @@ libraries:
   - name: Google.Analytics.Admin.V1Alpha
     channels:
       - path: google/analytics/admin/v1alpha
-      - service_config: analyticsadmin_v1alpha.yaml
+        service_config: analyticsadmin_v1alpha.yaml
     output: apis/Google.Analytics.Admin.V1Alpha
     version: 2.0.0-alpha28
     keep:
@@ -46,7 +46,7 @@ libraries:
   - name: Google.Analytics.Admin.V1Beta
     channels:
       - path: google/analytics/admin/v1beta
-      - service_config: analyticsadmin_v1beta.yaml
+        service_config: analyticsadmin_v1beta.yaml
     output: apis/Google.Analytics.Admin.V1Beta
     version: 1.0.0-beta10
     keep:
@@ -54,7 +54,7 @@ libraries:
   - name: Google.Analytics.Data.V1Beta
     channels:
       - path: google/analytics/data/v1beta
-      - service_config: analyticsdata_v1beta.yaml
+        service_config: analyticsdata_v1beta.yaml
     output: apis/Google.Analytics.Data.V1Beta
     version: 2.0.0-beta10
     keep:
@@ -62,7 +62,7 @@ libraries:
   - name: Google.Apps.Chat.V1
     channels:
       - path: google/chat/v1
-      - service_config: chat_v1.yaml
+        service_config: chat_v1.yaml
     output: apis/Google.Apps.Chat.V1
     version: 1.0.0-beta19
     keep:
@@ -70,7 +70,7 @@ libraries:
   - name: Google.Apps.Events.Subscriptions.V1
     channels:
       - path: google/apps/events/subscriptions/v1
-      - service_config: workspaceevents_v1.yaml
+        service_config: workspaceevents_v1.yaml
     output: apis/Google.Apps.Events.Subscriptions.V1
     version: 1.1.0
     keep:
@@ -79,7 +79,7 @@ libraries:
   - name: Google.Apps.Events.Subscriptions.V1Beta
     channels:
       - path: google/apps/events/subscriptions/v1beta
-      - service_config: workspaceevents_v1beta.yaml
+        service_config: workspaceevents_v1beta.yaml
     output: apis/Google.Apps.Events.Subscriptions.V1Beta
     version: 1.0.0-beta02
     keep:
@@ -87,7 +87,7 @@ libraries:
   - name: Google.Apps.Meet.V2
     channels:
       - path: google/apps/meet/v2
-      - service_config: meet_v2.yaml
+        service_config: meet_v2.yaml
     output: apis/Google.Apps.Meet.V2
     version: 1.0.0-beta06
     keep:
@@ -95,7 +95,7 @@ libraries:
   - name: Google.Apps.Meet.V2Beta
     channels:
       - path: google/apps/meet/v2beta
-      - service_config: meet_v2beta.yaml
+        service_config: meet_v2beta.yaml
     output: apis/Google.Apps.Meet.V2Beta
     version: 1.0.0-beta08
     keep:
@@ -104,7 +104,7 @@ libraries:
   - name: Google.Area120.Tables.V1Alpha1
     channels:
       - path: google/area120/tables/v1alpha1
-      - service_config: area120tables_v1alpha1.yaml
+        service_config: area120tables_v1alpha1.yaml
     output: apis/Google.Area120.Tables.V1Alpha1
     version: 2.0.0-alpha19
     keep:
@@ -112,7 +112,7 @@ libraries:
   - name: Google.Cloud.AccessApproval.V1
     channels:
       - path: google/cloud/accessapproval/v1
-      - service_config: accessapproval_v1.yaml
+        service_config: accessapproval_v1.yaml
     output: apis/Google.Cloud.AccessApproval.V1
     version: 2.6.0
     keep:
@@ -120,7 +120,7 @@ libraries:
   - name: Google.Cloud.AdvisoryNotifications.V1
     channels:
       - path: google/cloud/advisorynotifications/v1
-      - service_config: advisorynotifications_v1.yaml
+        service_config: advisorynotifications_v1.yaml
     output: apis/Google.Cloud.AdvisoryNotifications.V1
     version: 1.8.0
     keep:
@@ -128,7 +128,7 @@ libraries:
   - name: Google.Cloud.AlloyDb.V1
     channels:
       - path: google/cloud/alloydb/v1
-      - service_config: alloydb_v1.yaml
+        service_config: alloydb_v1.yaml
     output: apis/Google.Cloud.AlloyDb.V1
     version: 1.13.0
     keep:
@@ -136,7 +136,7 @@ libraries:
   - name: Google.Cloud.AlloyDb.V1Alpha
     channels:
       - path: google/cloud/alloydb/v1alpha
-      - service_config: alloydb_v1alpha.yaml
+        service_config: alloydb_v1alpha.yaml
     output: apis/Google.Cloud.AlloyDb.V1Alpha
     version: 1.0.0-alpha14
     keep:
@@ -144,7 +144,7 @@ libraries:
   - name: Google.Cloud.AlloyDb.V1Beta
     channels:
       - path: google/cloud/alloydb/v1beta
-      - service_config: alloydb_v1beta.yaml
+        service_config: alloydb_v1beta.yaml
     output: apis/Google.Cloud.AlloyDb.V1Beta
     version: 1.0.0-beta14
     keep:
@@ -152,7 +152,7 @@ libraries:
   - name: Google.Cloud.ApiGateway.V1
     channels:
       - path: google/cloud/apigateway/v1
-      - service_config: apigateway_v1.yaml
+        service_config: apigateway_v1.yaml
     output: apis/Google.Cloud.ApiGateway.V1
     version: 2.5.0
     keep:
@@ -160,7 +160,7 @@ libraries:
   - name: Google.Cloud.ApiKeys.V2
     channels:
       - path: google/api/apikeys/v2
-      - service_config: apikeys_v2.yaml
+        service_config: apikeys_v2.yaml
     output: apis/Google.Cloud.ApiKeys.V2
     version: 1.5.0
     keep:
@@ -168,7 +168,7 @@ libraries:
   - name: Google.Cloud.ApigeeConnect.V1
     channels:
       - path: google/cloud/apigeeconnect/v1
-      - service_config: apigeeconnect_v1.yaml
+        service_config: apigeeconnect_v1.yaml
     output: apis/Google.Cloud.ApigeeConnect.V1
     version: 2.5.0
     keep:
@@ -176,7 +176,7 @@ libraries:
   - name: Google.Cloud.ApigeeRegistry.V1
     channels:
       - path: google/cloud/apigeeregistry/v1
-      - service_config: apigeeregistry_v1.yaml
+        service_config: apigeeregistry_v1.yaml
     output: apis/Google.Cloud.ApigeeRegistry.V1
     version: 1.0.0-beta08
     keep:
@@ -184,7 +184,7 @@ libraries:
   - name: Google.Cloud.AppEngine.V1
     channels:
       - path: google/appengine/v1
-      - service_config: appengine_v1.yaml
+        service_config: appengine_v1.yaml
     output: apis/Google.Cloud.AppEngine.V1
     version: 2.5.0
     keep:
@@ -192,7 +192,7 @@ libraries:
   - name: Google.Cloud.AppHub.V1
     channels:
       - path: google/cloud/apphub/v1
-      - service_config: apphub_v1.yaml
+        service_config: apphub_v1.yaml
     output: apis/Google.Cloud.AppHub.V1
     version: 1.2.0
     keep:
@@ -200,7 +200,7 @@ libraries:
   - name: Google.Cloud.ArtifactRegistry.V1
     channels:
       - path: google/devtools/artifactregistry/v1
-      - service_config: artifactregistry_v1.yaml
+        service_config: artifactregistry_v1.yaml
     output: apis/Google.Cloud.ArtifactRegistry.V1
     version: 2.13.0
     keep:
@@ -208,7 +208,7 @@ libraries:
   - name: Google.Cloud.ArtifactRegistry.V1Beta2
     channels:
       - path: google/devtools/artifactregistry/v1beta2
-      - service_config: artifactregistry_v1beta2.yaml
+        service_config: artifactregistry_v1beta2.yaml
     output: apis/Google.Cloud.ArtifactRegistry.V1Beta2
     version: 2.0.0-beta06
     keep:
@@ -216,7 +216,7 @@ libraries:
   - name: Google.Cloud.Asset.V1
     channels:
       - path: google/cloud/asset/v1
-      - service_config: cloudasset_v1.yaml
+        service_config: cloudasset_v1.yaml
     output: apis/Google.Cloud.Asset.V1
     version: 3.14.0
     keep:
@@ -224,7 +224,7 @@ libraries:
   - name: Google.Cloud.AssuredWorkloads.V1
     channels:
       - path: google/cloud/assuredworkloads/v1
-      - service_config: assuredworkloads_v1.yaml
+        service_config: assuredworkloads_v1.yaml
     output: apis/Google.Cloud.AssuredWorkloads.V1
     version: 2.7.0
     keep:
@@ -232,7 +232,7 @@ libraries:
   - name: Google.Cloud.AssuredWorkloads.V1Beta1
     channels:
       - path: google/cloud/assuredworkloads/v1beta1
-      - service_config: assuredworkloads_v1beta1.yaml
+        service_config: assuredworkloads_v1beta1.yaml
     output: apis/Google.Cloud.AssuredWorkloads.V1Beta1
     version: 2.0.0-beta09
     keep:
@@ -240,7 +240,7 @@ libraries:
   - name: Google.Cloud.AutoML.V1
     channels:
       - path: google/cloud/automl/v1
-      - service_config: automl_v1.yaml
+        service_config: automl_v1.yaml
     output: apis/Google.Cloud.AutoML.V1
     version: 3.5.0
     keep:
@@ -248,7 +248,7 @@ libraries:
   - name: Google.Cloud.BackupDR.V1
     channels:
       - path: google/cloud/backupdr/v1
-      - service_config: backupdr_v1.yaml
+        service_config: backupdr_v1.yaml
     output: apis/Google.Cloud.BackupDR.V1
     version: 2.6.0
     keep:
@@ -256,7 +256,7 @@ libraries:
   - name: Google.Cloud.BareMetalSolution.V2
     channels:
       - path: google/cloud/baremetalsolution/v2
-      - service_config: baremetalsolution_v2.yaml
+        service_config: baremetalsolution_v2.yaml
     output: apis/Google.Cloud.BareMetalSolution.V2
     version: 1.8.0
     keep:
@@ -264,7 +264,7 @@ libraries:
   - name: Google.Cloud.Batch.V1
     channels:
       - path: google/cloud/batch/v1
-      - service_config: batch_v1.yaml
+        service_config: batch_v1.yaml
     output: apis/Google.Cloud.Batch.V1
     version: 2.15.0
     keep:
@@ -272,7 +272,7 @@ libraries:
   - name: Google.Cloud.Batch.V1Alpha
     channels:
       - path: google/cloud/batch/v1alpha
-      - service_config: batch_v1alpha.yaml
+        service_config: batch_v1alpha.yaml
     output: apis/Google.Cloud.Batch.V1Alpha
     version: 1.0.0-alpha33
     keep:
@@ -280,7 +280,7 @@ libraries:
   - name: Google.Cloud.BigQuery.Connection.V1
     channels:
       - path: google/cloud/bigquery/connection/v1
-      - service_config: bigqueryconnection_v1.yaml
+        service_config: bigqueryconnection_v1.yaml
     output: apis/Google.Cloud.BigQuery.Connection.V1
     version: 2.10.0
     keep:
@@ -288,7 +288,7 @@ libraries:
   - name: Google.Cloud.BigQuery.DataPolicies.V1
     channels:
       - path: google/cloud/bigquery/datapolicies/v1
-      - service_config: bigquerydatapolicy_v1.yaml
+        service_config: bigquerydatapolicy_v1.yaml
     output: apis/Google.Cloud.BigQuery.DataPolicies.V1
     version: 1.6.0
     keep:
@@ -296,7 +296,7 @@ libraries:
   - name: Google.Cloud.BigQuery.Reservation.V1
     channels:
       - path: google/cloud/bigquery/reservation/v1
-      - service_config: bigqueryreservation_v1.yaml
+        service_config: bigqueryreservation_v1.yaml
     output: apis/Google.Cloud.BigQuery.Reservation.V1
     version: 2.11.0
     keep:
@@ -304,7 +304,7 @@ libraries:
   - name: Google.Cloud.Billing.Budgets.V1
     channels:
       - path: google/cloud/billing/budgets/v1
-      - service_config: billingbudgets.yaml
+        service_config: billingbudgets.yaml
     output: apis/Google.Cloud.Billing.Budgets.V1
     version: 2.7.0
     keep:
@@ -312,7 +312,7 @@ libraries:
   - name: Google.Cloud.Billing.V1
     channels:
       - path: google/cloud/billing/v1
-      - service_config: cloudbilling_v1.yaml
+        service_config: cloudbilling_v1.yaml
     output: apis/Google.Cloud.Billing.V1
     version: 3.10.0
     keep:
@@ -320,7 +320,7 @@ libraries:
   - name: Google.Cloud.BinaryAuthorization.V1
     channels:
       - path: google/cloud/binaryauthorization/v1
-      - service_config: binaryauthorization_v1.yaml
+        service_config: binaryauthorization_v1.yaml
     output: apis/Google.Cloud.BinaryAuthorization.V1
     version: 2.6.0
     keep:
@@ -328,7 +328,7 @@ libraries:
   - name: Google.Cloud.BinaryAuthorization.V1Beta1
     channels:
       - path: google/cloud/binaryauthorization/v1beta1
-      - service_config: binaryauthorization_v1beta1.yaml
+        service_config: binaryauthorization_v1beta1.yaml
     output: apis/Google.Cloud.BinaryAuthorization.V1Beta1
     version: 2.0.0-beta09
     keep:
@@ -336,7 +336,7 @@ libraries:
   - name: Google.Cloud.CapacityPlanner.V1Beta
     channels:
       - path: google/cloud/capacityplanner/v1beta
-      - service_config: capacityplanner_v1beta.yaml
+        service_config: capacityplanner_v1beta.yaml
     output: apis/Google.Cloud.CapacityPlanner.V1Beta
     version: 1.0.0-beta02
     keep:
@@ -344,7 +344,7 @@ libraries:
   - name: Google.Cloud.CertificateManager.V1
     channels:
       - path: google/cloud/certificatemanager/v1
-      - service_config: certificatemanager_v1.yaml
+        service_config: certificatemanager_v1.yaml
     output: apis/Google.Cloud.CertificateManager.V1
     version: 2.9.0
     keep:
@@ -352,7 +352,7 @@ libraries:
   - name: Google.Cloud.Channel.V1
     channels:
       - path: google/cloud/channel/v1
-      - service_config: cloudchannel_v1.yaml
+        service_config: cloudchannel_v1.yaml
     output: apis/Google.Cloud.Channel.V1
     version: 2.17.0
     keep:
@@ -360,7 +360,7 @@ libraries:
   - name: Google.Cloud.Chronicle.V1
     channels:
       - path: google/cloud/chronicle/v1
-      - service_config: chronicle_v1.yaml
+        service_config: chronicle_v1.yaml
     output: apis/Google.Cloud.Chronicle.V1
     version: 1.0.0-beta03
     keep:
@@ -368,7 +368,7 @@ libraries:
   - name: Google.Cloud.CloudBuild.V1
     channels:
       - path: google/devtools/cloudbuild/v1
-      - service_config: cloudbuild_v1.yaml
+        service_config: cloudbuild_v1.yaml
     output: apis/Google.Cloud.CloudBuild.V1
     version: 2.18.0
     keep:
@@ -376,7 +376,7 @@ libraries:
   - name: Google.Cloud.CloudControlsPartner.V1
     channels:
       - path: google/cloud/cloudcontrolspartner/v1
-      - service_config: cloudcontrolspartner_v1.yaml
+        service_config: cloudcontrolspartner_v1.yaml
     output: apis/Google.Cloud.CloudControlsPartner.V1
     version: 1.3.0
     keep:
@@ -384,7 +384,7 @@ libraries:
   - name: Google.Cloud.CloudControlsPartner.V1Beta
     channels:
       - path: google/cloud/cloudcontrolspartner/v1beta
-      - service_config: cloudcontrolspartner_v1beta.yaml
+        service_config: cloudcontrolspartner_v1beta.yaml
     output: apis/Google.Cloud.CloudControlsPartner.V1Beta
     version: 1.0.0-beta05
     keep:
@@ -392,7 +392,7 @@ libraries:
   - name: Google.Cloud.CloudQuotas.V1Beta
     channels:
       - path: google/api/cloudquotas/v1beta
-      - service_config: cloudquotas_v1beta.yaml
+        service_config: cloudquotas_v1beta.yaml
     output: apis/Google.Cloud.CloudQuotas.V1Beta
     version: 1.0.0-beta03
     keep:
@@ -400,7 +400,7 @@ libraries:
   - name: Google.Cloud.CloudSecurityCompliance.V1
     channels:
       - path: google/cloud/cloudsecuritycompliance/v1
-      - service_config: cloudsecuritycompliance_v1.yaml
+        service_config: cloudsecuritycompliance_v1.yaml
     output: apis/Google.Cloud.CloudSecurityCompliance.V1
     version: 1.0.0-beta04
     keep:
@@ -408,7 +408,7 @@ libraries:
   - name: Google.Cloud.Commerce.Consumer.Procurement.V1
     channels:
       - path: google/cloud/commerce/consumer/procurement/v1
-      - service_config: cloudcommerceconsumerprocurement_v1.yaml
+        service_config: cloudcommerceconsumerprocurement_v1.yaml
     output: apis/Google.Cloud.Commerce.Consumer.Procurement.V1
     version: 1.6.0
     keep:
@@ -416,7 +416,7 @@ libraries:
   - name: Google.Cloud.ConfidentialComputing.V1
     channels:
       - path: google/cloud/confidentialcomputing/v1
-      - service_config: confidentialcomputing_v1.yaml
+        service_config: confidentialcomputing_v1.yaml
     output: apis/Google.Cloud.ConfidentialComputing.V1
     version: 1.10.0
     keep:
@@ -424,7 +424,7 @@ libraries:
   - name: Google.Cloud.ConfidentialComputing.V1Alpha1
     channels:
       - path: google/cloud/confidentialcomputing/v1alpha1
-      - service_config: confidentialcomputing_v1alpha1.yaml
+        service_config: confidentialcomputing_v1alpha1.yaml
     output: apis/Google.Cloud.ConfidentialComputing.V1Alpha1
     version: 1.0.0-alpha06
     keep:
@@ -432,19 +432,19 @@ libraries:
   - name: Google.Cloud.ConfigDelivery.V1
     channels:
       - path: google/cloud/configdelivery/v1
-      - service_config: configdelivery_v1.yaml
+        service_config: configdelivery_v1.yaml
     output: apis/Google.Cloud.ConfigDelivery.V1
     version: 1.0.0-beta00
   - name: Google.Cloud.ConfigDelivery.V1Beta
     channels:
       - path: google/cloud/configdelivery/v1beta
-      - service_config: configdelivery_v1beta.yaml
+        service_config: configdelivery_v1beta.yaml
     output: apis/Google.Cloud.ConfigDelivery.V1Beta
     version: 1.0.0-beta00
   - name: Google.Cloud.Connectors.V1
     channels:
       - path: google/cloud/connectors/v1
-      - service_config: connectors_v1.yaml
+        service_config: connectors_v1.yaml
     output: apis/Google.Cloud.Connectors.V1
     version: 1.4.0
     keep:
@@ -452,7 +452,7 @@ libraries:
   - name: Google.Cloud.ContactCenterInsights.V1
     channels:
       - path: google/cloud/contactcenterinsights/v1
-      - service_config: contactcenterinsights_v1.yaml
+        service_config: contactcenterinsights_v1.yaml
     output: apis/Google.Cloud.ContactCenterInsights.V1
     version: 2.20.0
     keep:
@@ -460,7 +460,7 @@ libraries:
   - name: Google.Cloud.DataCatalog.Lineage.V1
     channels:
       - path: google/cloud/datacatalog/lineage/v1
-      - service_config: datalineage_v1.yaml
+        service_config: datalineage_v1.yaml
     output: apis/Google.Cloud.DataCatalog.Lineage.V1
     version: 1.5.0
     keep:
@@ -468,7 +468,7 @@ libraries:
   - name: Google.Cloud.DataFusion.V1
     channels:
       - path: google/cloud/datafusion/v1
-      - service_config: datafusion_v1.yaml
+        service_config: datafusion_v1.yaml
     output: apis/Google.Cloud.DataFusion.V1
     version: 2.5.0
     keep:
@@ -476,7 +476,7 @@ libraries:
   - name: Google.Cloud.DatabaseCenter.V1Beta
     channels:
       - path: google/cloud/databasecenter/v1beta
-      - service_config: databasecenter_v1beta.yaml
+        service_config: databasecenter_v1beta.yaml
     output: apis/Google.Cloud.DatabaseCenter.V1Beta
     version: 1.0.0-beta01
     keep:
@@ -484,7 +484,7 @@ libraries:
   - name: Google.Cloud.Dataflow.V1Beta3
     channels:
       - path: google/dataflow/v1beta3
-      - service_config: dataflow_v1beta3.yaml
+        service_config: dataflow_v1beta3.yaml
     output: apis/Google.Cloud.Dataflow.V1Beta3
     version: 2.0.0-beta09
     keep:
@@ -492,7 +492,7 @@ libraries:
   - name: Google.Cloud.Dataform.V1
     channels:
       - path: google/cloud/dataform/v1
-      - service_config: dataform_v1.yaml
+        service_config: dataform_v1.yaml
     output: apis/Google.Cloud.Dataform.V1
     version: 1.0.0-beta02
     keep:
@@ -500,7 +500,7 @@ libraries:
   - name: Google.Cloud.Dataform.V1Beta1
     channels:
       - path: google/cloud/dataform/v1beta1
-      - service_config: dataform_v1beta1.yaml
+        service_config: dataform_v1beta1.yaml
     output: apis/Google.Cloud.Dataform.V1Beta1
     version: 1.0.0-beta10
     keep:
@@ -508,7 +508,7 @@ libraries:
   - name: Google.Cloud.Dataplex.V1
     channels:
       - path: google/cloud/dataplex/v1
-      - service_config: dataplex_v1.yaml
+        service_config: dataplex_v1.yaml
     output: apis/Google.Cloud.Dataplex.V1
     version: 3.12.0
     keep:
@@ -516,7 +516,7 @@ libraries:
   - name: Google.Cloud.Dataproc.V1
     channels:
       - path: google/cloud/dataproc/v1
-      - service_config: dataproc_v1.yaml
+        service_config: dataproc_v1.yaml
     output: apis/Google.Cloud.Dataproc.V1
     version: 5.22.0
     keep:
@@ -524,7 +524,7 @@ libraries:
   - name: Google.Cloud.Datastore.Admin.V1
     channels:
       - path: google/datastore/admin/v1
-      - service_config: datastore_v1.yaml
+        service_config: datastore_v1.yaml
     output: apis/Google.Cloud.Datastore.Admin.V1
     version: 2.5.0
     keep:
@@ -532,7 +532,7 @@ libraries:
   - name: Google.Cloud.Datastream.V1
     channels:
       - path: google/cloud/datastream/v1
-      - service_config: datastream_v1.yaml
+        service_config: datastream_v1.yaml
     output: apis/Google.Cloud.Datastream.V1
     version: 2.12.0
     keep:
@@ -540,7 +540,7 @@ libraries:
   - name: Google.Cloud.Datastream.V1Alpha1
     channels:
       - path: google/cloud/datastream/v1alpha1
-      - service_config: datastream_v1alpha1.yaml
+        service_config: datastream_v1alpha1.yaml
     output: apis/Google.Cloud.Datastream.V1Alpha1
     version: 2.0.0-alpha06
     keep:
@@ -548,7 +548,7 @@ libraries:
   - name: Google.Cloud.Deploy.V1
     channels:
       - path: google/cloud/deploy/v1
-      - service_config: clouddeploy_v1.yaml
+        service_config: clouddeploy_v1.yaml
     output: apis/Google.Cloud.Deploy.V1
     version: 3.7.0
     keep:
@@ -556,7 +556,7 @@ libraries:
   - name: Google.Cloud.DeveloperConnect.V1
     channels:
       - path: google/cloud/developerconnect/v1
-      - service_config: developerconnect_v1.yaml
+        service_config: developerconnect_v1.yaml
     output: apis/Google.Cloud.DeveloperConnect.V1
     version: 1.0.0-beta03
     keep:
@@ -564,7 +564,7 @@ libraries:
   - name: Google.Cloud.DeviceStreaming.V1
     channels:
       - path: google/cloud/devicestreaming/v1
-      - service_config: devicestreaming_v1.yaml
+        service_config: devicestreaming_v1.yaml
     output: apis/Google.Cloud.DeviceStreaming.V1
     version: 1.0.0-beta02
     keep:
@@ -572,7 +572,7 @@ libraries:
   - name: Google.Cloud.Dialogflow.Cx.V3
     channels:
       - path: google/cloud/dialogflow/cx/v3
-      - service_config: dialogflow_v3.yaml
+        service_config: dialogflow_v3.yaml
     output: apis/Google.Cloud.Dialogflow.Cx.V3
     version: 2.25.0
     keep:
@@ -580,7 +580,7 @@ libraries:
   - name: Google.Cloud.Dialogflow.V2Beta1
     channels:
       - path: google/cloud/dialogflow/v2beta1
-      - service_config: dialogflow_v2beta1.yaml
+        service_config: dialogflow_v2beta1.yaml
     output: apis/Google.Cloud.Dialogflow.V2Beta1
     version: 1.0.0-beta26
     keep:
@@ -588,7 +588,7 @@ libraries:
   - name: Google.Cloud.DiscoveryEngine.V1
     channels:
       - path: google/cloud/discoveryengine/v1
-      - service_config: discoveryengine_v1.yaml
+        service_config: discoveryengine_v1.yaml
     output: apis/Google.Cloud.DiscoveryEngine.V1
     version: 1.12.0
     keep:
@@ -596,7 +596,7 @@ libraries:
   - name: Google.Cloud.DiscoveryEngine.V1Beta
     channels:
       - path: google/cloud/discoveryengine/v1beta
-      - service_config: discoveryengine_v1beta.yaml
+        service_config: discoveryengine_v1beta.yaml
     output: apis/Google.Cloud.DiscoveryEngine.V1Beta
     version: 1.0.0-beta21
     keep:
@@ -604,7 +604,7 @@ libraries:
   - name: Google.Cloud.Domains.V1
     channels:
       - path: google/cloud/domains/v1
-      - service_config: domains_v1.yaml
+        service_config: domains_v1.yaml
     output: apis/Google.Cloud.Domains.V1
     version: 2.5.0
     keep:
@@ -612,7 +612,7 @@ libraries:
   - name: Google.Cloud.Domains.V1Beta1
     channels:
       - path: google/cloud/domains/v1beta1
-      - service_config: domains_v1beta1.yaml
+        service_config: domains_v1beta1.yaml
     output: apis/Google.Cloud.Domains.V1Beta1
     version: 2.0.0-beta06
     keep:
@@ -620,7 +620,7 @@ libraries:
   - name: Google.Cloud.EdgeNetwork.V1
     channels:
       - path: google/cloud/edgenetwork/v1
-      - service_config: edgenetwork_v1.yaml
+        service_config: edgenetwork_v1.yaml
     output: apis/Google.Cloud.EdgeNetwork.V1
     version: 1.6.0
     keep:
@@ -628,7 +628,7 @@ libraries:
   - name: Google.Cloud.EnterpriseKnowledgeGraph.V1
     channels:
       - path: google/cloud/enterpriseknowledgegraph/v1
-      - service_config: enterpriseknowledgegraph_v1.yaml
+        service_config: enterpriseknowledgegraph_v1.yaml
     output: apis/Google.Cloud.EnterpriseKnowledgeGraph.V1
     version: 1.0.0-beta05
     keep:
@@ -636,7 +636,7 @@ libraries:
   - name: Google.Cloud.EssentialContacts.V1
     channels:
       - path: google/cloud/essentialcontacts/v1
-      - service_config: essentialcontacts_v1.yaml
+        service_config: essentialcontacts_v1.yaml
     output: apis/Google.Cloud.EssentialContacts.V1
     version: 2.6.0
     keep:
@@ -644,7 +644,7 @@ libraries:
   - name: Google.Cloud.Eventarc.Publishing.V1
     channels:
       - path: google/cloud/eventarc/publishing/v1
-      - service_config: eventarcpublishing_v1.yaml
+        service_config: eventarcpublishing_v1.yaml
     output: apis/Google.Cloud.Eventarc.Publishing.V1
     version: 2.0.0-beta08
     keep:
@@ -652,7 +652,7 @@ libraries:
   - name: Google.Cloud.Eventarc.V1
     channels:
       - path: google/cloud/eventarc/v1
-      - service_config: eventarc_v1.yaml
+        service_config: eventarc_v1.yaml
     output: apis/Google.Cloud.Eventarc.V1
     version: 2.9.0
     keep:
@@ -660,7 +660,7 @@ libraries:
   - name: Google.Cloud.Filestore.V1
     channels:
       - path: google/cloud/filestore/v1
-      - service_config: file_v1.yaml
+        service_config: file_v1.yaml
     output: apis/Google.Cloud.Filestore.V1
     version: 2.8.0
     keep:
@@ -668,7 +668,7 @@ libraries:
   - name: Google.Cloud.FinancialServices.V1
     channels:
       - path: google/cloud/financialservices/v1
-      - service_config: financialservices_v1.yaml
+        service_config: financialservices_v1.yaml
     output: apis/Google.Cloud.FinancialServices.V1
     version: 1.0.0-beta02
     keep:
@@ -676,7 +676,7 @@ libraries:
   - name: Google.Cloud.Firestore.Admin.V1
     channels:
       - path: google/firestore/admin/v1
-      - service_config: firestore_v1.yaml
+        service_config: firestore_v1.yaml
     output: apis/Google.Cloud.Firestore.Admin.V1
     version: 3.16.0
     keep:
@@ -684,7 +684,7 @@ libraries:
   - name: Google.Cloud.Functions.V1
     channels:
       - path: google/cloud/functions/v1
-      - service_config: cloudfunctions_v1.yaml
+        service_config: cloudfunctions_v1.yaml
     output: apis/Google.Cloud.Functions.V1
     version: 2.8.0
     keep:
@@ -692,7 +692,7 @@ libraries:
   - name: Google.Cloud.Functions.V2Beta
     channels:
       - path: google/cloud/functions/v2beta
-      - service_config: cloudfunctions_v2beta.yaml
+        service_config: cloudfunctions_v2beta.yaml
     output: apis/Google.Cloud.Functions.V2Beta
     version: 1.0.0-beta08
     keep:
@@ -700,7 +700,7 @@ libraries:
   - name: Google.Cloud.GSuiteAddOns.V1
     channels:
       - path: google/cloud/gsuiteaddons/v1
-      - service_config: gsuiteaddons_v1.yaml
+        service_config: gsuiteaddons_v1.yaml
     output: apis/Google.Cloud.GSuiteAddOns.V1
     version: 2.5.0
     keep:
@@ -708,7 +708,7 @@ libraries:
   - name: Google.Cloud.GdcHardwareManagement.V1Alpha
     channels:
       - path: google/cloud/gdchardwaremanagement/v1alpha
-      - service_config: gdchardwaremanagement_v1alpha.yaml
+        service_config: gdchardwaremanagement_v1alpha.yaml
     output: apis/Google.Cloud.GdcHardwareManagement.V1Alpha
     version: 1.0.0-alpha07
     keep:
@@ -716,7 +716,7 @@ libraries:
   - name: Google.Cloud.GeminiDataAnalytics.V1Beta
     channels:
       - path: google/cloud/geminidataanalytics/v1beta
-      - service_config: geminidataanalytics_v1beta.yaml
+        service_config: geminidataanalytics_v1beta.yaml
     output: apis/Google.Cloud.GeminiDataAnalytics.V1Beta
     version: 1.0.0-beta04
     keep:
@@ -724,7 +724,7 @@ libraries:
   - name: Google.Cloud.GkeBackup.V1
     channels:
       - path: google/cloud/gkebackup/v1
-      - service_config: gkebackup_v1.yaml
+        service_config: gkebackup_v1.yaml
     output: apis/Google.Cloud.GkeBackup.V1
     version: 2.9.0
     keep:
@@ -732,7 +732,7 @@ libraries:
   - name: Google.Cloud.GkeHub.V1Beta1
     channels:
       - path: google/cloud/gkehub/v1beta1
-      - service_config: gkehub_v1beta1.yaml
+        service_config: gkehub_v1beta1.yaml
     output: apis/Google.Cloud.GkeHub.V1Beta1
     version: 2.0.0-beta09
     keep:
@@ -740,13 +740,13 @@ libraries:
   - name: Google.Cloud.GkeRecommender.V1
     channels:
       - path: google/cloud/gkerecommender/v1
-      - service_config: gkerecommender_v1.yaml
+        service_config: gkerecommender_v1.yaml
     output: apis/Google.Cloud.GkeRecommender.V1
     version: 1.0.0-beta00
   - name: Google.Cloud.HypercomputeCluster.V1Beta
     channels:
       - path: google/cloud/hypercomputecluster/v1beta
-      - service_config: hypercomputecluster_v1beta.yaml
+        service_config: hypercomputecluster_v1beta.yaml
     output: apis/Google.Cloud.HypercomputeCluster.V1Beta
     version: 1.0.0-beta01
     keep:
@@ -754,7 +754,7 @@ libraries:
   - name: Google.Cloud.Iam.Credentials.V1
     channels:
       - path: google/iam/credentials/v1
-      - service_config: iamcredentials_v1.yaml
+        service_config: iamcredentials_v1.yaml
     output: apis/Google.Cloud.Iam.Credentials.V1
     version: 2.5.0
     keep:
@@ -762,7 +762,7 @@ libraries:
   - name: Google.Cloud.Iam.V2
     channels:
       - path: google/iam/v2
-      - service_config: iam_v2.yaml
+        service_config: iam_v2.yaml
     output: apis/Google.Cloud.Iam.V2
     version: 1.4.0
     keep:
@@ -770,7 +770,7 @@ libraries:
   - name: Google.Cloud.Iam.V3
     channels:
       - path: google/iam/v3
-      - service_config: iam_v3.yaml
+        service_config: iam_v3.yaml
     output: apis/Google.Cloud.Iam.V3
     version: 1.0.0-beta02
     keep:
@@ -778,7 +778,7 @@ libraries:
   - name: Google.Cloud.Iam.V3Beta
     channels:
       - path: google/iam/v3beta
-      - service_config: iam_v3beta.yaml
+        service_config: iam_v3beta.yaml
     output: apis/Google.Cloud.Iam.V3Beta
     version: 1.0.0-beta02
     keep:
@@ -786,7 +786,7 @@ libraries:
   - name: Google.Cloud.Iap.V1
     channels:
       - path: google/cloud/iap/v1
-      - service_config: iap_v1.yaml
+        service_config: iap_v1.yaml
     output: apis/Google.Cloud.Iap.V1
     version: 2.9.0
     keep:
@@ -794,7 +794,7 @@ libraries:
   - name: Google.Cloud.Ids.V1
     channels:
       - path: google/cloud/ids/v1
-      - service_config: ids_v1.yaml
+        service_config: ids_v1.yaml
     output: apis/Google.Cloud.Ids.V1
     version: 2.5.0
     keep:
@@ -802,13 +802,13 @@ libraries:
   - name: Google.Cloud.LicenseManager.V1
     channels:
       - path: google/cloud/licensemanager/v1
-      - service_config: licensemanager_v1.yaml
+        service_config: licensemanager_v1.yaml
     output: apis/Google.Cloud.LicenseManager.V1
     version: 1.0.0-beta00
   - name: Google.Cloud.LifeSciences.V2Beta
     channels:
       - path: google/cloud/lifesciences/v2beta
-      - service_config: lifesciences_v2beta.yaml
+        service_config: lifesciences_v2beta.yaml
     output: apis/Google.Cloud.LifeSciences.V2Beta
     version: 2.0.0-beta07
     keep:
@@ -816,7 +816,7 @@ libraries:
   - name: Google.Cloud.LocationFinder.V1
     channels:
       - path: google/cloud/locationfinder/v1
-      - service_config: cloudlocationfinder_v1.yaml
+        service_config: cloudlocationfinder_v1.yaml
     output: apis/Google.Cloud.LocationFinder.V1
     version: 1.0.0-beta02
     keep:
@@ -824,7 +824,7 @@ libraries:
   - name: Google.Cloud.Lustre.V1
     channels:
       - path: google/cloud/lustre/v1
-      - service_config: lustre_v1.yaml
+        service_config: lustre_v1.yaml
     output: apis/Google.Cloud.Lustre.V1
     version: 1.0.0-beta04
     keep:
@@ -832,7 +832,7 @@ libraries:
   - name: Google.Cloud.Maintenance.Api.V1
     channels:
       - path: google/cloud/maintenance/api/v1
-      - service_config: maintenance_v1.yaml
+        service_config: maintenance_v1.yaml
     output: apis/Google.Cloud.Maintenance.Api.V1
     version: 1.0.0-beta01
     keep:
@@ -840,7 +840,7 @@ libraries:
   - name: Google.Cloud.Maintenance.Api.V1Beta
     channels:
       - path: google/cloud/maintenance/api/v1beta
-      - service_config: maintenance_v1beta.yaml
+        service_config: maintenance_v1beta.yaml
     output: apis/Google.Cloud.Maintenance.Api.V1Beta
     version: 1.0.0-beta02
     keep:
@@ -848,7 +848,7 @@ libraries:
   - name: Google.Cloud.ManagedKafka.V1
     channels:
       - path: google/cloud/managedkafka/v1
-      - service_config: managedkafka_v1.yaml
+        service_config: managedkafka_v1.yaml
     output: apis/Google.Cloud.ManagedKafka.V1
     version: 1.0.0-beta08
     keep:
@@ -856,7 +856,7 @@ libraries:
   - name: Google.Cloud.Memcache.V1
     channels:
       - path: google/cloud/memcache/v1
-      - service_config: memcache_v1.yaml
+        service_config: memcache_v1.yaml
     output: apis/Google.Cloud.Memcache.V1
     version: 2.6.0
     keep:
@@ -864,7 +864,7 @@ libraries:
   - name: Google.Cloud.Memcache.V1Beta2
     channels:
       - path: google/cloud/memcache/v1beta2
-      - service_config: memcache_v1beta2.yaml
+        service_config: memcache_v1beta2.yaml
     output: apis/Google.Cloud.Memcache.V1Beta2
     version: 2.0.0-beta07
     keep:
@@ -872,7 +872,7 @@ libraries:
   - name: Google.Cloud.Metastore.V1
     channels:
       - path: google/cloud/metastore/v1
-      - service_config: metastore_v1.yaml
+        service_config: metastore_v1.yaml
     output: apis/Google.Cloud.Metastore.V1
     version: 2.10.0
     keep:
@@ -880,7 +880,7 @@ libraries:
   - name: Google.Cloud.Metastore.V1Alpha
     channels:
       - path: google/cloud/metastore/v1alpha
-      - service_config: metastore_v1alpha.yaml
+        service_config: metastore_v1alpha.yaml
     output: apis/Google.Cloud.Metastore.V1Alpha
     version: 2.0.0-alpha12
     keep:
@@ -888,7 +888,7 @@ libraries:
   - name: Google.Cloud.Metastore.V1Beta
     channels:
       - path: google/cloud/metastore/v1beta
-      - service_config: metastore_v1beta.yaml
+        service_config: metastore_v1beta.yaml
     output: apis/Google.Cloud.Metastore.V1Beta
     version: 2.0.0-beta12
     keep:
@@ -896,7 +896,7 @@ libraries:
   - name: Google.Cloud.ModelArmor.V1
     channels:
       - path: google/cloud/modelarmor/v1
-      - service_config: modelarmor_v1.yaml
+        service_config: modelarmor_v1.yaml
     output: apis/Google.Cloud.ModelArmor.V1
     version: 1.0.0-beta05
     keep:
@@ -904,7 +904,7 @@ libraries:
   - name: Google.Cloud.ModelArmor.V1Beta
     channels:
       - path: google/cloud/modelarmor/v1beta
-      - service_config: modelarmor_v1beta.yaml
+        service_config: modelarmor_v1beta.yaml
     output: apis/Google.Cloud.ModelArmor.V1Beta
     version: 1.0.0-beta05
     keep:
@@ -912,7 +912,7 @@ libraries:
   - name: Google.Cloud.NetApp.V1
     channels:
       - path: google/cloud/netapp/v1
-      - service_config: netapp_v1.yaml
+        service_config: netapp_v1.yaml
     output: apis/Google.Cloud.NetApp.V1
     version: 1.13.0
     keep:
@@ -920,7 +920,7 @@ libraries:
   - name: Google.Cloud.NetworkManagement.V1
     channels:
       - path: google/cloud/networkmanagement/v1
-      - service_config: networkmanagement_v1.yaml
+        service_config: networkmanagement_v1.yaml
     output: apis/Google.Cloud.NetworkManagement.V1
     version: 2.17.0
     keep:
@@ -928,7 +928,7 @@ libraries:
   - name: Google.Cloud.NetworkSecurity.V1Beta1
     channels:
       - path: google/cloud/networksecurity/v1beta1
-      - service_config: networksecurity_v1beta1.yaml
+        service_config: networksecurity_v1beta1.yaml
     output: apis/Google.Cloud.NetworkSecurity.V1Beta1
     version: 2.0.0-beta08
     keep:
@@ -936,7 +936,7 @@ libraries:
   - name: Google.Cloud.NetworkServices.V1
     channels:
       - path: google/cloud/networkservices/v1
-      - service_config: networkservices_v1.yaml
+        service_config: networkservices_v1.yaml
     output: apis/Google.Cloud.NetworkServices.V1
     version: 1.5.0
     keep:
@@ -944,7 +944,7 @@ libraries:
   - name: Google.Cloud.Notebooks.V1
     channels:
       - path: google/cloud/notebooks/v1
-      - service_config: notebooks_v1.yaml
+        service_config: notebooks_v1.yaml
     output: apis/Google.Cloud.Notebooks.V1
     version: 2.6.0
     keep:
@@ -952,7 +952,7 @@ libraries:
   - name: Google.Cloud.Optimization.V1
     channels:
       - path: google/cloud/optimization/v1
-      - service_config: cloudoptimization_v1.yaml
+        service_config: cloudoptimization_v1.yaml
     output: apis/Google.Cloud.Optimization.V1
     version: 2.7.0
     keep:
@@ -960,7 +960,7 @@ libraries:
   - name: Google.Cloud.Orchestration.Airflow.Service.V1
     channels:
       - path: google/cloud/orchestration/airflow/service/v1
-      - service_config: composer_v1.yaml
+        service_config: composer_v1.yaml
     output: apis/Google.Cloud.Orchestration.Airflow.Service.V1
     version: 2.10.0
     keep:
@@ -968,7 +968,7 @@ libraries:
   - name: Google.Cloud.OrgPolicy.V2
     channels:
       - path: google/cloud/orgpolicy/v2
-      - service_config: orgpolicy_v2.yaml
+        service_config: orgpolicy_v2.yaml
     output: apis/Google.Cloud.OrgPolicy.V2
     version: 2.9.0
     keep:
@@ -976,7 +976,7 @@ libraries:
   - name: Google.Cloud.OsConfig.V1
     channels:
       - path: google/cloud/osconfig/v1
-      - service_config: osconfig_v1.yaml
+        service_config: osconfig_v1.yaml
     output: apis/Google.Cloud.OsConfig.V1
     version: 2.6.0
     keep:
@@ -984,7 +984,7 @@ libraries:
   - name: Google.Cloud.OsConfig.V1Alpha
     channels:
       - path: google/cloud/osconfig/v1alpha
-      - service_config: osconfig_v1alpha.yaml
+        service_config: osconfig_v1alpha.yaml
     output: apis/Google.Cloud.OsConfig.V1Alpha
     version: 2.0.0-alpha07
     keep:
@@ -992,7 +992,7 @@ libraries:
   - name: Google.Cloud.OsLogin.V1
     channels:
       - path: google/cloud/oslogin/v1
-      - service_config: oslogin_v1.yaml
+        service_config: oslogin_v1.yaml
     output: apis/Google.Cloud.OsLogin.V1
     version: 3.6.0
     keep:
@@ -1000,7 +1000,7 @@ libraries:
   - name: Google.Cloud.OsLogin.V1Beta
     channels:
       - path: google/cloud/oslogin/v1beta
-      - service_config: oslogin_v1beta.yaml
+        service_config: oslogin_v1beta.yaml
     output: apis/Google.Cloud.OsLogin.V1Beta
     version: 3.0.0-beta10
     keep:
@@ -1008,7 +1008,7 @@ libraries:
   - name: Google.Cloud.Parallelstore.V1
     channels:
       - path: google/cloud/parallelstore/v1
-      - service_config: parallelstore_v1.yaml
+        service_config: parallelstore_v1.yaml
     output: apis/Google.Cloud.Parallelstore.V1
     version: 1.3.0
     keep:
@@ -1016,7 +1016,7 @@ libraries:
   - name: Google.Cloud.Parallelstore.V1Beta
     channels:
       - path: google/cloud/parallelstore/v1beta
-      - service_config: parallelstore_v1beta.yaml
+        service_config: parallelstore_v1beta.yaml
     output: apis/Google.Cloud.Parallelstore.V1Beta
     version: 1.0.0-beta09
     keep:
@@ -1024,7 +1024,7 @@ libraries:
   - name: Google.Cloud.ParameterManager.V1
     channels:
       - path: google/cloud/parametermanager/v1
-      - service_config: parametermanager_v1.yaml
+        service_config: parametermanager_v1.yaml
     output: apis/Google.Cloud.ParameterManager.V1
     version: 1.0.0-beta04
     keep:
@@ -1032,7 +1032,7 @@ libraries:
   - name: Google.Cloud.PhishingProtection.V1Beta1
     channels:
       - path: google/cloud/phishingprotection/v1beta1
-      - service_config: phishingprotection_v1beta1.yaml
+        service_config: phishingprotection_v1beta1.yaml
     output: apis/Google.Cloud.PhishingProtection.V1Beta1
     version: 2.0.0-beta06
     keep:
@@ -1040,7 +1040,7 @@ libraries:
   - name: Google.Cloud.PolicyTroubleshooter.V1
     channels:
       - path: google/cloud/policytroubleshooter/v1
-      - service_config: policytroubleshooter_v1.yaml
+        service_config: policytroubleshooter_v1.yaml
     output: apis/Google.Cloud.PolicyTroubleshooter.V1
     version: 2.6.0
     keep:
@@ -1048,7 +1048,7 @@ libraries:
   - name: Google.Cloud.PrivateCatalog.V1Beta1
     channels:
       - path: google/cloud/privatecatalog/v1beta1
-      - service_config: cloudprivatecatalog_v1beta1.yaml
+        service_config: cloudprivatecatalog_v1beta1.yaml
     output: apis/Google.Cloud.PrivateCatalog.V1Beta1
     version: 2.0.0-beta06
     keep:
@@ -1056,7 +1056,7 @@ libraries:
   - name: Google.Cloud.PrivilegedAccessManager.V1
     channels:
       - path: google/cloud/privilegedaccessmanager/v1
-      - service_config: privilegedaccessmanager_v1.yaml
+        service_config: privilegedaccessmanager_v1.yaml
     output: apis/Google.Cloud.PrivilegedAccessManager.V1
     version: 1.2.0
     keep:
@@ -1064,7 +1064,7 @@ libraries:
   - name: Google.Cloud.Profiler.V2
     channels:
       - path: google/devtools/cloudprofiler/v2
-      - service_config: cloudprofiler_v2.yaml
+        service_config: cloudprofiler_v2.yaml
     output: apis/Google.Cloud.Profiler.V2
     version: 2.7.0
     keep:
@@ -1072,7 +1072,7 @@ libraries:
   - name: Google.Cloud.RecaptchaEnterprise.V1Beta1
     channels:
       - path: google/cloud/recaptchaenterprise/v1beta1
-      - service_config: recaptchaenterprise_v1beta1.yaml
+        service_config: recaptchaenterprise_v1beta1.yaml
     output: apis/Google.Cloud.RecaptchaEnterprise.V1Beta1
     version: 2.0.0-beta10
     keep:
@@ -1080,7 +1080,7 @@ libraries:
   - name: Google.Cloud.RecommendationEngine.V1Beta1
     channels:
       - path: google/cloud/recommendationengine/v1beta1
-      - service_config: recommendationengine_v1beta1.yaml
+        service_config: recommendationengine_v1beta1.yaml
     output: apis/Google.Cloud.RecommendationEngine.V1Beta1
     version: 2.0.0-beta07
     keep:
@@ -1088,7 +1088,7 @@ libraries:
   - name: Google.Cloud.Recommender.V1
     channels:
       - path: google/cloud/recommender/v1
-      - service_config: recommender_v1.yaml
+        service_config: recommender_v1.yaml
     output: apis/Google.Cloud.Recommender.V1
     version: 3.8.0
     keep:
@@ -1096,7 +1096,7 @@ libraries:
   - name: Google.Cloud.Redis.Cluster.V1
     channels:
       - path: google/cloud/redis/cluster/v1
-      - service_config: redis_v1.yaml
+        service_config: redis_v1.yaml
     output: apis/Google.Cloud.Redis.Cluster.V1
     version: 1.5.0
     keep:
@@ -1104,7 +1104,7 @@ libraries:
   - name: Google.Cloud.ResourceManager.V3
     channels:
       - path: google/cloud/resourcemanager/v3
-      - service_config: cloudresourcemanager_v3.yaml
+        service_config: cloudresourcemanager_v3.yaml
     output: apis/Google.Cloud.ResourceManager.V3
     version: 2.6.0
     keep:
@@ -1112,7 +1112,7 @@ libraries:
   - name: Google.Cloud.Retail.V2
     channels:
       - path: google/cloud/retail/v2
-      - service_config: retail_v2.yaml
+        service_config: retail_v2.yaml
     output: apis/Google.Cloud.Retail.V2
     version: 2.16.0
     keep:
@@ -1121,7 +1121,7 @@ libraries:
   - name: Google.Cloud.Run.V2
     channels:
       - path: google/cloud/run/v2
-      - service_config: run_v2.yaml
+        service_config: run_v2.yaml
     output: apis/Google.Cloud.Run.V2
     version: 2.18.0
     keep:
@@ -1129,7 +1129,7 @@ libraries:
   - name: Google.Cloud.SaasPlatform.SaasServiceMgmt.V1Beta1
     channels:
       - path: google/cloud/saasplatform/saasservicemgmt/v1beta1
-      - service_config: saasservicemgmt_v1beta1.yaml
+        service_config: saasservicemgmt_v1beta1.yaml
     output: apis/Google.Cloud.SaasPlatform.SaasServiceMgmt.V1Beta1
     version: 1.0.0-beta02
     keep:
@@ -1137,7 +1137,7 @@ libraries:
   - name: Google.Cloud.SecretManager.V1Beta2
     channels:
       - path: google/cloud/secretmanager/v1beta2
-      - service_config: secretmanager_v1beta2.yaml
+        service_config: secretmanager_v1beta2.yaml
     output: apis/Google.Cloud.SecretManager.V1Beta2
     version: 1.0.0-beta04
     keep:
@@ -1145,7 +1145,7 @@ libraries:
   - name: Google.Cloud.SecretManager.V1Beta1
     channels:
       - path: google/cloud/secrets/v1beta1
-      - service_config: secretmanager_v1beta1.yaml
+        service_config: secretmanager_v1beta1.yaml
     output: apis/Google.Cloud.SecretManager.V1Beta1
     version: 3.0.0-beta07
     keep:
@@ -1153,7 +1153,7 @@ libraries:
   - name: Google.Cloud.Security.PrivateCA.V1
     channels:
       - path: google/cloud/security/privateca/v1
-      - service_config: privateca_v1.yaml
+        service_config: privateca_v1.yaml
     output: apis/Google.Cloud.Security.PrivateCA.V1
     version: 3.11.0
     keep:
@@ -1161,7 +1161,7 @@ libraries:
   - name: Google.Cloud.Security.PublicCA.V1
     channels:
       - path: google/cloud/security/publicca/v1
-      - service_config: publicca_v1.yaml
+        service_config: publicca_v1.yaml
     output: apis/Google.Cloud.Security.PublicCA.V1
     version: 1.1.0
     keep:
@@ -1169,7 +1169,7 @@ libraries:
   - name: Google.Cloud.Security.PublicCA.V1Beta1
     channels:
       - path: google/cloud/security/publicca/v1beta1
-      - service_config: publicca_v1beta1.yaml
+        service_config: publicca_v1beta1.yaml
     output: apis/Google.Cloud.Security.PublicCA.V1Beta1
     version: 1.0.0-beta06
     keep:
@@ -1177,7 +1177,7 @@ libraries:
   - name: Google.Cloud.SecurityCenter.V1
     channels:
       - path: google/cloud/securitycenter/v1
-      - service_config: securitycenter_v1.yaml
+        service_config: securitycenter_v1.yaml
     output: apis/Google.Cloud.SecurityCenter.V1
     version: 3.25.0
     keep:
@@ -1185,7 +1185,7 @@ libraries:
   - name: Google.Cloud.SecurityCenter.V1P1Beta1
     channels:
       - path: google/cloud/securitycenter/v1p1beta1
-      - service_config: securitycenter_v1p1beta1.yaml
+        service_config: securitycenter_v1p1beta1.yaml
     output: apis/Google.Cloud.SecurityCenter.V1P1Beta1
     version: 3.0.0-beta06
     keep:
@@ -1193,7 +1193,7 @@ libraries:
   - name: Google.Cloud.SecurityCenter.V2
     channels:
       - path: google/cloud/securitycenter/v2
-      - service_config: securitycenter_v2.yaml
+        service_config: securitycenter_v2.yaml
     output: apis/Google.Cloud.SecurityCenter.V2
     version: 1.4.0
     keep:
@@ -1201,7 +1201,7 @@ libraries:
   - name: Google.Cloud.SecurityCenterManagement.V1
     channels:
       - path: google/cloud/securitycentermanagement/v1
-      - service_config: securitycentermanagement_v1.yaml
+        service_config: securitycentermanagement_v1.yaml
     output: apis/Google.Cloud.SecurityCenterManagement.V1
     version: 1.3.0
     keep:
@@ -1209,7 +1209,7 @@ libraries:
   - name: Google.Cloud.ServiceControl.V1
     channels:
       - path: google/api/servicecontrol/v1
-      - service_config: servicecontrol.yaml
+        service_config: servicecontrol.yaml
     output: apis/Google.Cloud.ServiceControl.V1
     version: 2.5.0
     keep:
@@ -1217,7 +1217,7 @@ libraries:
   - name: Google.Cloud.ServiceDirectory.V1
     channels:
       - path: google/cloud/servicedirectory/v1
-      - service_config: servicedirectory_v1.yaml
+        service_config: servicedirectory_v1.yaml
     output: apis/Google.Cloud.ServiceDirectory.V1
     version: 2.7.0
     keep:
@@ -1225,7 +1225,7 @@ libraries:
   - name: Google.Cloud.ServiceDirectory.V1Beta1
     channels:
       - path: google/cloud/servicedirectory/v1beta1
-      - service_config: servicedirectory_v1beta1.yaml
+        service_config: servicedirectory_v1beta1.yaml
     output: apis/Google.Cloud.ServiceDirectory.V1Beta1
     version: 2.0.0-beta07
     keep:
@@ -1233,7 +1233,7 @@ libraries:
   - name: Google.Cloud.ServiceHealth.V1
     channels:
       - path: google/cloud/servicehealth/v1
-      - service_config: servicehealth_v1.yaml
+        service_config: servicehealth_v1.yaml
     output: apis/Google.Cloud.ServiceHealth.V1
     version: 1.4.0
     keep:
@@ -1241,7 +1241,7 @@ libraries:
   - name: Google.Cloud.ServiceManagement.V1
     channels:
       - path: google/api/servicemanagement/v1
-      - service_config: servicemanagement_v1.yaml
+        service_config: servicemanagement_v1.yaml
     output: apis/Google.Cloud.ServiceManagement.V1
     version: 2.5.0
     keep:
@@ -1249,7 +1249,7 @@ libraries:
   - name: Google.Cloud.ServiceUsage.V1
     channels:
       - path: google/api/serviceusage/v1
-      - service_config: serviceusage_v1.yaml
+        service_config: serviceusage_v1.yaml
     output: apis/Google.Cloud.ServiceUsage.V1
     version: 2.6.0
     keep:
@@ -1257,7 +1257,7 @@ libraries:
   - name: Google.Cloud.Shell.V1
     channels:
       - path: google/cloud/shell/v1
-      - service_config: cloudshell_v1.yaml
+        service_config: cloudshell_v1.yaml
     output: apis/Google.Cloud.Shell.V1
     version: 2.6.0
     keep:
@@ -1265,7 +1265,7 @@ libraries:
   - name: Google.Cloud.StorageBatchOperations.V1
     channels:
       - path: google/cloud/storagebatchoperations/v1
-      - service_config: storagebatchoperations_v1.yaml
+        service_config: storagebatchoperations_v1.yaml
     output: apis/Google.Cloud.StorageBatchOperations.V1
     version: 1.0.0-beta02
     keep:
@@ -1273,7 +1273,7 @@ libraries:
   - name: Google.Cloud.StorageInsights.V1
     channels:
       - path: google/cloud/storageinsights/v1
-      - service_config: storageinsights_v1.yaml
+        service_config: storageinsights_v1.yaml
     output: apis/Google.Cloud.StorageInsights.V1
     version: 1.5.0
     keep:
@@ -1281,7 +1281,7 @@ libraries:
   - name: Google.Cloud.StorageTransfer.V1
     channels:
       - path: google/storagetransfer/v1
-      - service_config: storagetransfer_v1.yaml
+        service_config: storagetransfer_v1.yaml
     output: apis/Google.Cloud.StorageTransfer.V1
     version: 2.10.0
     keep:
@@ -1289,7 +1289,7 @@ libraries:
   - name: Google.Cloud.Support.V2Beta
     channels:
       - path: google/cloud/support/v2beta
-      - service_config: cloudsupport_v2beta.yaml
+        service_config: cloudsupport_v2beta.yaml
     output: apis/Google.Cloud.Support.V2Beta
     version: 1.0.0-beta03
     keep:
@@ -1297,7 +1297,7 @@ libraries:
   - name: Google.Cloud.Talent.V4
     channels:
       - path: google/cloud/talent/v4
-      - service_config: jobs_v4.yaml
+        service_config: jobs_v4.yaml
     output: apis/Google.Cloud.Talent.V4
     version: 2.8.0
     keep:
@@ -1305,7 +1305,7 @@ libraries:
   - name: Google.Cloud.Tasks.V2Beta3
     channels:
       - path: google/cloud/tasks/v2beta3
-      - service_config: cloudtasks_v2beta3.yaml
+        service_config: cloudtasks_v2beta3.yaml
     output: apis/Google.Cloud.Tasks.V2Beta3
     version: 3.0.0-beta08
     keep:
@@ -1313,7 +1313,7 @@ libraries:
   - name: Google.Cloud.TextToSpeech.V1Beta1
     channels:
       - path: google/cloud/texttospeech/v1beta1
-      - service_config: texttospeech_v1beta1.yaml
+        service_config: texttospeech_v1beta1.yaml
     output: apis/Google.Cloud.TextToSpeech.V1Beta1
     version: 2.0.0-beta17
     keep:
@@ -1321,7 +1321,7 @@ libraries:
   - name: Google.Cloud.Trace.V2
     channels:
       - path: google/devtools/cloudtrace/v2
-      - service_config: cloudtrace_v2.yaml
+        service_config: cloudtrace_v2.yaml
     output: apis/Google.Cloud.Trace.V2
     version: 3.7.0
     keep:
@@ -1329,7 +1329,7 @@ libraries:
   - name: Google.Cloud.VMMigration.V1
     channels:
       - path: google/cloud/vmmigration/v1
-      - service_config: vmmigration_v1.yaml
+        service_config: vmmigration_v1.yaml
     output: apis/Google.Cloud.VMMigration.V1
     version: 2.9.0
     keep:
@@ -1337,7 +1337,7 @@ libraries:
   - name: Google.Cloud.Video.LiveStream.V1
     channels:
       - path: google/cloud/video/livestream/v1
-      - service_config: livestream_v1.yaml
+        service_config: livestream_v1.yaml
     output: apis/Google.Cloud.Video.LiveStream.V1
     version: 1.11.0
     keep:
@@ -1345,7 +1345,7 @@ libraries:
   - name: Google.Cloud.Video.Transcoder.V1
     channels:
       - path: google/cloud/video/transcoder/v1
-      - service_config: transcoder_v1.yaml
+        service_config: transcoder_v1.yaml
     output: apis/Google.Cloud.Video.Transcoder.V1
     version: 2.12.0
     keep:
@@ -1353,13 +1353,13 @@ libraries:
   - name: Google.Cloud.VisionAI.V1
     channels:
       - path: google/cloud/visionai/v1
-      - service_config: visionai_v1.yaml
+        service_config: visionai_v1.yaml
     output: apis/Google.Cloud.VisionAI.V1
     version: 1.0.0-beta00
   - name: Google.Cloud.VmwareEngine.V1
     channels:
       - path: google/cloud/vmwareengine/v1
-      - service_config: vmwareengine_v1.yaml
+        service_config: vmwareengine_v1.yaml
     output: apis/Google.Cloud.VmwareEngine.V1
     version: 1.7.0
     keep:
@@ -1367,7 +1367,7 @@ libraries:
   - name: Google.Cloud.VpcAccess.V1
     channels:
       - path: google/cloud/vpcaccess/v1
-      - service_config: vpcaccess_v1.yaml
+        service_config: vpcaccess_v1.yaml
     output: apis/Google.Cloud.VpcAccess.V1
     version: 2.6.0
     keep:
@@ -1375,7 +1375,7 @@ libraries:
   - name: Google.Cloud.WebRisk.V1
     channels:
       - path: google/cloud/webrisk/v1
-      - service_config: webrisk_v1.yaml
+        service_config: webrisk_v1.yaml
     output: apis/Google.Cloud.WebRisk.V1
     version: 2.9.0
     keep:
@@ -1383,7 +1383,7 @@ libraries:
   - name: Google.Cloud.WebSecurityScanner.V1
     channels:
       - path: google/cloud/websecurityscanner/v1
-      - service_config: websecurityscanner_v1.yaml
+        service_config: websecurityscanner_v1.yaml
     output: apis/Google.Cloud.WebSecurityScanner.V1
     version: 2.6.0
     keep:
@@ -1391,7 +1391,7 @@ libraries:
   - name: Google.Cloud.Workflows.V1
     channels:
       - path: google/cloud/workflows/v1
-      - service_config: workflows_v1.yaml
+        service_config: workflows_v1.yaml
     output: apis/Google.Cloud.Workflows.V1
     version: 2.7.0
     keep:
@@ -1399,7 +1399,7 @@ libraries:
   - name: Google.Cloud.Workflows.V1Beta
     channels:
       - path: google/cloud/workflows/v1beta
-      - service_config: workflows_v1beta.yaml
+        service_config: workflows_v1beta.yaml
     output: apis/Google.Cloud.Workflows.V1Beta
     version: 2.0.0-beta06
     keep:
@@ -1407,7 +1407,7 @@ libraries:
   - name: Google.Identity.AccessContextManager.V1
     channels:
       - path: google/identity/accesscontextmanager/v1
-      - service_config: accesscontextmanager_v1.yaml
+        service_config: accesscontextmanager_v1.yaml
     output: apis/Google.Identity.AccessContextManager.V1
     version: 2.6.0
     keep:
@@ -1415,7 +1415,7 @@ libraries:
   - name: Google.Maps.AreaInsights.V1
     channels:
       - path: google/maps/areainsights/v1
-      - service_config: areainsights_v1.yaml
+        service_config: areainsights_v1.yaml
     output: apis/Google.Maps.AreaInsights.V1
     version: 1.0.0-beta02
     keep:
@@ -1423,7 +1423,7 @@ libraries:
   - name: Google.Maps.FleetEngine.Delivery.V1
     channels:
       - path: google/maps/fleetengine/delivery/v1
-      - service_config: fleetengine_v1.yaml
+        service_config: fleetengine_v1.yaml
     output: apis/Google.Maps.FleetEngine.Delivery.V1
     version: 2.4.0
     keep:
@@ -1432,7 +1432,7 @@ libraries:
   - name: Google.Maps.FleetEngine.V1
     channels:
       - path: google/maps/fleetengine/v1
-      - service_config: fleetengine_v1.yaml
+        service_config: fleetengine_v1.yaml
     output: apis/Google.Maps.FleetEngine.V1
     version: 2.4.0
     keep:
@@ -1441,7 +1441,7 @@ libraries:
   - name: Google.Maps.MapsPlatformDatasets.V1
     channels:
       - path: google/maps/mapsplatformdatasets/v1
-      - service_config: mapsplatformdatasets_v1.yaml
+        service_config: mapsplatformdatasets_v1.yaml
     output: apis/Google.Maps.MapsPlatformDatasets.V1
     version: 1.1.0
     keep:
@@ -1449,7 +1449,7 @@ libraries:
   - name: Google.Maps.RouteOptimization.V1
     channels:
       - path: google/maps/routeoptimization/v1
-      - service_config: routeoptimization_v1.yaml
+        service_config: routeoptimization_v1.yaml
     output: apis/Google.Maps.RouteOptimization.V1
     version: 1.4.0
     keep:
@@ -1457,7 +1457,7 @@ libraries:
   - name: Google.Shopping.Css.V1
     channels:
       - path: google/shopping/css/v1
-      - service_config: css_v1.yaml
+        service_config: css_v1.yaml
     output: apis/Google.Shopping.Css.V1
     version: 1.0.0-beta08
     keep:
@@ -1465,7 +1465,7 @@ libraries:
   - name: Google.Shopping.Merchant.Accounts.V1
     channels:
       - path: google/shopping/merchant/accounts/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Accounts.V1
     version: 1.4.0
     keep:
@@ -1473,7 +1473,7 @@ libraries:
   - name: Google.Shopping.Merchant.Accounts.V1Beta
     channels:
       - path: google/shopping/merchant/accounts/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Accounts.V1Beta
     version: 1.0.0-beta11
     keep:
@@ -1481,7 +1481,7 @@ libraries:
   - name: Google.Shopping.Merchant.Conversions.V1
     channels:
       - path: google/shopping/merchant/conversions/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Conversions.V1
     version: 1.1.0
     keep:
@@ -1489,7 +1489,7 @@ libraries:
   - name: Google.Shopping.Merchant.Conversions.V1Beta
     channels:
       - path: google/shopping/merchant/conversions/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Conversions.V1Beta
     version: 1.0.0-beta03
     keep:
@@ -1497,7 +1497,7 @@ libraries:
   - name: Google.Shopping.Merchant.DataSources.V1
     channels:
       - path: google/shopping/merchant/datasources/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.DataSources.V1
     version: 1.1.0
     keep:
@@ -1505,7 +1505,7 @@ libraries:
   - name: Google.Shopping.Merchant.DataSources.V1Beta
     channels:
       - path: google/shopping/merchant/datasources/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.DataSources.V1Beta
     version: 1.0.0-beta06
     keep:
@@ -1513,7 +1513,7 @@ libraries:
   - name: Google.Shopping.Merchant.Inventories.V1
     channels:
       - path: google/shopping/merchant/inventories/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Inventories.V1
     version: 1.2.0
     keep:
@@ -1521,7 +1521,7 @@ libraries:
   - name: Google.Shopping.Merchant.Inventories.V1Beta
     channels:
       - path: google/shopping/merchant/inventories/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Inventories.V1Beta
     version: 1.0.0-beta08
     keep:
@@ -1529,7 +1529,7 @@ libraries:
   - name: Google.Shopping.Merchant.IssueResolution.V1
     channels:
       - path: google/shopping/merchant/issueresolution/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.IssueResolution.V1
     version: 1.2.0
     keep:
@@ -1537,7 +1537,7 @@ libraries:
   - name: Google.Shopping.Merchant.IssueResolution.V1Beta
     channels:
       - path: google/shopping/merchant/issueresolution/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.IssueResolution.V1Beta
     version: 1.0.0-beta05
     keep:
@@ -1545,7 +1545,7 @@ libraries:
   - name: Google.Shopping.Merchant.Lfp.V1
     channels:
       - path: google/shopping/merchant/lfp/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Lfp.V1
     version: 1.1.0
     keep:
@@ -1553,7 +1553,7 @@ libraries:
   - name: Google.Shopping.Merchant.Lfp.V1Beta
     channels:
       - path: google/shopping/merchant/lfp/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Lfp.V1Beta
     version: 1.0.0-beta04
     keep:
@@ -1561,7 +1561,7 @@ libraries:
   - name: Google.Shopping.Merchant.Notifications.V1
     channels:
       - path: google/shopping/merchant/notifications/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Notifications.V1
     version: 1.1.0
     keep:
@@ -1569,7 +1569,7 @@ libraries:
   - name: Google.Shopping.Merchant.Notifications.V1Beta
     channels:
       - path: google/shopping/merchant/notifications/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Notifications.V1Beta
     version: 1.0.0-beta03
     keep:
@@ -1577,7 +1577,7 @@ libraries:
   - name: Google.Shopping.Merchant.OrderTracking.V1
     channels:
       - path: google/shopping/merchant/ordertracking/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.OrderTracking.V1
     version: 1.1.0
     keep:
@@ -1585,7 +1585,7 @@ libraries:
   - name: Google.Shopping.Merchant.OrderTracking.V1Beta
     channels:
       - path: google/shopping/merchant/ordertracking/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.OrderTracking.V1Beta
     version: 1.0.0-beta03
     keep:
@@ -1593,7 +1593,7 @@ libraries:
   - name: Google.Shopping.Merchant.Products.V1
     channels:
       - path: google/shopping/merchant/products/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Products.V1
     version: 1.3.0
     keep:
@@ -1601,7 +1601,7 @@ libraries:
   - name: Google.Shopping.Merchant.Products.V1Beta
     channels:
       - path: google/shopping/merchant/products/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Products.V1Beta
     version: 1.0.0-beta07
     keep:
@@ -1609,7 +1609,7 @@ libraries:
   - name: Google.Shopping.Merchant.Promotions.V1
     channels:
       - path: google/shopping/merchant/promotions/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Promotions.V1
     version: 1.1.0
     keep:
@@ -1617,7 +1617,7 @@ libraries:
   - name: Google.Shopping.Merchant.Promotions.V1Beta
     channels:
       - path: google/shopping/merchant/promotions/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Promotions.V1Beta
     version: 1.0.0-beta02
     keep:
@@ -1625,7 +1625,7 @@ libraries:
   - name: Google.Shopping.Merchant.Quota.V1
     channels:
       - path: google/shopping/merchant/quota/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Quota.V1
     version: 1.2.0
     keep:
@@ -1633,7 +1633,7 @@ libraries:
   - name: Google.Shopping.Merchant.Quota.V1Beta
     channels:
       - path: google/shopping/merchant/quota/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Quota.V1Beta
     version: 1.0.0-beta04
     keep:
@@ -1641,7 +1641,7 @@ libraries:
   - name: Google.Shopping.Merchant.Reports.V1
     channels:
       - path: google/shopping/merchant/reports/v1
-      - service_config: merchantapi_v1.yaml
+        service_config: merchantapi_v1.yaml
     output: apis/Google.Shopping.Merchant.Reports.V1
     version: 1.1.0
     keep:
@@ -1649,7 +1649,7 @@ libraries:
   - name: Google.Shopping.Merchant.Reports.V1Beta
     channels:
       - path: google/shopping/merchant/reports/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Reports.V1Beta
     version: 1.0.0-beta04
     keep:
@@ -1657,7 +1657,7 @@ libraries:
   - name: Google.Shopping.Merchant.Reviews.V1Beta
     channels:
       - path: google/shopping/merchant/reviews/v1beta
-      - service_config: merchantapi_v1beta.yaml
+        service_config: merchantapi_v1beta.yaml
     output: apis/Google.Shopping.Merchant.Reviews.V1Beta
     version: 1.0.0-beta04
     keep:

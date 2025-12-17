@@ -116,7 +116,7 @@ public class MigrateToLibrarianCommand : CommandBase
         yield return $"  - name: {api.Id}";
         yield return $"    channels:";
         yield return $"      - path: {api.ProtoPath}";
-        yield return $"      - service_config: {api.ServiceConfigFile}";
+        yield return $"        service_config: {api.ServiceConfigFile}";
         yield return $"    output: apis/{api.Id}";
         yield return $"    version: {api.Version}";
         var sourceLayout = rootLayout.CreateRepositoryApiLayout(api);
