@@ -33,6 +33,8 @@ libraries:
         service_config: marketingplatformadmin_v1alpha.yaml
     output: apis/Google.Ads.MarketingPlatform.Admin.V1Alpha
     version: 1.0.0-alpha02
+    dotnet:
+      exclude_common_resources_proto: true
     keep:
     - docs/history.md
   - name: Google.Analytics.Admin.V1Alpha
@@ -123,6 +125,8 @@ libraries:
         service_config: advisorynotifications_v1.yaml
     output: apis/Google.Cloud.AdvisoryNotifications.V1
     version: 1.8.0
+    dotnet:
+      exclude_common_resources_proto: true
     keep:
     - docs/history.md
   - name: Google.Cloud.AlloyDb.V1
@@ -315,6 +319,8 @@ libraries:
         service_config: cloudbilling_v1.yaml
     output: apis/Google.Cloud.Billing.V1
     version: 3.10.0
+    dotnet:
+      exclude_common_resources_proto: true
     keep:
     - docs/history.md
   - name: Google.Cloud.BinaryAuthorization.V1
@@ -395,6 +401,8 @@ libraries:
         service_config: cloudquotas_v1beta.yaml
     output: apis/Google.Cloud.CloudQuotas.V1Beta
     version: 1.0.0-beta03
+    dotnet:
+      exclude_common_resources_proto: true
     keep:
     - docs/history.md
   - name: Google.Cloud.CloudSecurityCompliance.V1
@@ -1107,6 +1115,8 @@ libraries:
         service_config: cloudresourcemanager_v3.yaml
     output: apis/Google.Cloud.ResourceManager.V3
     version: 2.6.0
+    dotnet:
+      exclude_common_resources_proto: true
     keep:
     - docs/history.md
   - name: Google.Cloud.Retail.V2
@@ -1386,22 +1396,6 @@ libraries:
         service_config: websecurityscanner_v1.yaml
     output: apis/Google.Cloud.WebSecurityScanner.V1
     version: 2.6.0
-    keep:
-    - docs/history.md
-  - name: Google.Cloud.Workflows.V1
-    channels:
-      - path: google/cloud/workflows/v1
-        service_config: workflows_v1.yaml
-    output: apis/Google.Cloud.Workflows.V1
-    version: 2.7.0
-    keep:
-    - docs/history.md
-  - name: Google.Cloud.Workflows.V1Beta
-    channels:
-      - path: google/cloud/workflows/v1beta
-        service_config: workflows_v1beta.yaml
-    output: apis/Google.Cloud.Workflows.V1Beta
-    version: 2.0.0-beta06
     keep:
     - docs/history.md
   - name: Google.Identity.AccessContextManager.V1

@@ -85,7 +85,12 @@ public class MigrateToLibrarianCommand : CommandBase
                 LogReason("Has tweaks");
                 return false;
             }
-            
+            if (api.CommonResourcesConfig is not null)
+            {
+                LogReason("Has custom common resources");
+                return false;
+            }
+
             var sourceRoot = RootLayout.CreateRepositoryApiLayout(api);
             var sourceFiles = Directory.EnumerateFiles(sourceRoot.SourceDirectory, "*.cs", SearchOption.AllDirectories);
             if (sourceFiles.Any(file => !file.Contains(".g.cs", StringComparison.Ordinal)))
@@ -119,6 +124,11 @@ public class MigrateToLibrarianCommand : CommandBase
         yield return $"        service_config: {api.ServiceConfigFile}";
         yield return $"    output: apis/{api.Id}";
         yield return $"    version: {api.Version}";
+        if (api.IncludeCommonResourcesProto != true)
+        {
+            yield return "    dotnet:";
+            yield return "      exclude_common_resources_proto: true";
+        }
         var sourceLayout = rootLayout.CreateRepositoryApiLayout(api);
         var docsDirectory = sourceLayout.CreateDocsLayout().MarkdownDirectory;
         if (Directory.Exists(docsDirectory))
