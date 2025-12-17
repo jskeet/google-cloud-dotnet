@@ -131,17 +131,25 @@ public class MigrateToLibrarianCommand : CommandBase
         }
         var sourceLayout = rootLayout.CreateRepositoryApiLayout(api);
         var docsDirectory = sourceLayout.CreateDocsLayout().MarkdownDirectory;
+
+        var keep = new List<string>();
         if (Directory.Exists(docsDirectory))
         {
-            var docs = Directory.GetFiles(docsDirectory).Select(Path.GetFileName).ToList();
-            if (docs.Any())
+            var docs = Directory.GetFiles(docsDirectory).Select(file => "docs/" + Path.GetFileName(file));
+            keep.AddRange(docs);
+        }
+        if (File.Exists(Path.Combine(sourceLayout.SourceDirectory, "smoketests.json")))
+        {
+            keep.Add("smoketests.json");
+        }
+        if (keep.Any())
+        {
+            yield return "    keep:";
+            foreach (var entry in keep)
             {
-                yield return "    keep:";
-                foreach (var doc in docs)
-                {
-                    yield return $"    - docs/{doc}";
-                }
+                yield return $"    - {entry}";
             }
         }
+
     }
 }

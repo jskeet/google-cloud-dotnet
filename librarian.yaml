@@ -11,14 +11,6 @@ default:
   tag_format: '{name}-v{version}'
   release_level: stable
 libraries:
-  - name: Google.Cloud.SecretManager.V1
-    channels:
-      - path: google/cloud/secretmanager/v1
-        service_config: secretmanager_v1.yaml
-    output: apis/Google.Cloud.SecretManager.V1
-    version: 2.7.0
-    keep:
-    - docs/history.md
   - name: Google.Ads.DataManager.V1
     channels:
       - path: google/ads/datamanager/v1
@@ -78,6 +70,7 @@ libraries:
     keep:
     - docs/history.md
     - docs/index.md
+    - smoketests.json
   - name: Google.Apps.Events.Subscriptions.V1Beta
     channels:
       - path: google/apps/events/subscriptions/v1beta
@@ -94,6 +87,7 @@ libraries:
     version: 1.0.0-beta06
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Apps.Meet.V2Beta
     channels:
       - path: google/apps/meet/v2beta
@@ -119,6 +113,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.AdvisoryNotifications.V1
     channels:
       - path: google/cloud/advisorynotifications/v1
@@ -137,6 +132,7 @@ libraries:
     version: 1.13.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.AlloyDb.V1Alpha
     channels:
       - path: google/cloud/alloydb/v1alpha
@@ -145,6 +141,7 @@ libraries:
     version: 1.0.0-alpha14
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.AlloyDb.V1Beta
     channels:
       - path: google/cloud/alloydb/v1beta
@@ -153,6 +150,7 @@ libraries:
     version: 1.0.0-beta14
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ApiGateway.V1
     channels:
       - path: google/cloud/apigateway/v1
@@ -161,6 +159,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ApiKeys.V2
     channels:
       - path: google/api/apikeys/v2
@@ -169,6 +168,7 @@ libraries:
     version: 1.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ApigeeConnect.V1
     channels:
       - path: google/cloud/apigeeconnect/v1
@@ -193,6 +193,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.AppHub.V1
     channels:
       - path: google/cloud/apphub/v1
@@ -201,6 +202,7 @@ libraries:
     version: 1.2.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ArtifactRegistry.V1
     channels:
       - path: google/devtools/artifactregistry/v1
@@ -209,6 +211,7 @@ libraries:
     version: 2.13.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ArtifactRegistry.V1Beta2
     channels:
       - path: google/devtools/artifactregistry/v1beta2
@@ -225,6 +228,7 @@ libraries:
     version: 3.14.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.AssuredWorkloads.V1
     channels:
       - path: google/cloud/assuredworkloads/v1
@@ -257,6 +261,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BareMetalSolution.V2
     channels:
       - path: google/cloud/baremetalsolution/v2
@@ -265,6 +270,7 @@ libraries:
     version: 1.8.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Batch.V1
     channels:
       - path: google/cloud/batch/v1
@@ -273,6 +279,7 @@ libraries:
     version: 2.15.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Batch.V1Alpha
     channels:
       - path: google/cloud/batch/v1alpha
@@ -281,6 +288,7 @@ libraries:
     version: 1.0.0-alpha33
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BigQuery.Connection.V1
     channels:
       - path: google/cloud/bigquery/connection/v1
@@ -289,6 +297,7 @@ libraries:
     version: 2.10.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BigQuery.DataPolicies.V1
     channels:
       - path: google/cloud/bigquery/datapolicies/v1
@@ -297,6 +306,7 @@ libraries:
     version: 1.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BigQuery.Reservation.V1
     channels:
       - path: google/cloud/bigquery/reservation/v1
@@ -305,6 +315,7 @@ libraries:
     version: 2.11.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Billing.Budgets.V1
     channels:
       - path: google/cloud/billing/budgets/v1
@@ -323,6 +334,7 @@ libraries:
       exclude_common_resources_proto: true
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BinaryAuthorization.V1
     channels:
       - path: google/cloud/binaryauthorization/v1
@@ -331,6 +343,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.BinaryAuthorization.V1Beta1
     channels:
       - path: google/cloud/binaryauthorization/v1beta1
@@ -339,6 +352,7 @@ libraries:
     version: 2.0.0-beta09
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.CapacityPlanner.V1Beta
     channels:
       - path: google/cloud/capacityplanner/v1beta
@@ -355,6 +369,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Channel.V1
     channels:
       - path: google/cloud/channel/v1
@@ -379,6 +394,7 @@ libraries:
     version: 2.18.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.CloudControlsPartner.V1
     channels:
       - path: google/cloud/cloudcontrolspartner/v1
@@ -405,6 +421,7 @@ libraries:
       exclude_common_resources_proto: true
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.CloudSecurityCompliance.V1
     channels:
       - path: google/cloud/cloudsecuritycompliance/v1
@@ -457,6 +474,7 @@ libraries:
     version: 1.4.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ContactCenterInsights.V1
     channels:
       - path: google/cloud/contactcenterinsights/v1
@@ -465,6 +483,7 @@ libraries:
     version: 2.20.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DataCatalog.Lineage.V1
     channels:
       - path: google/cloud/datacatalog/lineage/v1
@@ -473,6 +492,7 @@ libraries:
     version: 1.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DataFusion.V1
     channels:
       - path: google/cloud/datafusion/v1
@@ -481,6 +501,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DatabaseCenter.V1Beta
     channels:
       - path: google/cloud/databasecenter/v1beta
@@ -497,6 +518,7 @@ libraries:
     version: 2.0.0-beta09
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dataform.V1
     channels:
       - path: google/cloud/dataform/v1
@@ -505,6 +527,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dataform.V1Beta1
     channels:
       - path: google/cloud/dataform/v1beta1
@@ -513,6 +536,7 @@ libraries:
     version: 1.0.0-beta10
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dataplex.V1
     channels:
       - path: google/cloud/dataplex/v1
@@ -521,6 +545,7 @@ libraries:
     version: 3.12.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dataproc.V1
     channels:
       - path: google/cloud/dataproc/v1
@@ -529,6 +554,7 @@ libraries:
     version: 5.22.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Datastore.Admin.V1
     channels:
       - path: google/datastore/admin/v1
@@ -545,6 +571,7 @@ libraries:
     version: 2.12.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Datastream.V1Alpha1
     channels:
       - path: google/cloud/datastream/v1alpha1
@@ -553,6 +580,7 @@ libraries:
     version: 2.0.0-alpha06
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Deploy.V1
     channels:
       - path: google/cloud/deploy/v1
@@ -561,6 +589,7 @@ libraries:
     version: 3.7.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DeveloperConnect.V1
     channels:
       - path: google/cloud/developerconnect/v1
@@ -569,6 +598,7 @@ libraries:
     version: 1.0.0-beta03
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DeviceStreaming.V1
     channels:
       - path: google/cloud/devicestreaming/v1
@@ -577,6 +607,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dialogflow.Cx.V3
     channels:
       - path: google/cloud/dialogflow/cx/v3
@@ -585,6 +616,7 @@ libraries:
     version: 2.25.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Dialogflow.V2Beta1
     channels:
       - path: google/cloud/dialogflow/v2beta1
@@ -593,6 +625,7 @@ libraries:
     version: 1.0.0-beta26
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DiscoveryEngine.V1
     channels:
       - path: google/cloud/discoveryengine/v1
@@ -601,6 +634,7 @@ libraries:
     version: 1.12.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.DiscoveryEngine.V1Beta
     channels:
       - path: google/cloud/discoveryengine/v1beta
@@ -609,6 +643,7 @@ libraries:
     version: 1.0.0-beta21
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Domains.V1
     channels:
       - path: google/cloud/domains/v1
@@ -617,6 +652,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Domains.V1Beta1
     channels:
       - path: google/cloud/domains/v1beta1
@@ -625,6 +661,7 @@ libraries:
     version: 2.0.0-beta06
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.EdgeNetwork.V1
     channels:
       - path: google/cloud/edgenetwork/v1
@@ -633,6 +670,7 @@ libraries:
     version: 1.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.EnterpriseKnowledgeGraph.V1
     channels:
       - path: google/cloud/enterpriseknowledgegraph/v1
@@ -641,6 +679,7 @@ libraries:
     version: 1.0.0-beta05
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.EssentialContacts.V1
     channels:
       - path: google/cloud/essentialcontacts/v1
@@ -649,6 +688,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Eventarc.Publishing.V1
     channels:
       - path: google/cloud/eventarc/publishing/v1
@@ -665,6 +705,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Filestore.V1
     channels:
       - path: google/cloud/filestore/v1
@@ -673,6 +714,7 @@ libraries:
     version: 2.8.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.FinancialServices.V1
     channels:
       - path: google/cloud/financialservices/v1
@@ -689,6 +731,7 @@ libraries:
     version: 3.16.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Functions.V1
     channels:
       - path: google/cloud/functions/v1
@@ -705,6 +748,7 @@ libraries:
     version: 1.0.0-beta08
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GSuiteAddOns.V1
     channels:
       - path: google/cloud/gsuiteaddons/v1
@@ -713,6 +757,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GdcHardwareManagement.V1Alpha
     channels:
       - path: google/cloud/gdchardwaremanagement/v1alpha
@@ -721,6 +766,7 @@ libraries:
     version: 1.0.0-alpha07
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GeminiDataAnalytics.V1Beta
     channels:
       - path: google/cloud/geminidataanalytics/v1beta
@@ -729,6 +775,7 @@ libraries:
     version: 1.0.0-beta04
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GkeBackup.V1
     channels:
       - path: google/cloud/gkebackup/v1
@@ -737,6 +784,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GkeHub.V1Beta1
     channels:
       - path: google/cloud/gkehub/v1beta1
@@ -745,6 +793,7 @@ libraries:
     version: 2.0.0-beta09
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.GkeRecommender.V1
     channels:
       - path: google/cloud/gkerecommender/v1
@@ -775,6 +824,7 @@ libraries:
     version: 1.4.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Iam.V3
     channels:
       - path: google/iam/v3
@@ -783,6 +833,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Iam.V3Beta
     channels:
       - path: google/iam/v3beta
@@ -791,6 +842,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Iap.V1
     channels:
       - path: google/cloud/iap/v1
@@ -799,6 +851,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Ids.V1
     channels:
       - path: google/cloud/ids/v1
@@ -807,6 +860,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.LicenseManager.V1
     channels:
       - path: google/cloud/licensemanager/v1
@@ -853,6 +907,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ManagedKafka.V1
     channels:
       - path: google/cloud/managedkafka/v1
@@ -861,6 +916,7 @@ libraries:
     version: 1.0.0-beta08
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Memcache.V1
     channels:
       - path: google/cloud/memcache/v1
@@ -869,6 +925,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Memcache.V1Beta2
     channels:
       - path: google/cloud/memcache/v1beta2
@@ -885,6 +942,7 @@ libraries:
     version: 2.10.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Metastore.V1Alpha
     channels:
       - path: google/cloud/metastore/v1alpha
@@ -893,6 +951,7 @@ libraries:
     version: 2.0.0-alpha12
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Metastore.V1Beta
     channels:
       - path: google/cloud/metastore/v1beta
@@ -901,6 +960,7 @@ libraries:
     version: 2.0.0-beta12
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ModelArmor.V1
     channels:
       - path: google/cloud/modelarmor/v1
@@ -909,6 +969,7 @@ libraries:
     version: 1.0.0-beta05
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ModelArmor.V1Beta
     channels:
       - path: google/cloud/modelarmor/v1beta
@@ -917,6 +978,7 @@ libraries:
     version: 1.0.0-beta05
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.NetApp.V1
     channels:
       - path: google/cloud/netapp/v1
@@ -925,6 +987,7 @@ libraries:
     version: 1.13.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.NetworkManagement.V1
     channels:
       - path: google/cloud/networkmanagement/v1
@@ -933,6 +996,7 @@ libraries:
     version: 2.17.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.NetworkSecurity.V1Beta1
     channels:
       - path: google/cloud/networksecurity/v1beta1
@@ -941,6 +1005,7 @@ libraries:
     version: 2.0.0-beta08
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.NetworkServices.V1
     channels:
       - path: google/cloud/networkservices/v1
@@ -949,6 +1014,7 @@ libraries:
     version: 1.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Notebooks.V1
     channels:
       - path: google/cloud/notebooks/v1
@@ -957,6 +1023,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Optimization.V1
     channels:
       - path: google/cloud/optimization/v1
@@ -973,6 +1040,7 @@ libraries:
     version: 2.10.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.OrgPolicy.V2
     channels:
       - path: google/cloud/orgpolicy/v2
@@ -981,6 +1049,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.OsConfig.V1
     channels:
       - path: google/cloud/osconfig/v1
@@ -997,6 +1066,7 @@ libraries:
     version: 2.0.0-alpha07
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.OsLogin.V1
     channels:
       - path: google/cloud/oslogin/v1
@@ -1005,6 +1075,7 @@ libraries:
     version: 3.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.OsLogin.V1Beta
     channels:
       - path: google/cloud/oslogin/v1beta
@@ -1013,6 +1084,7 @@ libraries:
     version: 3.0.0-beta10
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Parallelstore.V1
     channels:
       - path: google/cloud/parallelstore/v1
@@ -1021,6 +1093,7 @@ libraries:
     version: 1.3.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Parallelstore.V1Beta
     channels:
       - path: google/cloud/parallelstore/v1beta
@@ -1029,6 +1102,7 @@ libraries:
     version: 1.0.0-beta09
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ParameterManager.V1
     channels:
       - path: google/cloud/parametermanager/v1
@@ -1037,6 +1111,7 @@ libraries:
     version: 1.0.0-beta04
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.PhishingProtection.V1Beta1
     channels:
       - path: google/cloud/phishingprotection/v1beta1
@@ -1061,6 +1136,7 @@ libraries:
     version: 2.0.0-beta06
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.PrivilegedAccessManager.V1
     channels:
       - path: google/cloud/privilegedaccessmanager/v1
@@ -1069,6 +1145,7 @@ libraries:
     version: 1.2.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Profiler.V2
     channels:
       - path: google/devtools/cloudprofiler/v2
@@ -1109,6 +1186,7 @@ libraries:
     version: 1.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ResourceManager.V3
     channels:
       - path: google/cloud/resourcemanager/v3
@@ -1119,6 +1197,7 @@ libraries:
       exclude_common_resources_proto: true
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Retail.V2
     channels:
       - path: google/cloud/retail/v2
@@ -1128,6 +1207,7 @@ libraries:
     keep:
     - docs/history.md
     - docs/index.md
+    - smoketests.json
   - name: Google.Cloud.Run.V2
     channels:
       - path: google/cloud/run/v2
@@ -1136,12 +1216,21 @@ libraries:
     version: 2.18.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.SaasPlatform.SaasServiceMgmt.V1Beta1
     channels:
       - path: google/cloud/saasplatform/saasservicemgmt/v1beta1
         service_config: saasservicemgmt_v1beta1.yaml
     output: apis/Google.Cloud.SaasPlatform.SaasServiceMgmt.V1Beta1
     version: 1.0.0-beta02
+    keep:
+    - docs/history.md
+  - name: Google.Cloud.SecretManager.V1
+    channels:
+      - path: google/cloud/secretmanager/v1
+        service_config: secretmanager_v1.yaml
+    output: apis/Google.Cloud.SecretManager.V1
+    version: 2.7.0
     keep:
     - docs/history.md
   - name: Google.Cloud.SecretManager.V1Beta2
@@ -1152,6 +1241,7 @@ libraries:
     version: 1.0.0-beta04
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.SecretManager.V1Beta1
     channels:
       - path: google/cloud/secrets/v1beta1
@@ -1160,6 +1250,7 @@ libraries:
     version: 3.0.0-beta07
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Security.PrivateCA.V1
     channels:
       - path: google/cloud/security/privateca/v1
@@ -1168,6 +1259,7 @@ libraries:
     version: 3.11.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Security.PublicCA.V1
     channels:
       - path: google/cloud/security/publicca/v1
@@ -1184,6 +1276,7 @@ libraries:
     version: 1.0.0-beta06
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.SecurityCenter.V1
     channels:
       - path: google/cloud/securitycenter/v1
@@ -1208,6 +1301,7 @@ libraries:
     version: 1.4.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.SecurityCenterManagement.V1
     channels:
       - path: google/cloud/securitycentermanagement/v1
@@ -1216,6 +1310,7 @@ libraries:
     version: 1.3.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ServiceControl.V1
     channels:
       - path: google/api/servicecontrol/v1
@@ -1232,6 +1327,7 @@ libraries:
     version: 2.7.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ServiceDirectory.V1Beta1
     channels:
       - path: google/cloud/servicedirectory/v1beta1
@@ -1248,6 +1344,7 @@ libraries:
     version: 1.4.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ServiceManagement.V1
     channels:
       - path: google/api/servicemanagement/v1
@@ -1256,6 +1353,7 @@ libraries:
     version: 2.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.ServiceUsage.V1
     channels:
       - path: google/api/serviceusage/v1
@@ -1264,6 +1362,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Shell.V1
     channels:
       - path: google/cloud/shell/v1
@@ -1288,6 +1387,7 @@ libraries:
     version: 1.5.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.StorageTransfer.V1
     channels:
       - path: google/storagetransfer/v1
@@ -1296,6 +1396,7 @@ libraries:
     version: 2.10.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Support.V2Beta
     channels:
       - path: google/cloud/support/v2beta
@@ -1304,6 +1405,7 @@ libraries:
     version: 1.0.0-beta03
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Talent.V4
     channels:
       - path: google/cloud/talent/v4
@@ -1312,6 +1414,7 @@ libraries:
     version: 2.8.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Tasks.V2Beta3
     channels:
       - path: google/cloud/tasks/v2beta3
@@ -1328,6 +1431,7 @@ libraries:
     version: 2.0.0-beta17
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Trace.V2
     channels:
       - path: google/devtools/cloudtrace/v2
@@ -1336,6 +1440,7 @@ libraries:
     version: 3.7.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.VMMigration.V1
     channels:
       - path: google/cloud/vmmigration/v1
@@ -1344,6 +1449,7 @@ libraries:
     version: 2.9.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Video.LiveStream.V1
     channels:
       - path: google/cloud/video/livestream/v1
@@ -1352,6 +1458,7 @@ libraries:
     version: 1.11.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.Video.Transcoder.V1
     channels:
       - path: google/cloud/video/transcoder/v1
@@ -1360,12 +1467,15 @@ libraries:
     version: 2.12.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.VisionAI.V1
     channels:
       - path: google/cloud/visionai/v1
         service_config: visionai_v1.yaml
     output: apis/Google.Cloud.VisionAI.V1
     version: 1.0.0-beta00
+    keep:
+    - smoketests.json
   - name: Google.Cloud.VmwareEngine.V1
     channels:
       - path: google/cloud/vmwareengine/v1
@@ -1374,6 +1484,7 @@ libraries:
     version: 1.7.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.VpcAccess.V1
     channels:
       - path: google/cloud/vpcaccess/v1
@@ -1382,6 +1493,7 @@ libraries:
     version: 2.6.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Cloud.WebRisk.V1
     channels:
       - path: google/cloud/webrisk/v1
@@ -1414,6 +1526,7 @@ libraries:
     version: 1.0.0-beta02
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Maps.FleetEngine.Delivery.V1
     channels:
       - path: google/maps/fleetengine/delivery/v1
@@ -1440,6 +1553,7 @@ libraries:
     version: 1.1.0
     keep:
     - docs/history.md
+    - smoketests.json
   - name: Google.Maps.RouteOptimization.V1
     channels:
       - path: google/maps/routeoptimization/v1
