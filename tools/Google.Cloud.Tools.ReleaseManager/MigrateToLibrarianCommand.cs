@@ -129,7 +129,7 @@ public class MigrateToLibrarianCommand : CommandBase
                 yield return "    keep:";
                 foreach (var doc in docs)
                 {
-                    yield return $"    - {doc}";
+                    yield return $"    - docs/{doc}";
                 }
             }
         }
