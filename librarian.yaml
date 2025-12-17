@@ -3,8 +3,8 @@ language: dotnet
 repo: googleapis/google-cloud-dotnet
 sources:
   googleapis:
-    commit: 9fcfbea0aa5b50fa22e190faceb073d74504172b
-    sha256: 81e6057ffd85154af5268c2c3c8f2408745ca0f7fa03d43c68f4847f31eb5f98
+    commit: effe5c4fa816021e724ca856d5640f2e55b14a8b
+    sha256: 67c434ee6e13d3312eec9efd84085a1d62557e4ed9e8abfa225bd96838859517
 default:
   output: apis/{name}/
   transport: grpc+rest
